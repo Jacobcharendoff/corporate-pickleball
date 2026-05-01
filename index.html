@@ -387,6 +387,42 @@
   .test-meta strong{display:block;font-size:14px;font-weight:600;letter-spacing:-0.01em}
   .test-meta span{font-size:12px;color:var(--gray-4)}
 
+  /* ============== PRICING COMPARE ============== */
+  .pricing{padding:200px var(--pad);background:var(--cream-soft);position:relative;overflow:hidden}
+  .pricing-blob{position:absolute;left:-15%;bottom:-30%;width:700px;height:700px;background:radial-gradient(circle,var(--peach-glow),transparent 70%);filter:blur(100px);opacity:.5;border-radius:50%}
+  .pricing-inner{position:relative;z-index:1;max-width:var(--max);margin:0 auto}
+  .pricing .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-700);margin-bottom:18px;display:flex;align-items:center;gap:14px}
+  .pricing .kicker::before{content:"";width:36px;height:1px;background:var(--green-700)}
+  .pricing h2{font-size:clamp(38px,6.4vw,108px);font-weight:800;letter-spacing:-0.05em;line-height:.96;margin-bottom:80px;max-width:1100px}
+  .pricing-table{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch;margin-bottom:80px}
+  @media (max-width:880px){.pricing-table{grid-template-columns:1fr;gap:12px}}
+  .pricing-col{border-radius:24px;padding:40px;display:flex;flex-direction:column}
+  .pricing-col.golf{background:var(--gray-1);border:1px solid var(--gray-2);color:var(--gray-4)}
+  .pricing-col.us{background:linear-gradient(165deg, var(--augusta-800), var(--augusta-900));color:var(--white);position:relative;overflow:hidden}
+  .pricing-col.us::before{content:"";position:absolute;top:-20%;right:-20%;width:300px;height:300px;background:radial-gradient(circle,var(--peach),transparent 70%);filter:blur(60px);opacity:.3;pointer-events:none}
+  .pricing-col.us > *{position:relative}
+  .col-head{margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--gray-2)}
+  .pricing-col.us .col-head{border-bottom-color:rgba(255,255,255,.18)}
+  .col-eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray-4);margin-bottom:10px}
+  .pricing-col.us .col-eyebrow{color:var(--gold-soft)}
+  .col-name{font-size:30px;font-weight:700;letter-spacing:-0.025em;color:var(--black);line-height:1.05}
+  .pricing-col.us .col-name{color:var(--white)}
+  .rows{flex:1;display:flex;flex-direction:column}
+  .price-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--gray-2);font-size:14px;gap:14px}
+  .pricing-col.us .price-row{border-bottom-color:rgba(255,255,255,.08)}
+  .price-row .label{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray-4)}
+  .pricing-col.us .price-row .label{color:rgba(255,255,255,.55)}
+  .price-row .value{font-size:18px;font-weight:600;letter-spacing:-0.015em;color:var(--gray-4)}
+  .pricing-col.us .price-row .value{color:var(--white)}
+  .price-row.big{margin-top:auto;padding-top:28px;border-top:1px solid var(--gray-2);border-bottom:0}
+  .pricing-col.us .price-row.big{border-top-color:rgba(255,255,255,.18)}
+  .price-row.big .label{font-size:12px}
+  .price-row.big .value{font-size:clamp(34px, 3.6vw, 52px);font-weight:800;letter-spacing:-0.03em;color:var(--black);line-height:1;font-family:'Geist',sans-serif}
+  .pricing-col.us .price-row.big .value{background:var(--gold-shimmer-bg);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gold-shimmer 9s ease-in-out infinite}
+  .vs-arrow{display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:96px;color:var(--peach);font-weight:400;line-height:1;padding:0 12px}
+  @media (max-width:880px){.vs-arrow{transform:rotate(90deg);padding:6px 0;font-size:60px}}
+  .punchline{font-size:clamp(28px,3.6vw,56px);font-weight:600;letter-spacing:-0.03em;line-height:1.2;text-align:center;max-width:1000px;margin:0 auto;color:var(--black)}
+
   /* ============== CLOSING ============== */
   .closing{padding:220px var(--pad);background:var(--white);text-align:center;position:relative;overflow:hidden}
   .closing-bg{position:absolute;inset:auto -10% -40% -10%;height:780px;background:var(--azalea-mesh), var(--tie-dye);filter:blur(140px);opacity:.5;border-radius:50%;z-index:0}
@@ -505,16 +541,16 @@
   <div class="logos-inner">
     <div class="logos-eyebrow">Booked in 2025 by <span class="ital">Bay Street's most demanding teams.</span></div>
     <div class="logos-grid">
-      <div class="logo-cell" title="RBC Capital Markets"><img src="https://logo.clearbit.com/rbc.com" alt="RBC" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>RBC&nbsp;Capital</span>'"/></div>
-      <div class="logo-cell" title="Brookfield"><img src="https://logo.clearbit.com/brookfield.com" alt="Brookfield" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Brookfield</span>'"/></div>
-      <div class="logo-cell" title="Shopify"><img src="https://logo.clearbit.com/shopify.com" alt="Shopify" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Shopify</span>'"/></div>
-      <div class="logo-cell" title="TD Securities"><img src="https://logo.clearbit.com/td.com" alt="TD" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>TD&nbsp;Securities</span>'"/></div>
-      <div class="logo-cell" title="McKinsey & Company"><img src="https://logo.clearbit.com/mckinsey.com" alt="McKinsey" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>McKinsey&nbsp;TO</span>'"/></div>
-      <div class="logo-cell" title="Manulife"><img src="https://logo.clearbit.com/manulife.com" alt="Manulife" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Manulife</span>'"/></div>
-      <div class="logo-cell" title="Bennett Jones LLP"><img src="https://logo.clearbit.com/bennettjones.com" alt="Bennett Jones" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Bennett&nbsp;Jones</span>'"/></div>
-      <div class="logo-cell" title="BMO Capital Markets"><img src="https://logo.clearbit.com/bmo.com" alt="BMO" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>BMO</span>'"/></div>
-      <div class="logo-cell" title="Goldman Sachs"><img src="https://logo.clearbit.com/goldmansachs.com" alt="Goldman Sachs" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Goldman&nbsp;Sachs</span>'"/></div>
-      <div class="logo-cell" title="Bain & Company"><img src="https://logo.clearbit.com/bain.com" alt="Bain & Co" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Bain&nbsp;&amp;&nbsp;Co.</span>'"/></div>
+      <div class="logo-cell" title="RBC Capital Markets"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/RBC_Royal_Bank_logo.svg/512px-RBC_Royal_Bank_logo.svg.png" alt="RBC" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>RBC&nbsp;Capital</span>'"/></div>
+      <div class="logo-cell" title="Brookfield"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Brookfield_Asset_Management_logo.svg/512px-Brookfield_Asset_Management_logo.svg.png" alt="Brookfield" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Brookfield</span>'"/></div>
+      <div class="logo-cell" title="Shopify"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopify_logo_2018.svg/512px-Shopify_logo_2018.svg.png" alt="Shopify" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Shopify</span>'"/></div>
+      <div class="logo-cell" title="TD Securities"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Toronto-Dominion_Bank_logo.svg/512px-Toronto-Dominion_Bank_logo.svg.png" alt="TD" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>TD&nbsp;Securities</span>'"/></div>
+      <div class="logo-cell" title="McKinsey & Company"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/McKinsey_and_Company_Logo_1.svg/512px-McKinsey_and_Company_Logo_1.svg.png" alt="McKinsey" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>McKinsey</span>'"/></div>
+      <div class="logo-cell" title="Manulife"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Manulife.svg/512px-Manulife.svg.png" alt="Manulife" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Manulife</span>'"/></div>
+      <div class="logo-cell" title="Goldman Sachs"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Goldman_Sachs.svg/512px-Goldman_Sachs.svg.png" alt="Goldman Sachs" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Goldman&nbsp;Sachs</span>'"/></div>
+      <div class="logo-cell" title="BMO"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Bank_of_Montreal_logo.svg/512px-Bank_of_Montreal_logo.svg.png" alt="BMO" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>BMO</span>'"/></div>
+      <div class="logo-cell" title="Bain & Company"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Bain_and_company_logo.svg/512px-Bain_and_company_logo.svg.png" alt="Bain & Co" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Bain&nbsp;&amp;&nbsp;Co.</span>'"/></div>
+      <div class="logo-cell" title="Bennett Jones LLP"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Bennett_Jones_logo.svg/512px-Bennett_Jones_logo.svg.png" alt="Bennett Jones" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Bennett&nbsp;Jones</span>'"/></div>
     </div>
   </div>
 </section>
@@ -534,7 +570,7 @@
 <!-- ===== EDITORIAL FULL-BLEED #1 (champagne kitchen line) ===== -->
 <section class="editorial">
   <div class="editorial-bg">
-    <img src="https://image.pollinations.ai/prompt/Hyper-cinematic%20editorial%20fashion%20photograph%20shot%20on%20Hasselblad%20H6D-100c%20with%2050mm%20f1.4%20prime%20lens%20on%20Kodak%20Portra%20400%20film%2C%20single%20female%20corporate%20professional%20in%20cream%20cashmere%20athleisure%20mid-swing%20on%20a%20pristine%20indoor%20pickleball%20court%20with%20deep%20Augusta-emerald%20court%20lines%2C%20golden%20hour%20directional%20sunlight%20at%2018%3A00%20streaming%20through%20floor-to-ceiling%20Toronto%20skyline%20windows%2C%20warm%20cream%20and%20forest-green%20and%20azalea-peach%20color%20grading%2C%20shallow%20depth%20of%20field%2C%20motion%20blur%20on%20yellow%20pickleball%2C%20Lacoste%20FW26%20campaign%20aesthetic%2C%20Mario%20Sorrenti%20photographic%20style%2C%20editorial%20Vogue%20meets%20Architectural%20Digest%2C%20clean%20wide%20negative%20space%2C%20premium%20luxury%2C%20elegant%20composition%2C%204K%20resolution?width=2400&height=1400&seed=7301&nologo=true&model=flux&enhance=true" alt=""/>
+    <img src="https://picsum.photos/seed/cp7301/2400/1400" alt=""/>
   </div>
   <div class="editorial-content">
     <div class="kicker">— A scene from the 2025 Toronto Open</div>
@@ -557,7 +593,7 @@
 
       <article class="sku-card">
         <div class="sku-img">
-          <img src="https://image.pollinations.ai/prompt/Aerial%20overhead%20editorial%20photograph%20shot%20on%20Hasselblad%20H6D%2050mm%20Kodak%20Portra%20400%20film%2C%20single%20premium%20indoor%20pickleball%20court%20with%20four%20corporate%20professionals%20in%20cream%20and%20forest-green%20athleisure%20mid-rally%2C%20clean%20architectural%20composition%2C%20polished%20oak%20wooden%20floor%20with%20Augusta-emerald%20court%20lines%2C%20shafts%20of%20golden%20directional%20light%20from%20skylights%2C%2018%3A00%20golden%20hour%2C%20cream%20and%20forest-green%20and%20peach%20color%20grading%2C%20Lacoste%20FW26%20campaign%2C%20Mario%20Sorrenti%20style%2C%20Architectural%20Digest%20editorial%2C%2035mm%20film%20grain%2C%20premium%20luxury%2C%20cinematic?width=900&height=700&seed=441&nologo=true&model=flux&enhance=true" alt="Aerial pickleball court mid-rally" loading="lazy"/>
+          <img src="https://picsum.photos/seed/cp441/900/700" alt="Aerial pickleball court mid-rally" loading="lazy"/>
           <span class="sku-tag">Half-day</span>
         </div>
         <div class="sku-body">
@@ -576,7 +612,7 @@
 
       <article class="sku-card featured">
         <div class="sku-img">
-          <img src="https://image.pollinations.ai/prompt/Wide%20angle%20cinematic%20editorial%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20multi-court%20pickleball%20championship%20at%20premium%20Toronto%20indoor%20venue%2C%20simultaneous%20action%20across%20four%20oak%20wooden%20courts%20with%20Augusta-emerald%20lines%2C%20diverse%20corporate%20professionals%20in%20cream%20and%20forest-green%20Lacoste-style%20polos%2C%20live%20electronic%20scoreboard%20bokeh%20in%20foreground%2C%20warm%20golden%20stadium%20lighting%2C%20floor-to-ceiling%20windows%20revealing%20Toronto%20skyline%2C%2018%3A00%20golden%20hour%2C%20cream%20peach%20gold%20color%20grading%2C%20Mario%20Sorrenti%20editorial%20style%2C%20depth%20of%20field%2C%20premium%20luxury%2C%20cinematic%2C%204K?width=900&height=700&seed=512&nologo=true&model=flux&enhance=true" alt="Multi-court championship" loading="lazy"/>
+          <img src="https://picsum.photos/seed/cp512/900/700" alt="Multi-court championship" loading="lazy"/>
           <span class="sku-tag">Full-day</span>
         </div>
         <div class="sku-body">
@@ -595,7 +631,7 @@
 
       <article class="sku-card tournament">
         <div class="sku-img">
-          <img src="https://image.pollinations.ai/prompt/Hyper-cinematic%20editorial%20product%20photograph%20shot%20on%20Hasselblad%2085mm%20macro%20Kodak%20Portra%20400%2C%20heavy%20handcrafted%20gold%20and%20Augusta-emerald%20enamel%20pickleball%20championship%20trophy%20on%20black%20velvet%20pedestal%2C%20single%20dramatic%20warm%20spotlight%20from%20upper%20left%2C%20Krug%20champagne%20coupe%20beside%20it%20catching%20light%20with%20rising%20bubbles%2C%20Toronto%20skyline%20bokeh%20twinkling%20through%20rain-streaked%20floor-to-ceiling%20window%2C%20deep%20rich%20black%20background%2C%20golden%20hour%20warm%20accent%2C%20Lacoste%20meets%20Apple%20editorial%2C%20Mario%20Sorrenti%20Esquire%20cover%2C%20premium%20luxury%20cinematic%2C%2035mm%20film%20grain%2C%20moody%20dramatic%20lighting?width=900&height=700&seed=909&nologo=true&model=flux&enhance=true" alt="Bay Street Cup trophy" loading="lazy"/>
+          <img src="https://picsum.photos/seed/cp909/900/700" alt="Bay Street Cup trophy" loading="lazy"/>
           <span class="sku-tag">Annual · Invitational</span>
         </div>
         <div class="sku-body">
@@ -632,7 +668,7 @@
 
 <!-- ===== TORONTO OPEN FEATURE ===== -->
 <section class="open-feature">
-  <div class="open-bg"><img src="https://image.pollinations.ai/prompt/Cinematic%20atmospheric%20editorial%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20packed%20black-tie%20crowd%20watching%20pickleball%20championship%20final%20under%20dramatic%20stadium%20spotlights%2C%20professional%20athletes%20mid-rally%20on%20premium%20oak%20court%20with%20Augusta-emerald%20lines%2C%20Toronto%20skyline%20twinkling%20through%20massive%20floor-to-ceiling%20windows%20behind%2C%20warm%20ambient%20haze%20smoke%20golden%20glow%2C%20editorial%20sports%20photography%2C%20Mario%20Sorrenti%20style%2C%20Vanity%20Fair%20cover%2C%20cream%20peach%20gold%20Augusta%20color%20grading%2C%2035mm%20film%20grain%2C%20shallow%20depth%20of%20field%2C%20deep%20rich%20cinematic?width=2200&height=1100&seed=70&nologo=true&model=flux&enhance=true" alt=""/></div>
+  <div class="open-bg"><img src="https://picsum.photos/seed/cp70/2200/1100" alt=""/></div>
   <div class="open-mesh"></div>
   <div class="open-mesh-2"></div>
   <div class="open-inner">
@@ -669,22 +705,22 @@
     <div class="venues-grid">
       <div class="venue">
         <span class="venue-tag">Flagship · Downtown</span>
-        <img src="https://image.pollinations.ai/prompt/Architectural%20Digest%20wide%20interior%20photograph%20shot%20on%20Hasselblad%2024mm%20Kodak%20Portra%20400%20film%2C%20premium%20indoor%20pickleball%20club%20at%20night%20in%20downtown%20Toronto%2C%20polished%20oak%20wooden%20floors%20with%20Augusta-emerald%20court%20lines%2C%20dramatic%20warm%20uplighting%2C%20floor-to-ceiling%20glass%20windows%20revealing%20twinkling%20Toronto%20skyline%2C%20brass%20fixtures%20and%20cream%20leather%20banquettes%20visible%2C%20no%20people%2C%20Lacoste%20FW26%20editorial%2C%20Mario%20Sorrenti%20style%2C%20premium%20luxury%2C%20cream%20peach%20gold%20Augusta%20color%20grading%2C%2035mm%20film%20grain%2C%20cinematic%2C%20deep%20rich%20moody?width=1200&height=900&seed=2201&nologo=true&model=flux&enhance=true" alt="6ix Pickle interior at night" loading="lazy"/>
+        <img src="https://picsum.photos/seed/cp2201/1200/900" alt="6ix Pickle interior at night" loading="lazy"/>
         <div class="venue-meta"><div class="name">6ix Pickle</div><div class="info">Moss Park · 4 courts · 24/7</div></div>
       </div>
       <div class="venue">
         <span class="venue-tag">12 courts</span>
-        <img src="https://image.pollinations.ai/prompt/Architectural%20Digest%20interior%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20cathedral-style%20premium%20indoor%20pickleball%20arena%20with%20twelve%20oak%20wooden%20courts%20visible%20in%20perfect%20perspective%2C%20Augusta-emerald%20court%20lines%2C%20skylights%20with%20golden%20hour%20natural%20light%20streaming%20down%2C%20no%20people%2C%20premium%20Lacoste%20FW26%20editorial%2C%20Mario%20Sorrenti%2C%20cream%20peach%20gold%20Augusta%20color%20grading%2C%2035mm%20film%20grain%2C%20cinematic?width=900&height=900&seed=2202&nologo=true&model=flux&enhance=true" alt="The Jar club" loading="lazy"/>
+        <img src="https://picsum.photos/seed/cp2202/900/900" alt="The Jar club" loading="lazy"/>
         <div class="venue-meta"><div class="name">The Jar</div><div class="info">Etobicoke</div></div>
       </div>
       <div class="venue">
         <span class="venue-tag">Country club</span>
-        <img src="https://image.pollinations.ai/prompt/Architectural%20Digest%20exterior%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20premium%20country%20club%20pickleball%20court%20surrounded%20by%20azalea%20pink%20peach%20blossoms%20and%20magnolia%20trees%2C%20oak%20court%20surface%20with%20Augusta-emerald%20lines%2C%20cream%20clubhouse%20visible%20behind%2C%20golden%20hour%20warm%20directional%20light%2C%20Augusta%20National%20energy%2C%20no%20people%2C%20Mario%20Sorrenti%20Lacoste%20FW26%2C%20peach%20cream%20gold%20color%20grading%2C%2035mm%20film%20grain%2C%20cinematic%20premium%20luxury?width=900&height=900&seed=2203&nologo=true&model=flux&enhance=true" alt="Mayfair country club court" loading="lazy"/>
+        <img src="https://picsum.photos/seed/cp2203/900/900" alt="Mayfair country club court" loading="lazy"/>
         <div class="venue-meta"><div class="name">Mayfair</div><div class="info">Markham</div></div>
       </div>
       <div class="venue">
         <span class="venue-tag">Rooftop</span>
-        <img src="https://image.pollinations.ai/prompt/Architectural%20Digest%20wide%20rooftop%20photograph%20shot%20on%20Hasselblad%2024mm%20Kodak%20Portra%20400%20film%2C%20premium%20rooftop%20pickleball%20court%20on%20top%20of%20Toronto%20financial%20district%20skyscraper%20at%20golden%20hour%2C%20polished%20oak%20surface%20with%20Augusta-emerald%20lines%2C%20Toronto%20CN%20Tower%20and%20skyline%20visible%20behind%2C%20warm%20golden%20directional%20light%2C%20no%20people%2C%20cream%20cabanas%20and%20gold%20fixtures%2C%20Lacoste%20FW26%20editorial%20Mario%20Sorrenti%2C%20peach%20cream%20gold%20Augusta%20color%20grading%2C%2035mm%20film%20grain%2C%20premium%20luxury%2C%20cinematic?width=900&height=900&seed=2204&nologo=true&model=flux&enhance=true" alt="One York rooftop court" loading="lazy"/>
+        <img src="https://picsum.photos/seed/cp2204/900/900" alt="One York rooftop court" loading="lazy"/>
         <div class="venue-meta"><div class="name">One York Rooftop</div><div class="info">Financial District</div></div>
       </div>
     </div>
@@ -700,28 +736,28 @@
     <p class="lead">Every metric your event coordinator cares about — time, cost, inclusion, memorability — moves the right direction the moment you swap the tee box for the kitchen line.</p>
     <div class="why-grid reveal-stagger" data-reveal>
       <div class="why-card">
-        <div class="why-img"><img src="https://image.pollinations.ai/prompt/Editorial%20cinematic%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20professional%20wristwatch%20Patek%20Philippe%20on%20a%20cream%20cashmere%20sleeve%20resting%20on%20a%20polished%20oak%20pickleball%20court%2C%20Augusta-emerald%20court%20line%20visible%2C%20golden%20hour%20warm%20directional%20light%2C%20Lacoste%20FW26%20editorial%2C%20Mario%20Sorrenti%20style%2C%20peach%20cream%20gold%20color%20grading%2C%20shallow%20depth%20of%20field%2C%2035mm%20film%20grain%2C%20premium%20luxury%20Esquire?width=800&height=600&seed=1101&nologo=true&model=flux&enhance=true" alt="Watch on cashmere sleeve courtside" loading="lazy"/></div>
+        <div class="why-img"><img src="https://picsum.photos/seed/cp1101/800/600" alt="Watch on cashmere sleeve courtside" loading="lazy"/></div>
         <div class="why-body">
           <div><div class="num">01 / Time</div><h3>Done in <span class="ital">a half-day.</span></h3><p>A foursome at Glen Abbey takes six hours plus an hour each way. A Corporate Pickleball off-site is door-to-door in three and a half.</p></div>
           <div class="compare"><s>6.5 hrs</s><span class="arrow-side">→</span><strong>3.5 hrs</strong></div>
         </div>
       </div>
       <div class="why-card">
-        <div class="why-img"><img src="https://image.pollinations.ai/prompt/Editorial%20cinematic%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20overhead%20view%20of%20a%20premium%20black%20leather%20event%20portfolio%20with%20gold%20foil-stamped%20Corporate%20Pickleball%20wordmark%20cover%20open%20to%20a%20handwritten%20event%20budget%20on%20cream%20parchment%2C%20a%20crystal%20glass%20of%20Krug%20champagne%20beside%20it%2C%20oak%20court%20surface%2C%20golden%20hour%20warm%20light%2C%20Lacoste%20FW26%20editorial%2C%20Mario%20Sorrenti%2C%20cream%20peach%20gold%20Augusta%20color%20grading%2C%2035mm%20film%20grain%2C%20premium%20luxury%2C%20Architectural%20Digest?width=800&height=600&seed=1102&nologo=true&model=flux&enhance=true" alt="Event portfolio with budget" loading="lazy"/></div>
+        <div class="why-img"><img src="https://picsum.photos/seed/cp1102/800/600" alt="Event portfolio with budget" loading="lazy"/></div>
         <div class="why-body">
           <div><div class="num">02 / Cost</div><h3><span class="ital">~5×</span> more efficient.</h3><p>Average per-head spend on a 32-person golf outing in the GTA: $880. The Off-Site, white-glove, catered, photographed: $150.</p></div>
           <div class="compare"><s>$28,160</s><span class="arrow-side">→</span><strong>$4,800</strong></div>
         </div>
       </div>
       <div class="why-card">
-        <div class="why-img"><img src="https://image.pollinations.ai/prompt/Editorial%20documentary%20cinematic%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20diverse%20group%20of%20six%20corporate%20professionals%20in%20cream%20and%20Augusta-emerald%20Lacoste-style%20polos%20laughing%20together%20after%20a%20pickleball%20rally%2C%20mixed%20gender%20and%20age%2C%20genuine%20unposed%20joy%2C%20oak%20wooden%20court%20surface%2C%20golden%20hour%20warm%20directional%20stadium%20lighting%2C%20Toronto%20skyline%20visible%20through%20floor-to-ceiling%20windows%20behind%2C%20Mario%20Sorrenti%20Vanity%20Fair%20editorial%2C%20peach%20cream%20gold%20Augusta%20color%20grading%2C%20Magnum%20photographers%2C%2035mm%20film%20grain%2C%20premium%20luxury%2C%20cinematic?width=800&height=600&seed=1103&nologo=true&model=flux&enhance=true" alt="Diverse team laughing courtside" loading="lazy"/></div>
+        <div class="why-img"><img src="https://picsum.photos/seed/cp1103/800/600" alt="Diverse team laughing courtside" loading="lazy"/></div>
         <div class="why-body">
           <div><div class="num">03 / Inclusion</div><h3>Everyone <span class="ital">can play.</span></h3><p>Pickleball flattens skill differences in a single afternoon. Your VP of Eng and your Q3 intern end up on the same court. <span class="ital">That's the point.</span></p></div>
           <div class="compare"><s>Insiders</s><span class="arrow-side">→</span><strong>Whole team</strong></div>
         </div>
       </div>
       <div class="why-card">
-        <div class="why-img"><img src="https://image.pollinations.ai/prompt/Editorial%20documentary%20cinematic%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20handsome%20mid-air%20moment%20of%20a%20yellow%20pickleball%20suspended%20over%20a%20premium%20Augusta-emerald%20net%2C%20professional%20woman%20in%20cream%20athleisure%20mid-strike%20behind%2C%20motion%20blur%20on%20paddle%2C%20oak%20wooden%20court%20with%20deep%20forest-green%20kitchen%20lines%2C%20golden%20hour%20warm%20directional%20light%2C%20Toronto%20skyline%20bokeh%20twinkling%20behind%2C%20Mario%20Sorrenti%20Lacoste%20FW26%20editorial%2C%20peach%20cream%20gold%20Augusta%20color%20grading%2C%20shallow%20depth%20of%20field%2C%2035mm%20film%20grain%2C%20premium%20luxury%2C%20cinematic?width=800&height=600&seed=1104&nologo=true&model=flux&enhance=true" alt="Yellow pickleball mid-air over net" loading="lazy"/></div>
+        <div class="why-img"><img src="https://picsum.photos/seed/cp1104/800/600" alt="Yellow pickleball mid-air over net" loading="lazy"/></div>
         <div class="why-body">
           <div><div class="num">04 / Memory</div><h3>Stories, <span class="ital">not slides.</span></h3><p>Our post-event survey: 94% of players can name a moment from the day a year later. The previous off-site? 31%.</p></div>
           <div class="compare"><s>31% recall</s><span class="arrow-side">→</span><strong>94% recall</strong></div>
@@ -734,7 +770,7 @@
 <!-- ===== EDITORIAL FULL-BLEED #2 (afterparty) ===== -->
 <section class="editorial">
   <div class="editorial-bg">
-    <img src="https://image.pollinations.ai/prompt/Editorial%20cinematic%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20black-tie%20rooftop%20afterparty%20in%20downtown%20Toronto%2C%20professionals%20in%20tuxedos%20and%20floor-length%20cocktail%20dresses%20holding%20Krug%20champagne%20coupes%2C%20live%20jazz%20quartet%20bokeh%20in%20background%2C%20warm%20tungsten%20string%20bulb%20lighting%20overhead%2C%20Toronto%20skyline%20twinkling%20behind%2C%20azalea%20peach%20cream%20gold%20color%20grading%2C%20Mario%20Sorrenti%20Vanity%20Fair%20cover%20aesthetic%2C%20candid%20celebratory%20moment%2C%20shallow%20depth%20of%20field%2C%2035mm%20film%20grain%2C%20premium%20luxury%2C%20cinematic?width=2400&height=1400&seed=8801&nologo=true&model=flux&enhance=true" alt=""/>
+    <img src="https://picsum.photos/seed/cp8801/2400/1400" alt=""/>
   </div>
   <div class="editorial-content">
     <div class="kicker">— Friday, 11pm, One York Rooftop</div>
@@ -805,6 +841,54 @@
         <div><div class="stars">★★★★★</div><blockquote>"Better than Glen Abbey, and not because the pickleball was better than the golf. <span class="ital">Because the analysts beat the partners</span> and we still made it home for dinner."</blockquote></div>
         <div class="test-author"><div class="test-avatar">DC</div><div class="test-meta"><strong>Partner</strong><span>National law firm · Toronto</span></div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING COMPARE ===== -->
+<section class="pricing">
+  <div class="pricing-blob" aria-hidden="true"></div>
+  <div class="pricing-inner">
+    <div class="kicker">A 32-person off-site, side by side</div>
+    <h2>Six-figure golf day.<br/>Or <span class="ital">$4,800.</span></h2>
+
+    <div class="pricing-table" data-reveal>
+      <div class="pricing-col golf">
+        <div class="col-head">
+          <div class="col-eyebrow">— The old way</div>
+          <div class="col-name">A day at <span class="ital">Glen Abbey.</span></div>
+        </div>
+        <div class="rows">
+          <div class="price-row"><span class="label">Per-head spend</span><span class="value">$880</span></div>
+          <div class="price-row"><span class="label">Caddy &amp; cart</span><span class="value">+$220</span></div>
+          <div class="price-row"><span class="label">Lunch + clubhouse</span><span class="value">+$140</span></div>
+          <div class="price-row"><span class="label">Time, door-to-door</span><span class="value">6.5 hrs</span></div>
+          <div class="price-row"><span class="label">Inclusion (skill cap)</span><span class="value">23%</span></div>
+          <div class="price-row"><span class="label">Recall, 12 mos out</span><span class="value">31%</span></div>
+          <div class="price-row big"><span class="label">All-in</span><span class="value">$28,160</span></div>
+        </div>
+      </div>
+      <div class="vs-arrow" aria-hidden="true">→</div>
+      <div class="pricing-col us">
+        <div class="col-head">
+          <div class="col-eyebrow">— The Off-Site</div>
+          <div class="col-name">Corporate <span class="ital">Pickleball.</span></div>
+        </div>
+        <div class="rows">
+          <div class="price-row"><span class="label">Per-head spend</span><span class="value">$150</span></div>
+          <div class="price-row"><span class="label">White-glove staffing</span><span class="value">Included</span></div>
+          <div class="price-row"><span class="label">Catering + bar</span><span class="value">Included</span></div>
+          <div class="price-row"><span class="label">Time, door-to-door</span><span class="value">3.5 hrs</span></div>
+          <div class="price-row"><span class="label">Inclusion (whole team)</span><span class="value">100%</span></div>
+          <div class="price-row"><span class="label">Recall, 12 mos out</span><span class="value">94%</span></div>
+          <div class="price-row big"><span class="label">All-in</span><span class="value">$4,800</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="punchline">
+      <span class="ital">5.9× more</span> event for your dollar.<br/>
+      Door-to-door <span class="ital">in half the time.</span> Every player remembers.
     </div>
   </div>
 </section>
