@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Toronto Open — Corporate Pickleball</title>
+<meta name="description" content="The Bay Street Cup. September 14–18, 2026. Twelve firms. One trophy. The only invitational of its kind in North America." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--green-deep:#0a3a1f;--green-rich:#0f5132;--green:#15803d;--green-energy:#22c55e;--green-mint:#86efac;--green-whisper:#f0fdf4;--cream:#f5efe6;--champagne:#d4b896;--gold:#c8a25b;--black:#0a0a0a;--black-soft:#0e0e0e;--gray-1:#f7f7f5;--gray-2:#eeeeec;--gray-3:#a3a39d;--gray-4:#525250;--white:#ffffff;--max:1440px;--pad:clamp(20px, 4vw, 64px);--tie-dye: linear-gradient(135deg, #0a3a1f 0%, #15803d 30%, #22c55e 55%, #86efac 78%, #d4b896 100%);}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  body{font-family:'Geist','Inter',system-ui,-apple-system,sans-serif;background:var(--black);color:var(--white);line-height:1.4;overflow-x:hidden}
+  ::selection{background:var(--green-energy);color:var(--white)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%;height:auto}
+  .nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);background:rgba(10,10,10,.62);border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav-inner{max-width:var(--max);margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-0.02em;font-size:14px;text-transform:uppercase;color:var(--white)}
+  .brand-mark{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--green-energy), var(--green-deep));box-shadow:inset 0 0 0 1px rgba(255,255,255,.15), 0 4px 14px -2px rgba(15,81,50,.4)}
+  .nav-links{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65)}
+  .nav-links a:hover{color:var(--white)}
+  .nav-links a.active{color:var(--green-mint)}
+  .nav-cta{display:flex;align-items:center;gap:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:-0.005em;transition:all .25s cubic-bezier(.2,.6,.2,1);cursor:pointer;border:0;white-space:nowrap}
+  .btn-primary{background:var(--white);color:var(--black)}
+  .btn-gold{background:linear-gradient(135deg,#e0c98e,#a78445);color:var(--black)}
+  .btn-gold:hover{transform:translateY(-1px);box-shadow:0 12px 30px -12px rgba(200,162,91,.55)}
+  .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.22)}
+  .btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.06)}
+  @media (max-width:760px){.nav-links{display:none}}
+  .ticker{position:fixed;top:64px;left:0;right:0;z-index:90;background:var(--green-deep);border-bottom:1px solid rgba(255,255,255,.08);overflow:hidden}
+  .ticker-inner{display:flex;gap:48px;padding:10px var(--pad);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--green-mint);text-transform:uppercase;white-space:nowrap;animation:scroll 38s linear infinite}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .ticker-inner span{display:inline-flex;align-items:center;gap:10px}
+  .ticker-inner span::before{content:"·";color:var(--champagne);font-size:18px;line-height:0;display:inline-block;transform:translateY(-2px)}
+  .hero{position:relative;min-height:100vh;padding:160px var(--pad) 100px;display:flex;align-items:flex-end;overflow:hidden;background:var(--black)}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.7}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(10,10,10,.65) 0%, rgba(10,10,10,.35) 50%, rgba(10,10,10,.95) 100%)}
+  .hero-tie{position:absolute;right:-15%;top:-25%;width:75vw;max-width:1100px;height:75vw;max-height:1100px;background:var(--tie-dye);filter:blur(140px);opacity:.32;border-radius:50%;z-index:0}
+  .hero-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;width:100%}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);border-radius:999px;padding:8px 16px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-mint);margin-bottom:36px}
+  .hero-eyebrow .pulse{width:7px;height:7px;background:var(--green-energy);border-radius:50%;box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+  .hero h1{font-size:clamp(64px, 11vw, 200px);line-height:.86;letter-spacing:-0.052em;font-weight:800;margin-bottom:32px}
+  .hero h1 .gold{background:linear-gradient(135deg,#f3deaf 0%, #c8a25b 45%, #8b6c2c 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;font-weight:300;letter-spacing:-0.04em;font-family:'Geist',serif}
+  .hero-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;border-top:1px solid rgba(255,255,255,.18);padding-top:32px;max-width:920px;margin-bottom:32px}
+  @media (max-width:760px){.hero-meta{grid-template-columns:repeat(2,1fr)}}
+  .hero-meta div .k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px}
+  .hero-meta div .v{font-size:clamp(20px,2vw,28px);font-weight:700;letter-spacing:-0.025em}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+  .story{padding:160px var(--pad);background:var(--black);position:relative}
+  .story-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:140px 1fr;gap:48px}
+  @media (max-width:880px){.story-inner{grid-template-columns:1fr;gap:18px}}
+  .story-kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-mint);padding-top:22px}
+  .story-body p{font-size:clamp(22px, 2.4vw, 36px);line-height:1.32;letter-spacing:-0.02em;color:rgba(255,255,255,.92);font-weight:400;margin-bottom:36px}
+  .story-body p:last-child{margin-bottom:0}
+  .story-body p strong{font-weight:600;color:var(--white)}
+  .story-body p em{color:var(--green-mint);font-style:italic;font-weight:400}
+  .format{padding:140px var(--pad);background:var(--white);color:var(--black)}
+  .format-inner{max-width:var(--max);margin:0 auto}
+  .format-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:60px}
+  .section-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-deep);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .section-eyebrow::before{content:"";width:24px;height:1px;background:var(--green-deep)}
+  .format h2{font-size:clamp(34px,5vw,76px);font-weight:700;letter-spacing:-0.04em;line-height:1.02;max-width:760px}
+  .format-sub{font-size:16px;color:var(--gray-4);max-width:380px}
+  .days{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--gray-2);border-radius:24px;overflow:hidden;border:1px solid var(--gray-2)}
+  @media (max-width:980px){.days{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.days{grid-template-columns:1fr}}
+  .day{background:var(--white);padding:28px 24px 32px;display:flex;flex-direction:column;justify-content:space-between;min-height:280px}
+  .day .d-num{font-family:'Geist Mono',monospace;font-size:11px;color:var(--green-deep);letter-spacing:.22em;margin-bottom:14px}
+  .day .d-date{font-size:14px;color:var(--gray-4);margin-bottom:10px;font-family:'Geist Mono',monospace;letter-spacing:.05em}
+  .day h3{font-size:22px;font-weight:600;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.15}
+  .day p{font-size:13px;color:var(--gray-4);line-height:1.5;margin-bottom:18px}
+  .day .v{font-size:11px;font-family:'Geist Mono',monospace;letter-spacing:.18em;color:var(--green-deep);text-transform:uppercase;border-top:1px solid var(--gray-2);padding-top:14px}
+  .roster{padding:140px var(--pad);background:var(--gray-1);color:var(--black);position:relative;overflow:hidden}
+  .roster-inner{max-width:var(--max);margin:0 auto;position:relative;z-index:2}
+  .roster-head{margin-bottom:60px;max-width:900px}
+  .roster h2{font-size:clamp(34px,5vw,76px);font-weight:700;letter-spacing:-0.04em;line-height:1.02;margin-bottom:20px}
+  .roster-sub{font-size:17px;color:var(--gray-4);max-width:680px;line-height:1.5}
+  .firms-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media (max-width:980px){.firms-grid{grid-template-columns:repeat(2,1fr)}}
+  .firm-card{background:var(--white);border-radius:18px;padding:24px;border:1px solid rgba(10,10,10,.04);min-height:140px;display:flex;flex-direction:column;justify-content:space-between;position:relative;transition:all .3s}
+  .firm-card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -20px rgba(10,58,31,.18)}
+  .firm-card.champion{background:var(--black);color:var(--white);border-color:var(--gold)}
+  .firm-card.champion::before{content:"DEFENDING CHAMPION";position:absolute;top:14px;right:14px;font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.22em;color:var(--gold)}
+  .firm-card .name{font-size:20px;font-weight:700;letter-spacing:-0.02em;margin-bottom:6px}
+  .firm-card .meta{font-size:11px;font-family:'Geist Mono',monospace;letter-spacing:.12em;color:var(--gray-4);text-transform:uppercase}
+  .firm-card.champion .meta{color:var(--green-mint)}
+  .firm-card .seed{position:absolute;top:14px;left:14px;font-family:'Geist Mono',monospace;font-size:11px;color:var(--gray-3);letter-spacing:.12em}
+  .firm-card.champion .seed{color:rgba(255,255,255,.5)}
+  .firm-card .roster-line{font-size:12px;color:var(--gray-4);line-height:1.4;margin-top:14px;border-top:1px solid var(--gray-2);padding-top:12px}
+  .firm-card.champion .roster-line{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.12)}
+  .trophy{padding:160px var(--pad);background:var(--black);position:relative;overflow:hidden}
+  .trophy-tie{position:absolute;left:-20%;bottom:-30%;width:80vw;height:80vw;background:radial-gradient(circle, var(--gold) 0%, transparent 60%);filter:blur(140px);opacity:.18;z-index:0}
+  .trophy-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;gap:60px;align-items:center}
+  @media (max-width:980px){.trophy-inner{grid-template-columns:1fr;gap:40px}}
+  .trophy-vis{aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--black-soft)}
+  .trophy-vis img{width:100%;height:100%;object-fit:cover}
+  .trophy-text .section-eyebrow{color:var(--gold)}
+  .trophy-text .section-eyebrow::before{background:var(--gold)}
+  .trophy-text h2{font-size:clamp(40px,6vw,96px);font-weight:800;letter-spacing:-0.045em;line-height:.96;margin-bottom:24px}
+  .trophy-text h2 .gold{background:linear-gradient(135deg,#f3deaf 0%, #c8a25b 50%, #8b6c2c 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .trophy-text p{font-size:17px;line-height:1.55;color:rgba(255,255,255,.78);max-width:520px;margin-bottom:24px}
+  .trophy-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:1px solid rgba(255,255,255,.14);padding-top:28px;margin-top:8px}
+  .trophy-specs .k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px}
+  .trophy-specs .v{font-size:18px;font-weight:600;letter-spacing:-0.015em}
+  .after{padding:0;background:var(--green-deep);color:var(--white);position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:560px}
+  @media (max-width:980px){.after{grid-template-columns:1fr;min-height:auto}}
+  .after-img{position:relative;overflow:hidden;background:var(--black)}
+  .after-img img{width:100%;height:100%;object-fit:cover;min-height:420px}
+  .after-text{padding:100px var(--pad);display:flex;flex-direction:column;justify-content:center;position:relative}
+  .after-text .section-eyebrow{color:var(--green-mint)}
+  .after-text .section-eyebrow::before{background:var(--green-mint)}
+  .after-text h2{font-size:clamp(36px,5vw,72px);font-weight:700;letter-spacing:-0.04em;line-height:1;margin-bottom:24px}
+  .after-text p{font-size:17px;line-height:1.55;color:rgba(255,255,255,.78);max-width:480px;margin-bottom:24px}
+  .after-meta{display:grid;grid-template-columns:1fr 1fr;gap:18px;border-top:1px solid rgba(255,255,255,.18);padding-top:24px;max-width:480px}
+  .after-meta .k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px}
+  .after-meta .v{font-size:16px;font-weight:600;letter-spacing:-0.01em}
+  .champions{padding:140px var(--pad);background:var(--black)}
+  .champions-inner{max-width:var(--max);margin:0 auto}
+  .champions-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:60px}
+  .champions h2{font-size:clamp(34px,5vw,72px);font-weight:700;letter-spacing:-0.04em;line-height:1.02;max-width:600px}
+  .champions-sub{font-size:14px;color:rgba(255,255,255,.55);max-width:340px;font-family:'Geist Mono',monospace;letter-spacing:.05em}
+  .past-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media (max-width:880px){.past-grid{grid-template-columns:1fr;gap:20px}}
+  .past-card{background:var(--black-soft);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+  .past-card .pc-img{aspect-ratio:4/3;overflow:hidden;background:var(--green-deep)}
+  .past-card .pc-img img{width:100%;height:100%;object-fit:cover}
+  .past-card .pc-body{padding:24px 26px 28px}
+  .past-card .pc-year{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--gold);margin-bottom:10px}
+  .past-card .pc-firm{font-size:24px;font-weight:700;letter-spacing:-0.025em;margin-bottom:6px}
+  .past-card .pc-mvp{font-size:13px;color:rgba(255,255,255,.65);font-family:'Geist Mono',monospace;letter-spacing:.05em}
+  .past-card .pc-stats{display:flex;gap:20px;border-top:1px solid rgba(255,255,255,.08);padding-top:14px;margin-top:14px;font-size:12px;color:rgba(255,255,255,.55)}
+  .past-card .pc-stats span strong{color:var(--white);font-size:16px;font-weight:700;display:block;letter-spacing:-0.01em}
+  .apply{padding:160px var(--pad);background:var(--white);color:var(--black);text-align:center}
+  .apply-inner{max-width:1000px;margin:0 auto}
+  .apply h2{font-size:clamp(40px,7vw,116px);font-weight:800;letter-spacing:-0.045em;line-height:.94;margin-bottom:28px}
+  .apply h2 .green{color:var(--green-deep)}
+  .apply p{font-size:18px;color:var(--gray-4);max-width:600px;margin:0 auto 32px}
+  .apply-rules{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:36px;font-size:13px;color:var(--gray-4);font-family:'Geist Mono',monospace;letter-spacing:.08em}
+  .apply-rules span{padding:6px 14px;background:var(--gray-1);border-radius:999px;text-transform:uppercase}
+  .apply-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn-green-dark{background:var(--green-deep);color:var(--white)}
+  .btn-green-dark:hover{background:var(--green-rich);transform:translateY(-1px);box-shadow:0 12px 30px -12px rgba(15,81,50,.6)}
+  .btn-ghost-dark{background:transparent;color:var(--black);border:1px solid rgba(10,10,10,.14)}
+  .btn-ghost-dark:hover{border-color:var(--black);background:rgba(10,10,10,.03)}
+  footer{background:var(--black-soft);color:var(--white);padding:100px var(--pad) 40px;border-top:1px solid rgba(255,255,255,.08)}
+  .foot-inner{max-width:var(--max);margin:0 auto}
+  .foot-top{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:48px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.1)}
+  @media (max-width:980px){.foot-top{grid-template-columns:1fr 1fr;gap:36px}}
+  @media (max-width:560px){.foot-top{grid-template-columns:1fr}}
+  .foot-brand p{font-size:14px;color:rgba(255,255,255,.55);margin-top:18px;max-width:280px;line-height:1.55}
+  .foot-col h4{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:18px;font-weight:500}
+  .foot-col ul{list-style:none}
+  .foot-col li{margin-bottom:12px}
+  .foot-col a{font-size:14px;color:rgba(255,255,255,.85);transition:color .2s}
+  .foot-col a:hover{color:var(--green-mint)}
+  .foot-bot{padding-top:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:rgba(255,255,255,.45);font-family:'Geist Mono',monospace;letter-spacing:.05em}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a href="index.html" class="brand"><span class="brand-mark"></span><span>Corporate&nbsp;Pickleball</span></a><div class="nav-links"><a href="toronto-open.html" class="active">The Toronto Open</a><a href="index.html#how">How it works</a><a href="index.html#sku">Events</a><a href="index.html#book">Venues</a></div><div class="nav-cta"><a href="index.html" class="btn btn-ghost">All events</a><a href="book.html" class="btn btn-gold">Apply for 2026</a></div></div></nav>
+<div class="ticker"><div class="ticker-inner"><span>Sept 14–18, 2026</span><span>192 invited players</span><span>12 firms</span><span>1 trophy</span><span>The Bay Street Cup</span><span>6ix Pickle · The Jar · One York Rooftop</span><span>Black-tie Friday</span><span>Sept 14–18, 2026</span><span>192 invited players</span><span>12 firms</span><span>1 trophy</span><span>The Bay Street Cup</span><span>6ix Pickle · The Jar · One York Rooftop</span><span>Black-tie Friday</span></div></div>
+<section class="hero"><div class="hero-bg"><img src="https://image.pollinations.ai/prompt/Hyper-cinematic%20editorial%20photograph%20of%20an%20oversized%20polished%20gold%20and%20forest-green%20pickleball%20championship%20trophy%20on%20a%20black%20velvet%20pedestal%20in%20a%20darkened%20Toronto%20ballroom%2C%20single%20dramatic%20cinematic%20spotlight%20from%20above%2C%20the%20entire%20Toronto%20skyline%20twinkling%20through%20massive%20floor-to-ceiling%20windows%20behind%20it%2C%2050mm%20lens%2C%20editorial%20luxury%20product%20photography%2C%20ultra%20shallow%20depth%20of%20field%2C%20deep%20rich%20blacks%20with%20warm%20gold%20highlights%2C%20Lacoste%20meets%20Apple%20campaign%2C%20moody%20premium%20cinematic%2C%2035mm%20film%20grain?width=2400&height=1400&seed=2026&nologo=true&model=flux&enhance=true" alt="The Bay Street Cup"/></div><div class="hero-tie"></div><div class="hero-inner"><div class="hero-eyebrow"><span class="pulse"></span>The Bay Street Cup · 4th Annual · Sept 14–18, 2026</div><h1>The Toronto<br/><span class="gold">Open.</span></h1><div class="hero-meta"><div><div class="k">Dates</div><div class="v">Sept 14–18, 2026</div></div><div><div class="k">Firms</div><div class="v">12 invited</div></div><div><div class="k">Players</div><div class="v">192 in total</div></div><div><div class="k">Defending</div><div class="v">RBC Capital</div></div></div><div class="hero-ctas"><a href="book.html" class="btn btn-gold">Apply for 2026 →</a><a href="#format" class="btn btn-ghost">See the format</a></div></div></section>
+<section class="story"><div class="story-inner"><div class="story-kicker">The story</div><div class="story-body"><p>The Toronto Open started in <strong>September 2023</strong> with eight firms, one borrowed trophy, and a single question — <em>what does a corporate event look like when nobody on Bay Street has ever done it before?</em></p><p>Three years later, the Cup has its own engraver, its own anthem, and its own rivalries. <strong>Twelve firms compete every September.</strong> A defending champion goes home with the trophy on Friday night and brings it back the following year. The losing firms write a cheque to a charity of the winner's choice.</p><p>It is, as far as we know, the only invitational of its kind in North America. <em>And we'd like to keep it that way.</em></p></div></div></section>
+<section class="format" id="format"><div class="format-inner"><div class="format-head"><div><div class="section-eyebrow">The five days</div><h2>From welcome reception<br/>to championship Friday.</h2></div><p class="format-sub">Two practice days. Two bracket days. One night that ends in tuxedos and the Cup going home with the winner.</p></div><div class="days"><div class="day"><div class="d-num">Day 01</div><div class="d-date">Mon · Sept 14</div><h3>Welcome reception.</h3><p>Roster reveal. Practice courts open. Cocktails on the Mayfair rooftop with the eleven other captains.</p><div class="v">Mayfair · Markham</div></div><div class="day"><div class="d-num">Day 02</div><div class="d-date">Tue · Sept 15</div><h3>Open practice.</h3><p>Eight courts, all firms, all day. Coaches on rotation. Press shoot in the afternoon for the official roster portraits.</p><div class="v">The Jar · Etobicoke</div></div><div class="day"><div class="d-num">Day 03</div><div class="d-date">Wed · Sept 16</div><h3>Group stage.</h3><p>Four pools of three. Eight matches per firm. Top two from each pool advance to Friday's bracket.</p><div class="v">6ix Pickle · Moss Park</div></div><div class="day"><div class="d-num">Day 04</div><div class="d-date">Thu · Sept 17</div><h3>Quarterfinals.</h3><p>Best-of-five. Live broadcast. The Bay Street Cup leaves the vault for its annual photograph with the field of eight.</p><div class="v">6ix Pickle · Moss Park</div></div><div class="day"><div class="d-num">Day 05</div><div class="d-date">Fri · Sept 18</div><h3>Final &amp; gala.</h3><p>Semis at noon. Final at 4pm. Black-tie afterparty at One York rooftop. Trophy presentation at 11pm sharp.</p><div class="v">One York Rooftop</div></div></div></div></section>
+<section class="roster"><div class="roster-inner"><div class="roster-head"><div class="section-eyebrow">2026 confirmed roster</div><h2>Twelve firms.<br/>Ten confirmed. Two TBD.</h2><p class="roster-sub">Each firm fields a 16-player roster (8 men, 8 women, minimum two C-suite, minimum one analyst-class). The captain chooses the colourway. The colourway is sacred.</p></div><div class="firms-grid"><div class="firm-card champion"><div class="seed">#1 SEED</div><div class="name">RBC Capital Markets</div><div class="meta">Captain · J. Morneau, MD</div><div class="roster-line">Toronto · 16 players · Forest Green</div></div><div class="firm-card"><div class="seed">#2</div><div class="name">Brookfield Asset Mgmt.</div><div class="meta">Captain · L. Ito, Partner</div><div class="roster-line">Toronto · 16 players · Cream</div></div><div class="firm-card"><div class="seed">#3</div><div class="name">TD Securities</div><div class="meta">Captain · M. Nguyen, MD</div><div class="roster-line">Toronto · 16 players · Carbon</div></div><div class="firm-card"><div class="seed">#4</div><div class="name">Goldman Sachs Toronto</div><div class="meta">Captain · A. Friedman, VP</div><div class="roster-line">Toronto · 16 players · Navy</div></div><div class="firm-card"><div class="seed">#5</div><div class="name">McKinsey &amp; Co. Toronto</div><div class="meta">Captain · R. Patel, Partner</div><div class="roster-line">Toronto · 16 players · Slate</div></div><div class="firm-card"><div class="seed">#6</div><div class="name">Shopify</div><div class="meta">Captain · D. Cross, VP Eng</div><div class="roster-line">Ottawa · 16 players · Mint</div></div><div class="firm-card"><div class="seed">#7</div><div class="name">Manulife</div><div class="meta">Captain · K. Singh, EVP</div><div class="roster-line">Toronto · 16 players · Rust</div></div><div class="firm-card"><div class="seed">#8</div><div class="name">BMO Capital Markets</div><div class="meta">Captain · S. Kovac, MD</div><div class="roster-line">Toronto · 16 players · Cobalt</div></div><div class="firm-card"><div class="seed">#9</div><div class="name">Bain &amp; Co. Toronto</div><div class="meta">Captain · E. Hwang, Partner</div><div class="roster-line">Toronto · 16 players · Clay</div></div><div class="firm-card"><div class="seed">#10</div><div class="name">Bennett Jones LLP</div><div class="meta">Captain · D. Chen, Partner</div><div class="roster-line">Toronto · 16 players · Bone</div></div><div class="firm-card"><div class="seed">#11</div><div class="name">— TBD —</div><div class="meta">Captain pending</div><div class="roster-line">Final invite extended Aug 1</div></div><div class="firm-card"><div class="seed">#12</div><div class="name">— TBD —</div><div class="meta">Captain pending</div><div class="roster-line">Final invite extended Aug 1</div></div></div></div></section>
+<section class="trophy"><div class="trophy-tie"></div><div class="trophy-inner"><div class="trophy-vis"><img src="https://image.pollinations.ai/prompt/Ultra-cinematic%20product%20photograph%20of%20a%20heavy%20handcrafted%20gold%20and%20forest-green%20enamel%20pickleball%20championship%20trophy%20with%20a%20Lacoste-style%20crocodile%20emblem%20at%20the%20base%2C%20Bay%20Street%20Cup%20engraved%20on%20a%20brass%20plate%2C%20Walnut%20wooden%20pedestal%2C%20single%20dramatic%20warm%20spotlight%20from%20upper%20left%2C%20deep%20black%20background%20with%20subtle%20warm%20bokeh%2C%2085mm%20macro%20lens%2C%20editorial%20luxury%20product%20photography%2C%20Architectural%20Digest%20meets%20Esquire%20aesthetic%2C%20premium%20moody%20cinematic%2C%20rich%20blacks%2C%20gold%20highlights?width=900&height=1100&seed=8821&nologo=true&model=flux&enhance=true" alt="The Bay Street Cup trophy"/></div><div class="trophy-text"><div class="section-eyebrow">The trophy</div><h2>The Bay Street <span class="gold">Cup.</span></h2><p>Hand-cast in a Hamilton foundry. Sterling silver and 18-karat gold leaf. Eighty-three names engraved at the base, growing each September. The defending champion keeps it for fifty-one weeks, in a glass case in their lobby. They give it back the morning the next Open begins.</p><p>It weighs nineteen pounds. Two of the three permanent rules of the Toronto Open concern the trophy.</p><div class="trophy-specs"><div><div class="k">Material</div><div class="v">Sterling + 18kt</div></div><div><div class="k">Weight</div><div class="v">19.4 lbs</div></div><div><div class="k">First struck</div><div class="v">2023</div></div></div></div></div></section>
+<section class="after"><div class="after-img"><img src="https://image.pollinations.ai/prompt/Editorial%20cinematic%20photograph%20of%20a%20black-tie%20rooftop%20afterparty%20in%20Toronto%2C%20professionals%20in%20tuxedos%20and%20floor-length%20cocktail%20dresses%20holding%20coupes%20of%20champagne%2C%20warm%20tungsten%20lighting%20with%20string%20bulbs%20overhead%2C%20Toronto%20skyline%20twinkling%20behind%2C%20live%20jazz%20quartet%20in%20background%20bokeh%2C%20Magnum%20photographers%20aesthetic%2C%2035mm%20film%20grain%2C%20golden%20warm%20tones%2C%20Lacoste%20meets%20Vanity%20Fair%20campaign%2C%20candid%20celebratory%20moment%2C%20shallow%20depth%20of%20field?width=1400&height=1100&seed=33&nologo=true&model=flux&enhance=true" alt="Afterparty"/></div><div class="after-text"><div class="section-eyebrow">The Friday gala</div><h2>Tuxedos.<br/>Trophy.<br/>Toronto skyline.</h2><p>The Friday gala is by far the most photographed corporate event in the country. Black tie. Five hundred guests. Live string quartet during dinner, jazz trio after, DJ until 2am. The trophy is presented at exactly 11pm, on the rooftop, with the skyline behind it.</p><div class="after-meta"><div><div class="k">Dress</div><div class="v">Black tie · Compulsory</div></div><div><div class="k">Venue</div><div class="v">One York Rooftop</div></div><div><div class="k">Capacity</div><div class="v">500 invited</div></div><div><div class="k">Hours</div><div class="v">19:00 → 02:00</div></div></div></div></section>
+<section class="champions"><div class="champions-inner"><div class="champions-head"><div><div class="section-eyebrow" style="color:var(--gold)">Past champions</div><h2>Three Cups raised.<br/>Three different firms.</h2></div><p class="champions-sub">No firm has ever defended the Cup. The 2026 Open will be the first attempt.</p></div><div class="past-grid"><div class="past-card"><div class="pc-img"><img src="https://image.pollinations.ai/prompt/Editorial%20documentary%20photograph%20of%20a%20mixed-gender%20corporate%20team%20in%20matching%20forest-green%20polos%20celebrating%20victory%20holding%20a%20golden%20trophy%20overhead%20on%20a%20wooden%20pickleball%20court%2C%20confetti%20mid-air%2C%20warm%20stadium%20lighting%2C%20Toronto%20skyline%20visible%20through%20massive%20windows%20behind%2C%20genuine%20joy%2C%20Magnum%20photographers%20aesthetic%2C%2035mm%20film%20grain%2C%20cinematic%20editorial%20Lacoste%20campaign%2C%20shallow%20depth%20of%20field?width=900&height=700&seed=2025&nologo=true&model=flux&enhance=true" alt="2025 Champions"/></div><div class="pc-body"><div class="pc-year">2025 — Inaugural</div><div class="pc-firm">RBC Capital Markets</div><div class="pc-mvp">MVP · J. Morneau, MD</div><div class="pc-stats"><span><strong>11–1</strong>Match record</span><span><strong>3–0</strong>Final</span><span><strong>$240K</strong>Charity raised</span></div></div></div><div class="past-card"><div class="pc-img"><img src="https://image.pollinations.ai/prompt/Editorial%20documentary%20photograph%20of%20a%20mixed-gender%20corporate%20team%20in%20cream%20colored%20polos%20raising%20a%20golden%20trophy%20on%20a%20pickleball%20court%2C%20celebratory%20moment%20with%20smiling%20faces%2C%20warm%20stadium%20lighting%2C%20wooden%20court%20floor%2C%20Toronto%20venue%20interior%2C%20Magnum%20photographers%20aesthetic%2C%2035mm%20film%2C%20cinematic%2C%20Lacoste%20campaign%2C%20depth%20of%20field?width=900&height=700&seed=2024&nologo=true&model=flux&enhance=true" alt="2024 Champions"/></div><div class="pc-body"><div class="pc-year">2024</div><div class="pc-firm">Brookfield Asset Mgmt.</div><div class="pc-mvp">MVP · L. Ito, Partner</div><div class="pc-stats"><span><strong>10–2</strong>Match record</span><span><strong>3–1</strong>Final</span><span><strong>$180K</strong>Charity raised</span></div></div></div><div class="past-card"><div class="pc-img"><img src="https://image.pollinations.ai/prompt/Editorial%20documentary%20photograph%20of%20a%20mixed-gender%20corporate%20team%20in%20navy%20polos%20holding%20a%20golden%20trophy%20together%20on%20a%20wooden%20pickleball%20court%2C%20genuine%20celebration%2C%20warm%20golden%20stadium%20lighting%2C%20Toronto%20interior%20venue%2C%20Magnum%20photographers%20aesthetic%2C%2035mm%20film%20grain%2C%20Lacoste%20campaign%2C%20shallow%20depth%20of%20field%2C%20cinematic?width=900&height=700&seed=2023&nologo=true&model=flux&enhance=true" alt="2023 Champions"/></div><div class="pc-body"><div class="pc-year">2023 — First Cup</div><div class="pc-firm">Goldman Sachs Toronto</div><div class="pc-mvp">MVP · A. Friedman, VP</div><div class="pc-stats"><span><strong>9–3</strong>Match record</span><span><strong>3–2</strong>Final</span><span><strong>$120K</strong>Charity raised</span></div></div></div></div></div></section>
+<section class="apply"><div class="apply-inner"><div class="section-eyebrow" style="justify-content:center">Applications close June 30, 2026</div><h2>Twelve seats.<br/>Ten <span class="green">confirmed.</span></h2><p>If your firm has a Toronto office, two C-suite players, and a willingness to wear a tuxedo on a Friday in September — apply.</p><div class="apply-rules"><span>Toronto-based firm</span><span>16-player roster</span><span>2 C-suite minimum</span><span>1 analyst-class minimum</span></div><div class="apply-ctas"><a href="book.html" class="btn btn-green-dark">Apply for 2026 →</a><a href="index.html" class="btn btn-ghost-dark">Back to all events</a></div></div></section>
+<footer><div class="foot-inner"><div class="foot-top"><div class="foot-brand"><a href="index.html" class="brand"><span class="brand-mark"></span><span>Corporate&nbsp;Pickleball</span></a><p>White-glove pickleball, built for the boardroom. Headquartered in Toronto. Operating across the GTA since 2022.</p></div><div class="foot-col"><h4>The Toronto Open</h4><ul><li><a href="#format">The five days</a></li><li><a href="#format">Past champions</a></li><li><a href="book.html">Apply for 2026</a></li><li><a href="#">Press kit</a></li></ul></div><div class="foot-col"><h4>All events</h4><ul><li><a href="index.html#sku">The Off-Site</a></li><li><a href="index.html#sku">The Championship</a></li><li><a href="book.html">Custom programs</a></li></ul></div><div class="foot-col"><h4>Company</h4><ul><li><a href="book.html">Book an event</a></li><li><a href="#">Press &amp; media</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul></div></div><div class="foot-bot"><div>© 2026 Corporate Pickleball Inc. · cp.club · Toronto, ON</div><div><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Recap library</a></div></div></div></footer>
+<script>const io = new IntersectionObserver((entries)=>{entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });}, {threshold: 0.12});document.querySelectorAll('.reveal').forEach(el => io.observe(el));</script>
+</body>
+</html>
