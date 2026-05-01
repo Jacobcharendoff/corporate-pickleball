@@ -12,14 +12,17 @@
 <link rel="preload" as="image" href="hero-poster.jpg">
 <style>
   :root{
-    /* AUGUSTA × TORONTO PALETTE */
-    --augusta-900:#052b18;
-    --augusta-800:#0a4828;
-    --augusta-700:#0f6038;
-    --augusta-600:#147c44;
-    --augusta-500:#28a85a;
-    --augusta-300:#9ad5af;
-    --augusta-50:#eff8f1;
+    /* AUGUSTA × BAY STREET — fairway-bright, cream-clubhouse, peach-azalea, gold-clubhouse */
+    --augusta-900:#052b18;       /* pine, dark moments only */
+    --augusta-800:#0a4828;       /* deep emerald, used sparingly */
+    --augusta-700:#1a5a3a;       /* mid green */
+    --augusta-fairway:#4d8060;   /* PRIMARY — Sunday at Augusta */
+    --augusta-fairway-light:#7da690; /* lighter fairway */
+    --augusta-600:var(--augusta-fairway);
+    --augusta-500:#9ec3a8;       /* mint */
+    --augusta-300:#c8dec9;       /* pale fairway */
+    --augusta-mist:#e8f0e3;      /* very pale green-cream — section backgrounds */
+    --augusta-50:#f3f7ee;
     --green-900:var(--augusta-900);
     --green-800:var(--augusta-800);
     --green-700:var(--augusta-700);
@@ -48,9 +51,13 @@
     --white:#ffffff;
     --max:1440px;
     --pad:clamp(20px, 4vw, 64px);
-    --tie-dye: linear-gradient(135deg, #052b18 0%, #0a4828 22%, #147c44 42%, #9ad5af 62%, #f0c2a8 80%, #d4b896 100%);
+    --tie-dye: linear-gradient(135deg, #1a5a3a 0%, #4d8060 22%, #9ec3a8 45%, #f4cbc0 65%, #e8a098 82%, #d4b896 100%);
     --gold-shimmer-bg: linear-gradient(95deg, #f5e6c8 0%, #e8d4ad 18%, #d4b896 38%, #c8a25b 55%, #a3823f 72%, #c8a25b 88%, #d4b896 100%);
-    --azalea-mesh: radial-gradient(circle at 20% 30%, rgba(232,160,152,.5), transparent 55%), radial-gradient(circle at 80% 70%, rgba(212,184,150,.45), transparent 55%);
+    --azalea-mesh: radial-gradient(circle at 20% 30%, rgba(232,160,152,.55), transparent 55%), radial-gradient(circle at 80% 70%, rgba(212,184,150,.5), transparent 55%);
+    --fairway-mesh: radial-gradient(circle at 30% 40%, rgba(77,128,96,.18), transparent 55%), radial-gradient(circle at 75% 60%, rgba(232,160,152,.3), transparent 55%), radial-gradient(circle at 50% 100%, rgba(212,184,150,.25), transparent 60%);
+    --bg-cream-fairway: linear-gradient(180deg, var(--cream-soft) 0%, var(--augusta-mist) 100%);
+    --bg-fairway-cream: linear-gradient(180deg, var(--augusta-mist) 0%, var(--cream-soft) 100%);
+    --bg-cream-peach: linear-gradient(135deg, var(--cream-soft) 0%, var(--peach-glow) 100%);
     --shadow-card: 0 24px 60px -28px rgba(10,72,40,.28), 0 4px 12px -4px rgba(10,10,10,.08);
     --shadow-lift: 0 32px 80px -32px rgba(10,72,40,.4), 0 8px 16px -4px rgba(10,10,10,.1);
     --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
@@ -154,7 +161,7 @@
   /* ============== HERO ============== */
   .hero{position:relative;min-height:100vh;overflow:hidden;background:var(--black);color:var(--white);display:flex;flex-direction:column}
   .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:scale(1.04);will-change:transform}
-  .hero-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg, rgba(10,10,10,.45) 0%, rgba(10,10,10,.05) 35%, rgba(10,10,10,.55) 75%, rgba(10,10,10,.92) 100%), radial-gradient(60% 100% at 0% 100%, rgba(5,43,24,.7), transparent 60%), radial-gradient(40% 60% at 100% 0%, rgba(232,160,152,.18), transparent 60%)}
+  .hero-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg, rgba(5,43,24,.55) 0%, rgba(10,10,10,.35) 30%, rgba(10,10,10,.55) 65%, rgba(5,20,12,.96) 100%), linear-gradient(95deg, rgba(5,43,24,.65) 0%, rgba(5,43,24,.18) 45%, rgba(5,43,24,.05) 100%), radial-gradient(70% 100% at 0% 90%, rgba(5,43,24,.85), transparent 60%), radial-gradient(50% 70% at 100% 0%, rgba(232,160,152,.22), transparent 60%)}
   .hero-grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.4;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>")}
   .hero-content{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;justify-content:center;padding:120px var(--pad) 140px;max-width:var(--max);margin:0 auto;width:100%;pointer-events:none}
   .hero-content > *{pointer-events:auto}
@@ -199,7 +206,7 @@
   .net-divider.in .net-svg .ball{opacity:1}
 
   /* ============== LOGOS ============== */
-  .logos{padding:90px var(--pad);background:var(--white);position:relative;overflow:hidden}
+  .logos{padding:90px var(--pad);background:var(--cream-soft);position:relative;overflow:hidden;border-top:1px solid rgba(212,184,150,.3);border-bottom:1px solid rgba(212,184,150,.3)}
   .logos-inner{max-width:var(--max);margin:0 auto}
   .logos-eyebrow{text-align:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray-4);margin-bottom:44px}
   .logos-eyebrow .ital{font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
@@ -212,7 +219,8 @@
   .logo-cell .fallback{font-size:18px;font-weight:700;letter-spacing:-0.015em;color:var(--gray-4)}
 
   /* ============== STATEMENT ============== */
-  .statement{padding:200px var(--pad);max-width:1340px;margin:0 auto;position:relative}
+  .statement-wrap{background:var(--bg-cream-fairway);position:relative;overflow:hidden}
+  .statement{padding:180px var(--pad);max-width:1340px;margin:0 auto;position:relative}
   .statement-blob{position:absolute;top:80px;right:-8%;width:560px;height:560px;border-radius:50%;background:var(--azalea-mesh);opacity:.7;filter:blur(48px);z-index:0;pointer-events:none}
   @media (max-width:760px){.statement-blob{width:300px;height:300px;top:30px}}
   .statement > *{position:relative;z-index:1}
@@ -606,7 +614,7 @@
 </section>
 
 <!-- ===== STATEMENT ===== -->
-<section class="statement reveal" data-reveal>
+<div class="statement-wrap"><section class="statement reveal" data-reveal>
   <div class="statement-blob" aria-hidden="true"></div>
   <div class="kicker">A new corporate event</div>
   <h2>Six hours of golf becomes <span class="underline">ninety minutes of pickleball.</span> <span class="ital">And the C-suite still beats the analysts.</span></h2>
@@ -615,7 +623,7 @@
     <div class="stat"><div class="num">+<span data-count-to="62">0</span><span class="unit">%</span></div><div class="label">Reported team energy versus the previous year's off-site, measured by post-event survey.</div></div>
     <div class="stat"><div class="num"><span data-count-to="35" data-decimal="1">0</span><span class="unit">hrs</span></div><div class="label">Average tee-to-trophy time. Including catering. Including the awards ceremony. Done by 4pm.</div></div>
   </div>
-</section>
+</section></div>
 
 <!-- ===== EDITORIAL FULL-BLEED #1 (champagne kitchen line) ===== -->
 <section class="editorial">
