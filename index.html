@@ -213,15 +213,25 @@
   .logos-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px 40px;align-items:center}
   @media (max-width:840px){.logos-grid{grid-template-columns:repeat(3,1fr)}}
   @media (max-width:560px){.logos-grid{grid-template-columns:repeat(2,1fr)}}
-  .logo-cell{display:flex;align-items:center;justify-content:center;height:48px;padding:8px;filter:grayscale(1);opacity:.5;transition:opacity .4s, filter .4s, transform .4s var(--ease-out-expo)}
-  .logo-cell:hover{filter:grayscale(0);opacity:1;transform:translateY(-3px)}
-  .logo-cell img{max-height:34px;max-width:100%;object-fit:contain}
-  .logo-cell .fallback{font-size:18px;font-weight:700;letter-spacing:-0.015em;color:var(--gray-4)}
+  .logo-cell{display:flex;align-items:center;justify-content:center;height:56px;padding:8px;font-weight:700;letter-spacing:-0.01em;transition:transform .4s var(--ease-out-expo), opacity .4s;opacity:.85;text-align:center;line-height:1}
+  .logo-cell:hover{transform:translateY(-3px);opacity:1}
+  .lg-rbc{font-family:Helvetica,Arial,sans-serif;font-weight:900;font-size:22px;color:#003168;letter-spacing:.06em}
+  .lg-shopify{font-family:Helvetica,Arial,sans-serif;font-weight:700;color:#008060;font-size:22px;letter-spacing:-0.02em}
+  .lg-td{font-family:Helvetica,Arial,sans-serif;font-weight:900;color:#fff;font-size:22px;letter-spacing:0;background:#008A00;padding:6px 12px;border-radius:4px}
+  .lg-bmo{font-family:Helvetica,Arial,sans-serif;font-weight:900;color:#0079C1;font-size:24px;letter-spacing:.04em}
+  .lg-goldman{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:#7399C6;font-size:18px;letter-spacing:.04em}
+  .lg-mckinsey{font-family:Helvetica,Arial,sans-serif;font-weight:500;color:#051F2C;font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+  .lg-manulife{font-family:Helvetica,Arial,sans-serif;font-weight:700;color:#00A758;font-size:22px;letter-spacing:-0.01em}
+  .lg-brookfield{font-family:Helvetica,Arial,sans-serif;font-weight:700;color:#0B2A5B;font-size:19px;letter-spacing:.02em}
+  .lg-bain{font-family:Helvetica,Arial,sans-serif;font-weight:900;color:#fff;font-size:18px;letter-spacing:.06em;background:#CC0000;padding:8px 14px;border-radius:2px}
+  .lg-bennett{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:#1B3F58;font-size:16px;letter-spacing:.06em}
 
   /* ============== STATEMENT ============== */
-  .statement-wrap{background:var(--bg-cream-fairway);position:relative;overflow:hidden}
-  .statement{padding:180px var(--pad);max-width:1340px;margin:0 auto;position:relative}
-  .statement-blob{position:absolute;top:80px;right:-8%;width:560px;height:560px;border-radius:50%;background:var(--azalea-mesh);opacity:.7;filter:blur(48px);z-index:0;pointer-events:none}
+  .statement-wrap{background:linear-gradient(160deg, var(--peach-glow) 0%, var(--azalea) 50%, var(--cream) 100%);position:relative;overflow:hidden}
+  .statement-wrap::before{content:"";position:absolute;top:-20%;right:-15%;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle, var(--peach), transparent 70%);filter:blur(80px);opacity:.7;pointer-events:none}
+  .statement-wrap::after{content:"";position:absolute;bottom:-10%;left:-10%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle, var(--gold-soft), transparent 70%);filter:blur(80px);opacity:.5;pointer-events:none}
+  .statement{padding:200px var(--pad);max-width:1340px;margin:0 auto;position:relative;z-index:1}
+  .statement-blob{display:none}
   @media (max-width:760px){.statement-blob{width:300px;height:300px;top:30px}}
   .statement > *{position:relative;z-index:1}
   .statement .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-700);display:flex;align-items:center;gap:14px;margin-bottom:30px}
@@ -347,19 +357,26 @@
   .venue-meta .info{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.78)}
   .venue-tag{position:absolute;top:18px;left:18px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);padding:6px 12px;border-radius:999px;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--green-800);font-weight:700;z-index:2}
 
-  /* ============== WHY ============== */
-  .why{padding:200px var(--pad);background:var(--white);position:relative;overflow:hidden}
-  .why-blob{position:absolute;left:-10%;top:30%;width:500px;height:500px;background:radial-gradient(circle, var(--peach-glow), transparent 70%);filter:blur(70px);opacity:.5;border-radius:50%;z-index:0}
+  /* ============== WHY (deep fairway color block) ============== */
+  .why{padding:200px var(--pad);background:linear-gradient(165deg, var(--augusta-700) 0%, var(--augusta-800) 100%);color:var(--white);position:relative;overflow:hidden}
+  .why-blob{position:absolute;left:-15%;top:20%;width:700px;height:700px;background:radial-gradient(circle, var(--peach), transparent 70%);filter:blur(100px);opacity:.45;border-radius:50%;z-index:0}
+  .why-blob-2{position:absolute;right:-10%;bottom:-10%;width:500px;height:500px;background:radial-gradient(circle, var(--gold-700), transparent 70%);filter:blur(80px);opacity:.3;border-radius:50%;z-index:0}
   .why-inner{max-width:var(--max);margin:0 auto;position:relative;z-index:1}
-  .why .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-700);margin-bottom:18px;display:flex;align-items:center;gap:14px}
-  .why .kicker::before{content:"";width:36px;height:1px;background:var(--green-700)}
-  .why h2{font-size:clamp(38px,5.4vw,84px);font-weight:700;letter-spacing:-0.045em;line-height:1.0;margin-bottom:18px;max-width:1100px}
-  .why .lead{font-size:18px;color:var(--gray-4);max-width:680px;margin-bottom:80px;line-height:1.55}
+  .why .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-300);margin-bottom:18px;display:flex;align-items:center;gap:14px}
+  .why .kicker::before{content:"";width:36px;height:1px;background:var(--green-300)}
+  .why h2{font-size:clamp(38px,5.4vw,84px);font-weight:700;letter-spacing:-0.045em;line-height:1.0;margin-bottom:18px;max-width:1100px;color:var(--white)}
+  .why .lead{font-size:18px;color:rgba(255,255,255,.78);max-width:680px;margin-bottom:80px;line-height:1.55}
   .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
   @media (max-width:980px){.why-grid{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:560px){.why-grid{grid-template-columns:1fr}}
-  .why-card{background:var(--white);border:1px solid var(--gray-2);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;min-height:480px;position:relative;transition:transform .4s var(--ease-out-expo), box-shadow .4s}
-  .why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card)}
+  .why-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(14px);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;min-height:480px;position:relative;transition:transform .4s var(--ease-out-expo), background .4s, border-color .4s}
+  .why-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2)}
+  .why-card .num{color:var(--green-300) !important}
+  .why-card h3{color:var(--white) !important}
+  .why-card p{color:rgba(255,255,255,.72) !important}
+  .why-card .compare{border-top-color:rgba(255,255,255,.12) !important;color:rgba(255,255,255,.5) !important}
+  .why-card .compare s{color:rgba(255,255,255,.4) !important}
+  .why-card .compare strong{color:var(--gold-soft) !important}
   .why-img{aspect-ratio:4/3;overflow:hidden;background:var(--green-800)}
   .why-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease-out-expo)}
   .why-card:hover .why-img img{transform:scale(1.06)}
@@ -599,16 +616,16 @@
   <div class="logos-inner">
     <div class="logos-eyebrow">Booked in 2025 by <span class="ital">Bay Street's most demanding teams.</span></div>
     <div class="logos-grid">
-      <div class="logo-cell" title="RBC Capital Markets"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/RBC_Royal_Bank_logo.svg/512px-RBC_Royal_Bank_logo.svg.png" alt="RBC" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>RBC&nbsp;Capital</span>'"/></div>
-      <div class="logo-cell" title="Brookfield"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Brookfield_Asset_Management_logo.svg/512px-Brookfield_Asset_Management_logo.svg.png" alt="Brookfield" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Brookfield</span>'"/></div>
-      <div class="logo-cell" title="Shopify"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopify_logo_2018.svg/512px-Shopify_logo_2018.svg.png" alt="Shopify" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Shopify</span>'"/></div>
-      <div class="logo-cell" title="TD Securities"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Toronto-Dominion_Bank_logo.svg/512px-Toronto-Dominion_Bank_logo.svg.png" alt="TD" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>TD&nbsp;Securities</span>'"/></div>
-      <div class="logo-cell" title="McKinsey & Company"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/McKinsey_and_Company_Logo_1.svg/512px-McKinsey_and_Company_Logo_1.svg.png" alt="McKinsey" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>McKinsey</span>'"/></div>
-      <div class="logo-cell" title="Manulife"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Manulife.svg/512px-Manulife.svg.png" alt="Manulife" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Manulife</span>'"/></div>
-      <div class="logo-cell" title="Goldman Sachs"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Goldman_Sachs.svg/512px-Goldman_Sachs.svg.png" alt="Goldman Sachs" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Goldman&nbsp;Sachs</span>'"/></div>
-      <div class="logo-cell" title="BMO"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Bank_of_Montreal_logo.svg/512px-Bank_of_Montreal_logo.svg.png" alt="BMO" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>BMO</span>'"/></div>
-      <div class="logo-cell" title="Bain & Company"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Bain_and_company_logo.svg/512px-Bain_and_company_logo.svg.png" alt="Bain & Co" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Bain&nbsp;&amp;&nbsp;Co.</span>'"/></div>
-      <div class="logo-cell" title="Bennett Jones LLP"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Bennett_Jones_logo.svg/512px-Bennett_Jones_logo.svg.png" alt="Bennett Jones" loading="lazy" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Bennett&nbsp;Jones</span>'"/></div>
+      <div class="logo-cell lg-rbc" title="RBC Capital Markets">RBC</div>
+      <div class="logo-cell lg-brookfield" title="Brookfield Asset Management">Brookfield</div>
+      <div class="logo-cell lg-shopify" title="Shopify">shopify</div>
+      <div class="logo-cell lg-td" title="TD Securities">TD</div>
+      <div class="logo-cell lg-mckinsey" title="McKinsey &amp; Company">McKinsey&nbsp;&amp;&nbsp;Company</div>
+      <div class="logo-cell lg-manulife" title="Manulife">Manulife</div>
+      <div class="logo-cell lg-goldman" title="Goldman Sachs">Goldman Sachs</div>
+      <div class="logo-cell lg-bmo" title="BMO Capital Markets">BMO</div>
+      <div class="logo-cell lg-bain" title="Bain &amp; Company">BAIN&nbsp;&amp;&nbsp;COMPANY</div>
+      <div class="logo-cell lg-bennett" title="Bennett Jones LLP">Bennett Jones</div>
     </div>
   </div>
 </section>
@@ -788,6 +805,7 @@
 <!-- ===== WHY ===== -->
 <section class="why" id="why">
   <div class="why-blob" aria-hidden="true"></div>
+  <div class="why-blob-2" aria-hidden="true"></div>
   <div class="why-inner">
     <div class="kicker">Why pickleball, not golf</div>
     <h2>Golf was a gatekeeper sport.<br/><span class="ital">Pickleball isn't.</span></h2>
