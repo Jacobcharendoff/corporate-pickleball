@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Corporate Pickleball — White-glove pickleball, built for the boardroom.</title>
-<meta name="description" content="The off-site Bay Street keeps booking back. White-glove corporate pickleball events across the GTA. Half-day tournaments, full-day championships, and The Toronto Open." />
+<meta name="description" content="The off-site Bay Street keeps booking back. White-glove corporate pickleball events across the GTA. Half-day tournaments, full-day championships, and The Toronto Open — The Bay Street Cup." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -14,13 +14,12 @@
   :root{
     /* AUGUSTA × TORONTO PALETTE */
     --augusta-900:#052b18;
-    --augusta-800:#0a4828;     /* Augusta emerald — the spine color */
+    --augusta-800:#0a4828;
     --augusta-700:#0f6038;
     --augusta-600:#147c44;
     --augusta-500:#28a85a;
     --augusta-300:#9ad5af;
     --augusta-50:#eff8f1;
-    /* aliases for legacy class names */
     --green-900:var(--augusta-900);
     --green-800:var(--augusta-800);
     --green-700:var(--augusta-700);
@@ -28,15 +27,16 @@
     --green-500:var(--augusta-500);
     --green-300:var(--augusta-300);
     --green-50:var(--augusta-50);
-    /* Champagne gold (cursive / italic / trophy) */
     --champagne:#d4b896;
-    --gold:#c8a25b;
-    --gold-soft:#e6cf9c;
-    /* Azalea peach (Masters azaleas) — the warm accent */
+    --gold-900:#a3823f;
+    --gold-700:#c8a25b;
+    --gold:#d4b896;
+    --gold-soft:#e8d4ad;
+    --gold-light:#f5e6c8;
     --peach:#e8a098;
     --peach-soft:#f4cbc0;
+    --peach-glow:#f7d5cc;
     --azalea:#f0c2a8;
-    /* Cream / neutrals */
     --cream:#f5ecd9;
     --cream-soft:#faf5ea;
     --black:#0a0a0a;
@@ -48,115 +48,74 @@
     --white:#ffffff;
     --max:1440px;
     --pad:clamp(20px, 4vw, 64px);
-    --tie-dye: linear-gradient(135deg, #052b18 0%, #0a4828 25%, #147c44 48%, #9ad5af 70%, #f0c2a8 88%, #d4b896 100%);
-    --azalea-mesh: radial-gradient(circle at 20% 30%, rgba(232,160,152,.45), transparent 55%), radial-gradient(circle at 80% 70%, rgba(212,184,150,.4), transparent 55%);
+    --tie-dye: linear-gradient(135deg, #052b18 0%, #0a4828 22%, #147c44 42%, #9ad5af 62%, #f0c2a8 80%, #d4b896 100%);
+    --gold-shimmer-bg: linear-gradient(95deg, #f5e6c8 0%, #e8d4ad 18%, #d4b896 38%, #c8a25b 55%, #a3823f 72%, #c8a25b 88%, #d4b896 100%);
+    --azalea-mesh: radial-gradient(circle at 20% 30%, rgba(232,160,152,.5), transparent 55%), radial-gradient(circle at 80% 70%, rgba(212,184,150,.45), transparent 55%);
     --shadow-card: 0 24px 60px -28px rgba(10,72,40,.28), 0 4px 12px -4px rgba(10,10,10,.08);
+    --shadow-lift: 0 32px 80px -32px rgba(10,72,40,.4), 0 8px 16px -4px rgba(10,10,10,.1);
     --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
     --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;cursor:none}
   @media (hover: none){html{cursor:auto}}
-  body{
-    font-family:'Geist','Inter',system-ui,-apple-system,sans-serif;
-    background:var(--white);color:var(--black);
-    font-feature-settings:'ss01','cv11';line-height:1.4;
-    overflow-x:hidden;
-  }
+  body{font-family:'Geist','Inter',system-ui,-apple-system,sans-serif;background:var(--white);color:var(--black);font-feature-settings:'ss01','cv11';line-height:1.4;overflow-x:hidden}
   ::selection{background:var(--green-500);color:var(--white)}
   a{color:inherit;text-decoration:none}
   button,a{cursor:none}
   @media (hover: none){button,a{cursor:auto}}
   img,video{display:block;max-width:100%;height:auto}
-  .serif{font-family:'Instrument Serif', 'Times New Roman', serif;font-style:italic;font-weight:400;letter-spacing:-0.01em}
+  /* ALL italic serif text → champagne gold shimmer (single brand rule) */
+  i, em, .ital, .serif{
+    font-family:'Instrument Serif', 'Times New Roman', serif;
+    font-style:italic;font-weight:400;letter-spacing:-0.01em;
+    background:var(--gold-shimmer-bg);background-size:220% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:gold-shimmer 9s ease-in-out infinite;
+  }
+  @keyframes gold-shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
   .mono{font-family:'Geist Mono',ui-monospace,monospace}
 
-  /* ================= LOAD INTRO ================= */
-  .intro-overlay{
-    position:fixed;inset:0;z-index:9999;background:var(--black);
-    display:flex;align-items:center;justify-content:center;
-    transition:transform 1s var(--ease-in-out-quart);
-    pointer-events:none;
-  }
+  /* ============== INTRO OVERLAY ============== */
+  .intro-overlay{position:fixed;inset:0;z-index:9999;background:var(--black);display:flex;align-items:center;justify-content:center;transition:transform 1.1s var(--ease-in-out-quart);pointer-events:none}
   .intro-overlay.gone{transform:translateY(-100%)}
-  .intro-mark{
-    color:var(--white);font-weight:800;letter-spacing:-0.04em;
-    font-size:clamp(28px, 4.5vw, 64px);
-    display:flex;align-items:center;gap:14px;
-  }
-  .intro-mark .dot{
-    width:18px;height:18px;border-radius:50%;
-    background:radial-gradient(circle at 30% 30%, var(--green-500), var(--green-800));
-    box-shadow:0 0 60px 10px rgba(34,197,94,.4);
-    animation:dot-pulse 1.4s ease-out;
-  }
+  .intro-mark{color:var(--white);font-weight:800;letter-spacing:-0.04em;font-size:clamp(28px, 4.5vw, 64px);display:flex;align-items:center;gap:14px}
+  .intro-mark .dot{width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--green-500), var(--green-800));box-shadow:0 0 60px 10px rgba(40,168,90,.4);animation:dot-pulse 1.4s ease-out}
   @keyframes dot-pulse{0%{transform:scale(0)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
-  .intro-mark .word{
-    overflow:hidden;display:inline-flex;
-  }
-  .intro-mark .word span{
-    display:inline-block;
-    transform:translateY(110%);
-    animation:reveal-up .9s var(--ease-out-expo) forwards;
-  }
+  .intro-mark .word{overflow:hidden;display:inline-flex}
+  .intro-mark .word span{display:inline-block;transform:translateY(110%);animation:reveal-up .9s var(--ease-out-expo) forwards}
   .intro-mark .word.delay span{animation-delay:.18s}
   @keyframes reveal-up{to{transform:translateY(0)}}
 
-  /* ================= CUSTOM CURSOR ================= */
-  .cursor{
-    position:fixed;top:0;left:0;width:14px;height:14px;border-radius:50%;
-    background:var(--green-700);pointer-events:none;z-index:9998;
-    transform:translate(-50%, -50%);
-    transition:width .35s var(--ease-out-expo), height .35s var(--ease-out-expo), background .25s, opacity .25s;
-    mix-blend-mode:difference;will-change:transform;
-  }
-  .cursor.hover{width:48px;height:48px;background:var(--green-300);opacity:.85}
+  /* ============== CUSTOM CURSOR ============== */
+  .cursor{position:fixed;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--green-700);pointer-events:none;z-index:9998;transform:translate(-50%, -50%);transition:width .35s var(--ease-out-expo), height .35s var(--ease-out-expo), background .25s, opacity .25s, border-radius .3s;mix-blend-mode:difference;will-change:transform}
+  .cursor.hover{width:48px;height:48px;background:var(--gold);opacity:.9}
   .cursor.click{width:8px;height:8px;background:var(--white)}
-  .cursor.video{width:64px;height:64px;background:transparent;border:2px solid var(--white);mix-blend-mode:normal}
-  .cursor.video::after{content:"PLAY";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--white);font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.18em}
   @media (hover: none){.cursor{display:none}}
 
-  /* ================= NAV ================= */
-  .nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    backdrop-filter:saturate(180%) blur(22px);
-    -webkit-backdrop-filter:saturate(180%) blur(22px);
-    background:rgba(10,10,10,.4);
-    border-bottom:1px solid rgba(255,255,255,.08);
-    transition:background .4s, border-color .4s;
-  }
-  .nav.solid{background:rgba(255,255,255,.85);border-bottom-color:rgba(10,10,10,.06)}
-  .nav.solid .brand,.nav.solid .nav-links a{color:var(--black)}
-  .nav.solid .nav-links a{color:var(--gray-4)}
+  /* ============== NAV ============== */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);background:rgba(10,10,10,.4);border-bottom:1px solid rgba(255,255,255,.08);transition:background .4s, border-color .4s}
+  .nav.solid{background:rgba(255,255,255,.88);border-bottom-color:rgba(10,10,10,.06)}
+  .nav.solid .brand,.nav.solid .nav-links a{color:var(--gray-4)}
+  .nav.solid .brand{color:var(--black)}
   .nav.solid .btn-ghost{color:var(--black);border-color:rgba(10,10,10,.14)}
   .nav.solid .btn-primary{background:var(--black);color:var(--white)}
-  .nav-inner{
-    max-width:var(--max);margin:0 auto;padding:14px var(--pad);
-    display:flex;align-items:center;justify-content:space-between;gap:24px;
-  }
+  .nav-inner{max-width:var(--max);margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-0.02em;font-size:14px;text-transform:uppercase;color:var(--white);transition:color .4s}
-  .brand-mark{
-    width:22px;height:22px;border-radius:50%;
-    background:radial-gradient(circle at 30% 30%, var(--green-500), var(--green-800));
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.15), 0 4px 14px -2px rgba(15,81,50,.4);
-  }
+  .brand-mark{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--green-500), var(--green-800));box-shadow:inset 0 0 0 1px rgba(255,255,255,.15), 0 4px 14px -2px rgba(15,96,56,.5)}
   .nav-links{display:flex;align-items:center;gap:32px;font-size:14px;font-weight:500;color:rgba(255,255,255,.78);transition:color .4s}
   .nav-links a:hover{color:var(--white)}
   .nav.solid .nav-links a:hover{color:var(--black)}
   .nav-cta{display:flex;align-items:center;gap:10px}
-  .btn{
-    display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;
-    font-size:14px;font-weight:600;letter-spacing:-0.005em;
-    transition:transform .25s var(--ease-out-expo), box-shadow .25s, background .25s, color .25s, border-color .25s;
-    border:0;white-space:nowrap;position:relative;
-    will-change:transform;
-  }
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:-0.005em;transition:transform .25s var(--ease-out-expo), box-shadow .25s, background .25s, color .25s, border-color .25s;border:0;white-space:nowrap;position:relative;will-change:transform}
   .btn-primary{background:var(--white);color:var(--black)}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 30px -12px rgba(255,255,255,.45)}
   .btn-ghost{background:rgba(255,255,255,.06);color:var(--white);border:1px solid rgba(255,255,255,.18)}
   .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4);transform:translateY(-2px)}
   .btn-green{background:var(--green-700);color:var(--white)}
-  .btn-green:hover{background:var(--green-600);transform:translateY(-2px);box-shadow:0 18px 30px -12px rgba(15,81,50,.6)}
+  .btn-green:hover{background:var(--green-600);transform:translateY(-2px);box-shadow:0 18px 30px -12px rgba(15,96,56,.6)}
+  .btn-gold{background:linear-gradient(135deg, var(--gold-light), var(--gold-700) 65%, var(--gold-900));color:var(--augusta-900)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 30px -12px rgba(200,162,91,.6)}
   .btn-peach{background:var(--peach);color:var(--augusta-900)}
   .btn-peach:hover{background:var(--peach-soft);transform:translateY(-2px);box-shadow:0 18px 30px -12px rgba(232,160,152,.55)}
   .btn-lg{padding:16px 28px;font-size:16px}
@@ -164,261 +123,153 @@
   .btn:hover .arrow{transform:translateX(5px)}
   @media (max-width:760px){.nav-links{display:none}}
 
-  /* ================= HERO ================= */
-  .hero{
-    position:relative;height:100vh;min-height:680px;
-    overflow:hidden;background:var(--black);color:var(--white);
-  }
-  .hero-video{
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
-    transform:scale(1.04);will-change:transform;
-  }
-  .hero-overlay{
-    position:absolute;inset:0;z-index:1;pointer-events:none;
-    background:
-      linear-gradient(180deg, rgba(10,10,10,.35) 0%, rgba(10,10,10,.05) 35%, rgba(10,10,10,.55) 75%, rgba(10,10,10,.85) 100%),
-      radial-gradient(60% 100% at 0% 100%, rgba(6,41,26,.6), transparent 60%);
-  }
-  .hero-grain{
-    position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.4;mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
-  }
-  .hero-content{
-    position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;
-    padding:160px var(--pad) 64px;max-width:var(--max);margin:0 auto;width:100%;
-    pointer-events:none;
-  }
+  /* ============== HERO ============== */
+  .hero{position:relative;min-height:100vh;overflow:hidden;background:var(--black);color:var(--white);display:flex;flex-direction:column}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:scale(1.04);will-change:transform}
+  .hero-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg, rgba(10,10,10,.45) 0%, rgba(10,10,10,.05) 35%, rgba(10,10,10,.55) 75%, rgba(10,10,10,.92) 100%), radial-gradient(60% 100% at 0% 100%, rgba(5,43,24,.7), transparent 60%), radial-gradient(40% 60% at 100% 0%, rgba(232,160,152,.18), transparent 60%)}
+  .hero-grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.4;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>")}
+  .hero-content{position:relative;z-index:3;flex:1;display:flex;flex-direction:column;justify-content:center;padding:120px var(--pad) 140px;max-width:var(--max);margin:0 auto;width:100%;pointer-events:none}
   .hero-content > *{pointer-events:auto}
-  .hero-eyebrow{
-    display:inline-flex;align-items:center;gap:12px;
-    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
-    backdrop-filter:blur(20px);border-radius:999px;padding:8px 18px;
-    font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--green-300);margin-bottom:32px;width:max-content;max-width:100%;
-  }
-  .hero-eyebrow .pulse{
-    width:7px;height:7px;background:var(--green-500);border-radius:50%;
-    box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:pulse 2.4s infinite;
-  }
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}70%{box-shadow:0 0 0 14px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(20px);border-radius:999px;padding:8px 18px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-300);margin-bottom:32px;width:max-content;max-width:100%}
+  .hero-eyebrow .pulse{width:7px;height:7px;background:var(--green-500);border-radius:50%;box-shadow:0 0 0 0 rgba(40,168,90,.7);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(40,168,90,.7)}70%{box-shadow:0 0 0 14px rgba(40,168,90,0)}100%{box-shadow:0 0 0 0 rgba(40,168,90,0)}}
 
-  .hero h1{
-    font-size:clamp(56px, 11vw, 188px);
-    line-height:.88;letter-spacing:-0.052em;font-weight:800;
-    margin-bottom:32px;max-width:1300px;
-  }
+  .hero h1{font-size:clamp(48px, 8.4vw, 144px);line-height:.9;letter-spacing:-0.05em;font-weight:800;margin-bottom:32px;max-width:100%}
   .hero h1 .line{display:block;overflow:hidden}
-  .hero h1 .line span{
-    display:inline-block;
-    transform:translateY(110%) skewY(6deg);
-    transition:transform 1.1s var(--ease-out-expo);
-  }
+  .hero h1 .line span{display:inline-block;transform:translateY(110%) skewY(6deg);transition:transform 1.1s var(--ease-out-expo)}
   .loaded .hero h1 .line span{transform:translateY(0) skewY(0)}
   .hero h1 .line:nth-child(2) span{transition-delay:.12s}
   .hero h1 .line:nth-child(3) span{transition-delay:.24s}
-  .hero h1 .line .serif-ital{
-    font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;
-    letter-spacing:-0.01em;
-    background:linear-gradient(95deg, #f5e6c8 0%, #e6cf9c 25%, #d4b896 50%, #c8a25b 75%, #d4b896 100%);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    background-size:220% 100%;animation:gold-shimmer 8s ease-in-out infinite;
-  }
 
-  .hero-sub{
-    font-size:clamp(16px, 1.4vw, 19px);max-width:580px;color:rgba(255,255,255,.78);
-    line-height:1.5;margin-bottom:36px;
-    opacity:0;transform:translateY(20px);transition:opacity .9s ease .55s, transform .9s var(--ease-out-expo) .55s;
-  }
+  .hero-sub{font-size:clamp(16px, 1.4vw, 19px);max-width:580px;color:rgba(255,255,255,.82);line-height:1.55;margin-bottom:36px;opacity:0;transform:translateY(20px);transition:opacity .9s ease .55s, transform .9s var(--ease-out-expo) .55s}
   .loaded .hero-sub{opacity:1;transform:translateY(0)}
 
   .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;opacity:0;transform:translateY(20px);transition:opacity .9s ease .7s, transform .9s var(--ease-out-expo) .7s}
   .loaded .hero-ctas{opacity:1;transform:translateY(0)}
 
-  .hero-meta{
-    position:absolute;bottom:64px;right:var(--pad);z-index:4;
-    display:flex;align-items:center;gap:32px;
-    backdrop-filter:blur(20px);background:rgba(10,10,10,.4);border:1px solid rgba(255,255,255,.12);
-    border-radius:18px;padding:18px 24px;
-    opacity:0;transform:translateX(40px);transition:opacity 1s ease 1s, transform 1s var(--ease-out-expo) 1s;
-  }
+  .hero-meta{position:absolute;bottom:48px;right:var(--pad);z-index:4;display:flex;align-items:center;gap:32px;backdrop-filter:blur(20px);background:rgba(10,10,10,.42);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px 24px;opacity:0;transform:translateX(40px);transition:opacity 1s ease 1s, transform 1s var(--ease-out-expo) 1s}
   .loaded .hero-meta{opacity:1;transform:translateX(0)}
-  @media (max-width:980px){.hero-meta{position:static;margin-top:24px;flex-wrap:wrap}}
+  @media (max-width:980px){.hero-meta{position:static;margin:24px auto;flex-wrap:wrap}}
   .hero-meta div .v{display:block;font-size:24px;font-weight:700;letter-spacing:-0.02em;color:var(--white)}
   .hero-meta div .k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 
-  .hero-scroll{
-    position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:4;
-    font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-    color:rgba(255,255,255,.45);display:flex;flex-direction:column;align-items:center;gap:8px;
-  }
-  .hero-scroll::after{content:"";width:1px;height:32px;background:linear-gradient(180deg, rgba(255,255,255,.4), transparent);animation:scroll-line 2s ease-in-out infinite}
+  .hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:4;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .hero-scroll::after{content:"";width:1px;height:32px;background:linear-gradient(180deg, rgba(255,255,255,.5), transparent);animation:scroll-line 2s ease-in-out infinite}
   @keyframes scroll-line{0%,100%{transform:scaleY(.4);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
   @media (max-width:760px){.hero-scroll{display:none}}
 
-  /* ================= COURT-LINE DIVIDER ================= */
-  .court-divider{
-    height:80px;display:flex;align-items:center;justify-content:center;
-    margin:0;
-  }
-  .court-divider svg{width:min(1100px, 92vw);height:60px}
-  .court-divider .court-line{
-    fill:none;stroke:var(--green-700);stroke-width:1.4;
-    stroke-dasharray:1500;stroke-dashoffset:1500;
-    transition:stroke-dashoffset 2s var(--ease-out-expo);
-  }
-  .court-divider.in .court-line{stroke-dashoffset:0}
+  /* ============== NET DIVIDER (BRAND MOTIF) ============== */
+  .net-divider{display:flex;align-items:center;justify-content:center;padding:50px var(--pad);position:relative}
+  .net-divider .net{width:min(1200px, 92vw);color:var(--green-700)}
+  .net-divider.dark .net{color:var(--green-300)}
+  .net-divider.gold .net{color:var(--gold-700)}
+  .net-svg .post,.net-svg .rope,.net-svg .center{stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 1.6s var(--ease-out-expo)}
+  .net-divider.in .net-svg .post,.net-divider.in .net-svg .rope,.net-divider.in .net-svg .center{stroke-dashoffset:0}
+  .net-svg .mesh{opacity:0;transition:opacity 1.4s ease .5s}
+  .net-divider.in .net-svg .mesh{opacity:.55}
+  .net-svg .ball{fill:var(--gold-700);opacity:0;transform-origin:center;transition:opacity .8s ease 1.2s, transform 1.5s var(--ease-out-expo) 1.2s}
+  .net-divider.in .net-svg .ball{opacity:1}
 
-  /* ================= LOGOS ================= */
-  .logos{padding:80px var(--pad) 80px;background:var(--white);position:relative;overflow:hidden}
+  /* ============== LOGOS ============== */
+  .logos{padding:90px var(--pad);background:var(--white);position:relative;overflow:hidden}
   .logos-inner{max-width:var(--max);margin:0 auto}
-  .logos-eyebrow{text-align:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gray-4);margin-bottom:36px}
-  .logos-grid{
-    display:grid;grid-template-columns:repeat(5,1fr);gap:20px 32px;align-items:center;
-  }
-  @media (max-width:840px){.logos-grid{grid-template-columns:repeat(2,1fr)}}
-  .logo-cell{
-    text-align:center;font-size:18px;font-weight:700;letter-spacing:-0.01em;color:var(--gray-3);
-    padding:14px 8px;transition:color .3s, transform .3s var(--ease-out-expo);
-  }
-  .logo-cell:hover{color:var(--green-800);transform:translateY(-3px)}
+  .logos-eyebrow{text-align:center;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray-4);margin-bottom:44px}
+  .logos-eyebrow .ital{font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
+  .logos-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px 40px;align-items:center}
+  @media (max-width:840px){.logos-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:560px){.logos-grid{grid-template-columns:repeat(2,1fr)}}
+  .logo-cell{display:flex;align-items:center;justify-content:center;height:48px;padding:8px;filter:grayscale(1);opacity:.5;transition:opacity .4s, filter .4s, transform .4s var(--ease-out-expo)}
+  .logo-cell:hover{filter:grayscale(0);opacity:1;transform:translateY(-3px)}
+  .logo-cell img{max-height:34px;max-width:100%;object-fit:contain}
+  .logo-cell .fallback{font-size:18px;font-weight:700;letter-spacing:-0.015em;color:var(--gray-4)}
 
-  /* ================= STATEMENT ================= */
-  .statement{
-    padding:200px var(--pad);max-width:1340px;margin:0 auto;position:relative;
-  }
-  .statement::before{
-    content:"";position:absolute;top:120px;left:var(--pad);
-    width:48px;height:48px;border-radius:50%;
-    background:var(--peach);opacity:.18;filter:blur(20px);
-  }
-  .statement .kicker{
-    font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-700);
-    display:flex;align-items:center;gap:14px;margin-bottom:30px;
-  }
+  /* ============== STATEMENT ============== */
+  .statement{padding:200px var(--pad);max-width:1340px;margin:0 auto;position:relative}
+  .statement-blob{position:absolute;top:80px;right:-8%;width:560px;height:560px;border-radius:50%;background:var(--azalea-mesh);opacity:.7;filter:blur(48px);z-index:0;pointer-events:none}
+  @media (max-width:760px){.statement-blob{width:300px;height:300px;top:30px}}
+  .statement > *{position:relative;z-index:1}
+  .statement .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-700);display:flex;align-items:center;gap:14px;margin-bottom:30px}
   .statement .kicker::before{content:"";width:36px;height:1px;background:var(--green-700)}
-  .statement h2{
-    font-size:clamp(38px, 6.4vw, 104px);font-weight:700;letter-spacing:-0.045em;line-height:1.0;
-    color:var(--black);margin-bottom:80px;max-width:1280px;
-  }
-  .statement h2 .ital{font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;color:var(--green-800);letter-spacing:-0.01em}
+  .statement h2{font-size:clamp(38px, 6.4vw, 104px);font-weight:700;letter-spacing:-0.045em;line-height:1.0;color:var(--black);margin-bottom:80px;max-width:1280px}
   .statement h2 .underline{position:relative;display:inline-block}
-  .statement h2 .underline::after{
-    content:"";position:absolute;left:0;bottom:6px;height:14px;width:0%;
-    background:var(--green-300);z-index:-1;border-radius:2px;
-    transition:width 1.2s var(--ease-out-expo);
-  }
+  .statement h2 .underline::after{content:"";position:absolute;left:0;bottom:6px;height:14px;width:0%;background:var(--peach);z-index:-1;border-radius:2px;transition:width 1.4s var(--ease-out-expo) .3s}
   .statement.in h2 .underline::after{width:100%}
-  .stats-row{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:48px;
-    border-top:1px solid var(--gray-2);padding-top:40px;
-  }
+  .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;border-top:1px solid var(--gray-2);padding-top:48px}
   @media (max-width:760px){.stats-row{grid-template-columns:1fr;gap:32px}}
-  .stat .num{
-    font-size:clamp(44px, 4.4vw, 72px);font-weight:700;letter-spacing:-0.04em;line-height:1;color:var(--black);margin-bottom:8px;
-  }
+  .stat .num{font-size:clamp(48px, 5vw, 88px);font-weight:700;letter-spacing:-0.04em;line-height:1;color:var(--black);margin-bottom:8px}
   .stat .num .unit{color:var(--green-700)}
-  .stat .label{font-size:14px;color:var(--gray-4);max-width:280px;line-height:1.5}
+  .stat .label{font-size:14px;color:var(--gray-4);max-width:280px;line-height:1.55}
 
-  /* ================= PINNED HORIZONTAL SKUS ================= */
-  .pinned-skus{height:300vh;position:relative;background:var(--gray-1)}
+  /* ============== EDITORIAL FULL-BLEED ============== */
+  .editorial{position:relative;min-height:90vh;background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .editorial-bg{position:absolute;inset:0;z-index:0}
+  .editorial-bg img{width:100%;height:100%;object-fit:cover;opacity:.55;transform:scale(1.05)}
+  .editorial-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg, rgba(10,10,10,.7), rgba(10,10,10,.3) 40%, rgba(10,10,10,.85) 100%), radial-gradient(50% 70% at 80% 50%, rgba(232,160,152,.18), transparent 70%)}
+  .editorial-content{position:relative;z-index:2;max-width:1100px;padding:120px var(--pad);text-align:center}
+  .editorial .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:30px}
+  .editorial h2{font-size:clamp(40px, 7vw, 132px);font-weight:800;letter-spacing:-0.045em;line-height:.96;margin-bottom:30px}
+  .editorial p{font-size:clamp(17px, 1.6vw, 22px);max-width:720px;margin:0 auto;line-height:1.55;color:rgba(255,255,255,.8)}
+
+  /* ============== PINNED HORIZONTAL SKUS ============== */
+  .pinned-skus{height:340vh;position:relative;background:var(--cream-soft)}
   .pinned-track{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center}
-  .pinned-rail{
-    display:flex;gap:24px;will-change:transform;padding:0 var(--pad);
-    align-items:center;
-  }
-  .pinned-intro{
-    flex:0 0 min(620px, 80vw);padding-right:24px;
-  }
-  .pinned-intro .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-700);margin-bottom:16px;display:flex;align-items:center;gap:14px}
+  .pinned-rail{display:flex;gap:28px;will-change:transform;padding:0 var(--pad);align-items:center}
+  .pinned-intro{flex:0 0 min(620px, 80vw);padding-right:24px}
+  .pinned-intro .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-700);margin-bottom:16px;display:flex;align-items:center;gap:14px}
   .pinned-intro .kicker::before{content:"";width:36px;height:1px;background:var(--green-700)}
-  .pinned-intro h2{font-size:clamp(38px, 4.6vw, 76px);font-weight:700;letter-spacing:-0.04em;line-height:1.02;margin-bottom:20px;color:var(--black)}
-  .pinned-intro h2 .ital{font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;color:var(--green-800);letter-spacing:-0.01em}
+  .pinned-intro h2{font-size:clamp(38px, 4.6vw, 80px);font-weight:700;letter-spacing:-0.04em;line-height:1.02;margin-bottom:20px;color:var(--black)}
   .pinned-intro p{font-size:17px;color:var(--gray-4);max-width:480px;line-height:1.55}
-  .pinned-intro .scroll-hint{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gray-3);margin-top:32px;display:flex;align-items:center;gap:10px}
+  .pinned-intro .scroll-hint{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray-3);margin-top:32px;display:flex;align-items:center;gap:10px}
   .pinned-intro .scroll-hint::after{content:"\2192";display:inline-block;animation:nudge 1.6s ease-in-out infinite}
   @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
 
-  .sku-card{
-    flex:0 0 min(560px, 78vw);height:min(680px, 78vh);
-    background:var(--white);border-radius:28px;overflow:hidden;
-    box-shadow:var(--shadow-card);
-    display:flex;flex-direction:column;
-    border:1px solid rgba(10,10,10,.04);position:relative;
-    transition:transform .5s var(--ease-out-expo);
-  }
-  .sku-card:hover{transform:translateY(-8px)}
-  .sku-card.featured{background:var(--black);color:var(--white);border-color:transparent}
-  .sku-card.tournament{background:linear-gradient(160deg, #06291a, #0f5132);color:var(--white)}
+  .sku-card{flex:0 0 min(560px, 78vw);height:min(700px, 80vh);background:var(--white);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-card);display:flex;flex-direction:column;border:1px solid rgba(10,10,10,.04);position:relative;transition:transform .5s var(--ease-out-expo)}
+  .sku-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lift)}
+  .sku-card.featured{background:linear-gradient(165deg, #0a4828, #052b18);color:var(--white);border-color:transparent}
+  .sku-card.tournament{background:linear-gradient(165deg, #141414 0%, #0a4828 80%);color:var(--white)}
   .sku-card .sku-img{height:55%;overflow:hidden;position:relative;background:var(--green-800)}
-  .sku-card .sku-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease-out-expo)}
-  .sku-card:hover .sku-img img{transform:scale(1.05)}
-  .sku-card .sku-tag{
-    position:absolute;top:18px;left:18px;
-    background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
-    padding:7px 13px;border-radius:999px;font-family:'Geist Mono',monospace;
-    font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--green-800);font-weight:700;
-  }
-  .sku-card.featured .sku-tag,.sku-card.tournament .sku-tag{background:rgba(212,184,150,.96);color:var(--black)}
-  .sku-card .sku-body{padding:32px 32px 36px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
-  .sku-card h3{font-size:34px;font-weight:700;letter-spacing:-0.03em;line-height:1.05;margin-bottom:10px}
-  .sku-card h3 .ital{font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;letter-spacing:-0.01em;color:var(--champagne)}
-  .sku-card .price{font-family:'Geist Mono',monospace;font-size:13px;color:var(--gray-4);margin-bottom:20px}
+  .sku-card .sku-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease-out-expo)}
+  .sku-card:hover .sku-img img{transform:scale(1.06)}
+  .sku-card .sku-tag{position:absolute;top:18px;left:18px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);padding:7px 13px;border-radius:999px;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--green-800);font-weight:700}
+  .sku-card.featured .sku-tag,.sku-card.tournament .sku-tag{background:linear-gradient(135deg, var(--gold-light), var(--gold-700));color:var(--augusta-900)}
+  .sku-card .sku-body{padding:36px 36px 40px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+  .sku-card h3{font-size:36px;font-weight:700;letter-spacing:-0.03em;line-height:1.05;margin-bottom:12px}
+  .sku-card .price{font-family:'Geist Mono',monospace;font-size:13px;color:var(--gray-4);margin-bottom:22px}
   .sku-card.featured .price,.sku-card.tournament .price{color:rgba(255,255,255,.65)}
   .sku-card .price strong{color:var(--black);font-weight:600}
   .sku-card.featured .price strong,.sku-card.tournament .price strong{color:var(--white)}
   .sku-card ul{list-style:none;font-size:13px;color:var(--gray-4);margin-bottom:24px}
   .sku-card.featured ul,.sku-card.tournament ul{color:rgba(255,255,255,.7)}
-  .sku-card ul li{padding:10px 0;border-top:1px solid var(--gray-2);display:flex;justify-content:space-between;gap:8px}
+  .sku-card ul li{padding:11px 0;border-top:1px solid var(--gray-2);display:flex;justify-content:space-between;gap:8px}
   .sku-card.featured ul li,.sku-card.tournament ul li{border-top-color:rgba(255,255,255,.1)}
   .sku-card ul li:first-child{border-top:0;padding-top:0}
   .sku-card ul li span{color:var(--black);font-weight:500;text-align:right}
   .sku-card.featured ul li span,.sku-card.tournament ul li span{color:var(--white)}
   .sku-card .sku-cta{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--green-800)}
-  .sku-card.featured .sku-cta,.sku-card.tournament .sku-cta{color:var(--champagne)}
+  .sku-card.featured .sku-cta,.sku-card.tournament .sku-cta{color:var(--gold-soft)}
   .sku-card .sku-cta .arrow{display:inline-block;transition:transform .35s var(--ease-out-expo)}
   .sku-card:hover .sku-cta .arrow{transform:translateX(5px)}
 
-  /* ================= TORONTO OPEN FEATURE ================= */
-  .open-feature{
-    position:relative;background:var(--black);color:var(--white);
-    padding:160px var(--pad);overflow:hidden;
-  }
+  /* ============== TORONTO OPEN FEATURE ============== */
+  .open-feature{position:relative;background:var(--black);color:var(--white);padding:180px var(--pad);overflow:hidden}
   .open-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
-  .open-bg img{width:100%;height:120%;object-fit:cover;opacity:.4;transform:scale(1.1)}
-  .open-bg::after{
-    content:"";position:absolute;inset:0;
-    background:radial-gradient(120% 80% at 20% 50%, rgba(0,0,0,.85) 0%, rgba(0,0,0,.6) 50%, rgba(0,0,0,.92) 100%);
-  }
-  .open-mesh{
-    position:absolute;inset:auto -20% -50% auto;width:90vw;max-width:1200px;height:90vw;max-height:1200px;
-    background:var(--tie-dye);filter:blur(100px);opacity:.4;border-radius:50%;z-index:0;
-    animation:mesh-float 18s ease-in-out infinite alternate;
-  }
+  .open-bg img{width:100%;height:120%;object-fit:cover;opacity:.42;transform:scale(1.1)}
+  .open-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 20% 50%, rgba(0,0,0,.85) 0%, rgba(0,0,0,.55) 50%, rgba(0,0,0,.95) 100%)}
+  .open-mesh{position:absolute;inset:auto -20% -50% auto;width:90vw;max-width:1200px;height:90vw;max-height:1200px;background:var(--tie-dye);filter:blur(120px);opacity:.4;border-radius:50%;z-index:0;animation:mesh-float 18s ease-in-out infinite alternate}
   @keyframes mesh-float{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(-30px,40px) rotate(60deg)}}
+  .open-mesh-2{position:absolute;top:-30%;left:-15%;width:600px;height:600px;background:radial-gradient(circle, var(--peach) 0%, transparent 70%);filter:blur(80px);opacity:.35;border-radius:50%;z-index:0;animation:mesh-float-slow 22s ease-in-out infinite alternate}
+  @keyframes mesh-float-slow{0%{transform:translate(0,0)}100%{transform:translate(160px,80px)}}
   .open-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
   @media (max-width:980px){.open-inner{grid-template-columns:1fr;gap:40px}}
-  .open-eyebrow{
-    font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-300);
-    margin-bottom:28px;display:flex;align-items:center;gap:12px;
-  }
-  .open-eyebrow .pulse{width:8px;height:8px;background:var(--green-500);border-radius:50%;box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:pulse 2s infinite}
-  .open-feature h2{font-size:clamp(48px,8vw,128px);line-height:.92;letter-spacing:-0.05em;font-weight:800;margin-bottom:28px}
-  .open-feature h2 .gold{
-    font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;letter-spacing:-0.02em;
-    background:linear-gradient(95deg, #f5e6c8 0%, #e6cf9c 18%, #c8a25b 45%, #a3823f 72%, #c8a25b 100%);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    background-size:200% 100%;animation:gold-shimmer 8s ease-in-out infinite;
-  }
-  @keyframes gold-shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  .open-eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-300);margin-bottom:28px;display:flex;align-items:center;gap:12px}
+  .open-eyebrow .pulse{width:8px;height:8px;background:var(--green-500);border-radius:50%;box-shadow:0 0 0 0 rgba(40,168,90,.7);animation:pulse 2s infinite}
+  .open-feature h2{font-size:clamp(48px,8.5vw,144px);line-height:.92;letter-spacing:-0.05em;font-weight:800;margin-bottom:32px}
   .open-feature .lead{font-size:18px;line-height:1.6;color:rgba(255,255,255,.78);max-width:560px;margin-bottom:36px}
   .open-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:40px;max-width:580px}
   .open-meta div{border-top:1px solid rgba(255,255,255,.18);padding-top:14px}
   .open-meta .k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px}
   .open-meta .v{font-size:18px;font-weight:600;letter-spacing:-0.01em}
-  .open-card{
-    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(20px);
-    border-radius:22px;padding:32px;
-  }
+  .open-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(20px);border-radius:22px;padding:32px}
   .open-card .label{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--green-300);margin-bottom:18px}
   .open-card .firms{font-size:14px;line-height:1.85;color:rgba(255,255,255,.92)}
   .open-card .firms span{display:inline-block;background:rgba(255,255,255,.07);padding:5px 12px;border-radius:999px;margin:3px 4px 3px 0;font-size:12px;letter-spacing:-0.01em}
@@ -426,58 +277,56 @@
   .open-card .seats div{font-size:11px;color:rgba(255,255,255,.55);font-family:'Geist Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
   .open-card .seats strong{color:var(--white);font-size:24px;font-weight:700;letter-spacing:-0.02em;font-family:'Geist',sans-serif;display:block;text-transform:none}
 
-  /* ================= WHY ================= */
-  .why{padding:180px var(--pad);background:var(--white);position:relative}
-  .why-inner{max-width:var(--max);margin:0 auto}
-  .why .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-700);margin-bottom:18px;display:flex;align-items:center;gap:14px}
+  /* ============== WHY ============== */
+  .why{padding:200px var(--pad);background:var(--white);position:relative;overflow:hidden}
+  .why-blob{position:absolute;left:-10%;top:30%;width:500px;height:500px;background:radial-gradient(circle, var(--peach-glow), transparent 70%);filter:blur(70px);opacity:.5;border-radius:50%;z-index:0}
+  .why-inner{max-width:var(--max);margin:0 auto;position:relative;z-index:1}
+  .why .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-700);margin-bottom:18px;display:flex;align-items:center;gap:14px}
   .why .kicker::before{content:"";width:36px;height:1px;background:var(--green-700)}
   .why h2{font-size:clamp(38px,5.4vw,84px);font-weight:700;letter-spacing:-0.045em;line-height:1.0;margin-bottom:18px;max-width:1100px}
-  .why h2 .ital{font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;color:var(--green-800);letter-spacing:-0.01em}
   .why .lead{font-size:18px;color:var(--gray-4);max-width:680px;margin-bottom:80px;line-height:1.55}
   .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gray-2);border-radius:24px;overflow:hidden;border:1px solid var(--gray-2)}
   @media (max-width:980px){.why-grid{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:560px){.why-grid{grid-template-columns:1fr}}
-  .why-card{background:var(--white);padding:36px 32px 40px;display:flex;flex-direction:column;justify-content:space-between;min-height:300px;position:relative;overflow:hidden;transition:background .5s}
-  .why-card:hover{background:var(--gray-1)}
-  .why-card .num{font-family:'Geist Mono',monospace;font-size:11px;color:var(--green-800);letter-spacing:.22em;margin-bottom:24px}
-  .why-card h3{font-size:26px;font-weight:600;letter-spacing:-0.025em;margin-bottom:12px;line-height:1.12}
-  .why-card h3 .ital{font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;color:var(--green-800)}
-  .why-card p{font-size:14px;color:var(--gray-4);line-height:1.55}
+  .why-card{background:var(--white);padding:40px 32px 44px;display:flex;flex-direction:column;justify-content:space-between;min-height:320px;position:relative;overflow:hidden;transition:background .5s}
+  .why-card:hover{background:var(--cream-soft)}
+  .why-card .num{font-family:'Geist Mono',monospace;font-size:11px;color:var(--green-800);letter-spacing:.24em;margin-bottom:24px}
+  .why-card h3{font-size:28px;font-weight:600;letter-spacing:-0.025em;margin-bottom:12px;line-height:1.12}
+  .why-card p{font-size:14px;color:var(--gray-4);line-height:1.6}
   .why-card .compare{margin-top:24px;font-size:13px;color:var(--gray-3);font-family:'Geist Mono',monospace;display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid var(--gray-2)}
   .why-card .compare s{color:var(--gray-3)}
   .why-card .compare strong{color:var(--green-700);font-weight:600;font-size:15px}
-  .why-card .arrow-side{color:var(--green-700);font-weight:300}
+  .why-card .arrow-side{color:var(--peach);font-weight:300;font-size:18px}
 
-  /* ================= HOW ================= */
-  .how{padding:140px var(--pad);background:var(--green-900);color:var(--white);position:relative;overflow:hidden}
+  /* ============== HOW ============== */
+  .how{padding:160px var(--pad);background:var(--green-900);color:var(--white);position:relative;overflow:hidden}
   .how-mesh{position:absolute;left:-15%;top:-25%;width:60vw;height:60vw;background:var(--tie-dye);filter:blur(120px);opacity:.45;border-radius:50%;animation:mesh-float-slow 22s ease-in-out infinite alternate}
-  @keyframes mesh-float-slow{0%{transform:translate(0,0)}100%{transform:translate(120px,80px)}}
+  .how-mesh-2{position:absolute;right:-20%;bottom:-30%;width:600px;height:600px;background:radial-gradient(circle, var(--peach), transparent 70%);filter:blur(100px);opacity:.3;border-radius:50%}
   .how-inner{position:relative;max-width:var(--max);margin:0 auto;z-index:2}
   .how-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:60px}
-  .how .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-300);display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .how .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-300);display:flex;align-items:center;gap:14px;margin-bottom:14px}
   .how .kicker::before{content:"";width:36px;height:1px;background:var(--green-300)}
   .how h2{font-size:clamp(38px,5vw,82px);font-weight:700;letter-spacing:-0.045em;line-height:1.0;max-width:680px}
-  .how h2 .ital{font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;color:var(--green-300);letter-spacing:-0.01em}
   .how-sub{font-size:15px;color:rgba(255,255,255,.7);max-width:340px;line-height:1.55}
   .how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.16);border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.16)}
   @media (max-width:980px){.how-steps{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:560px){.how-steps{grid-template-columns:1fr}}
-  .how-step{background:var(--green-900);padding:36px 28px 40px;position:relative;min-height:240px;transition:background .5s}
-  .how-step:hover{background:#0a3a1f}
-  .how-step .step-n{font-family:'Geist Mono',monospace;font-size:11px;color:var(--green-300);letter-spacing:.22em;margin-bottom:18px}
-  .how-step h3{font-size:24px;font-weight:600;letter-spacing:-0.02em;margin-bottom:12px;line-height:1.12}
-  .how-step p{font-size:14px;color:rgba(255,255,255,.7);line-height:1.5}
+  .how-step{background:var(--green-900);padding:40px 32px 44px;position:relative;min-height:260px;transition:background .5s}
+  .how-step:hover{background:#0a4828}
+  .how-step .step-n{font-family:'Geist Mono',monospace;font-size:11px;color:var(--green-300);letter-spacing:.24em;margin-bottom:18px}
+  .how-step h3{font-size:26px;font-weight:600;letter-spacing:-0.02em;margin-bottom:12px;line-height:1.12}
+  .how-step p{font-size:14px;color:rgba(255,255,255,.72);line-height:1.55}
 
-  /* ================= CAPACITY ================= */
-  .capacity{padding:160px var(--pad);background:var(--white)}
-  .capacity-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+  /* ============== CAPACITY ============== */
+  .capacity{padding:180px var(--pad);background:var(--white);position:relative;overflow:hidden}
+  .capacity-blob{position:absolute;right:-10%;top:50%;width:600px;height:600px;background:radial-gradient(circle, var(--peach-glow), transparent 70%);filter:blur(80px);opacity:.4;z-index:0;border-radius:50%}
+  .capacity-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center;position:relative;z-index:1}
   @media (max-width:980px){.capacity-inner{grid-template-columns:1fr;gap:48px}}
-  .capacity .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-700);margin-bottom:18px;display:flex;align-items:center;gap:14px}
+  .capacity .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-700);margin-bottom:18px;display:flex;align-items:center;gap:14px}
   .capacity .kicker::before{content:"";width:36px;height:1px;background:var(--green-700)}
   .capacity h2{font-size:clamp(38px,5vw,80px);font-weight:700;letter-spacing:-0.045em;line-height:1;margin-bottom:22px}
-  .capacity h2 .ital{font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;color:var(--green-800);letter-spacing:-0.01em}
-  .capacity p{font-size:17px;color:var(--gray-4);max-width:500px;margin-bottom:32px;line-height:1.55}
-  .cap-table{background:var(--gray-1);border-radius:22px;padding:8px}
+  .capacity p{font-size:17px;color:var(--gray-4);max-width:500px;margin-bottom:32px;line-height:1.6}
+  .cap-table{background:var(--cream-soft);border-radius:22px;padding:8px;border:1px solid var(--gray-2)}
   .cap-row{display:grid;grid-template-columns:140px 1fr auto;gap:20px;align-items:center;padding:20px 22px;border-radius:14px;background:var(--white);margin-bottom:6px;box-shadow:0 1px 0 rgba(10,10,10,.03);transition:transform .3s var(--ease-out-expo)}
   .cap-row:hover{transform:translateX(4px)}
   .cap-row:last-child{margin-bottom:0}
@@ -485,71 +334,61 @@
   .cap-row.full .cap-month{color:var(--gray-3)}
   .cap-row.full .cap-status{background:transparent;color:var(--gray-3);border:1px solid var(--gray-3)}
   .cap-month{font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.08em;color:var(--green-800);font-weight:600;text-transform:uppercase}
-  .cap-meter{height:6px;border-radius:999px;background:var(--gray-2);overflow:hidden}
-  .cap-meter-fill{height:100%;background:linear-gradient(90deg,var(--green-800),var(--green-500));border-radius:999px;transform:translateX(-100%);transition:transform 1.4s var(--ease-out-expo)}
+  .cap-meter{height:8px;border-radius:999px;background:var(--gray-2);overflow:hidden}
+  .cap-meter-fill{height:100%;background:linear-gradient(90deg,var(--green-800),var(--green-500),var(--gold-700));border-radius:999px;transform:translateX(-100%);transition:transform 1.4s var(--ease-out-expo)}
   .cap-table.in .cap-meter-fill{transform:translateX(0)}
   .cap-status{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;background:var(--green-50);color:var(--green-800);padding:5px 10px;border-radius:999px;text-transform:uppercase;font-weight:600;white-space:nowrap}
   .cap-row.full .cap-meter-fill{background:var(--gray-3)}
 
-  /* ================= TESTIMONIALS ================= */
-  .testimonials{padding:160px var(--pad);background:var(--cream)}
-  .test-inner{max-width:var(--max);margin:0 auto}
-  .testimonials .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-700);margin-bottom:18px;display:flex;align-items:center;gap:14px}
+  /* ============== TESTIMONIALS ============== */
+  .testimonials{padding:180px var(--pad);background:var(--cream);position:relative;overflow:hidden}
+  .test-blob{position:absolute;left:-15%;bottom:-20%;width:700px;height:700px;background:radial-gradient(circle, var(--azalea), transparent 70%);filter:blur(100px);opacity:.3;border-radius:50%}
+  .test-inner{max-width:var(--max);margin:0 auto;position:relative;z-index:1}
+  .testimonials .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-700);margin-bottom:18px;display:flex;align-items:center;gap:14px}
   .testimonials .kicker::before{content:"";width:36px;height:1px;background:var(--green-700)}
-  .testimonials h2{font-size:clamp(36px,4.6vw,72px);font-weight:700;letter-spacing:-0.04em;margin-bottom:60px;max-width:880px;line-height:1.04}
-  .testimonials h2 .ital{font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;color:var(--green-800);letter-spacing:-0.01em}
+  .testimonials h2{font-size:clamp(36px,4.6vw,76px);font-weight:700;letter-spacing:-0.04em;margin-bottom:60px;max-width:880px;line-height:1.04}
   .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   @media (max-width:980px){.test-grid{grid-template-columns:1fr}}
-  .test-card{
-    background:var(--white);border-radius:22px;padding:36px;
-    border:1px solid rgba(10,10,10,.04);
-    display:flex;flex-direction:column;justify-content:space-between;min-height:340px;
-    transition:transform .4s var(--ease-out-expo);
-  }
-  .test-card:hover{transform:translateY(-6px)}
-  .test-card .stars{color:var(--green-700);font-size:14px;letter-spacing:3px;margin-bottom:20px}
-  .test-card blockquote{font-size:20px;line-height:1.5;letter-spacing:-0.018em;color:var(--black);font-weight:500}
-  .test-card blockquote .ital{font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;color:var(--green-800)}
+  .test-card{background:var(--white);border-radius:24px;padding:36px;border:1px solid rgba(10,10,10,.04);display:flex;flex-direction:column;justify-content:space-between;min-height:340px;transition:transform .4s var(--ease-out-expo), box-shadow .4s}
+  .test-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+  .test-card .stars{color:var(--gold-700);font-size:14px;letter-spacing:3px;margin-bottom:20px}
+  .test-card blockquote{font-size:21px;line-height:1.5;letter-spacing:-0.018em;color:var(--black);font-weight:500}
   .test-author{display:flex;align-items:center;gap:14px;margin-top:30px;border-top:1px solid var(--gray-2);padding-top:22px}
   .test-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--green-800);color:var(--white);font-weight:700;font-size:14px;letter-spacing:-.02em}
   .test-meta strong{display:block;font-size:14px;font-weight:600;letter-spacing:-0.01em}
   .test-meta span{font-size:12px;color:var(--gray-4)}
 
-  /* ================= CLOSING ================= */
-  .closing{padding:200px var(--pad);background:var(--white);text-align:center;position:relative;overflow:hidden}
-  .closing-bg{position:absolute;inset:auto -10% -40% -10%;height:680px;background:var(--azalea-mesh), var(--tie-dye);filter:blur(140px);opacity:.45;border-radius:50%;z-index:0}
+  /* ============== CLOSING ============== */
+  .closing{padding:220px var(--pad);background:var(--white);text-align:center;position:relative;overflow:hidden}
+  .closing-bg{position:absolute;inset:auto -10% -40% -10%;height:780px;background:var(--azalea-mesh), var(--tie-dye);filter:blur(140px);opacity:.5;border-radius:50%;z-index:0}
   .closing-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto}
-  .closing h2{font-size:clamp(46px,8vw,140px);font-weight:800;letter-spacing:-0.05em;line-height:.94;margin-bottom:38px}
-  .closing h2 .ital{font-family:'Instrument Serif', serif;font-style:italic;font-weight:400;color:var(--green-800);letter-spacing:-0.02em}
+  .closing h2{font-size:clamp(46px,8.4vw,156px);font-weight:800;letter-spacing:-0.05em;line-height:.92;margin-bottom:38px}
   .closing h2 .underline{position:relative;display:inline-block;color:var(--green-800)}
   .closing p{font-size:19px;color:var(--gray-4);max-width:600px;margin:0 auto 44px;line-height:1.5}
   .closing-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
   .btn-black{background:var(--black);color:var(--white)}
-  .btn-black:hover{background:var(--green-800);transform:translateY(-2px);box-shadow:0 18px 30px -12px rgba(15,81,50,.6)}
+  .btn-black:hover{background:var(--green-800);transform:translateY(-2px);box-shadow:0 18px 30px -12px rgba(15,96,56,.6)}
   .btn-light-ghost{background:transparent;color:var(--black);border:1px solid rgba(10,10,10,.16)}
   .btn-light-ghost:hover{border-color:var(--black);background:rgba(10,10,10,.03);transform:translateY(-2px)}
 
-  /* ================= FOOTER ================= */
+  /* ============== FOOTER ============== */
   footer{background:var(--black);color:var(--white);padding:120px var(--pad) 40px;position:relative;overflow:hidden}
-  .foot-wordmark{
-    position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);
-    font-size:clamp(120px, 20vw, 320px);font-weight:800;letter-spacing:-0.05em;
-    color:rgba(255,255,255,.04);white-space:nowrap;pointer-events:none;
-  }
-  .foot-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto}
+  .foot-net{position:absolute;left:50%;top:30px;transform:translateX(-50%);width:min(1200px, 92vw);opacity:.18}
+  .foot-wordmark{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);font-size:clamp(120px, 20vw, 320px);font-weight:800;letter-spacing:-0.05em;color:rgba(255,255,255,.04);white-space:nowrap;pointer-events:none}
+  .foot-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding-top:80px}
   .foot-top{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:48px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.1)}
   @media (max-width:980px){.foot-top{grid-template-columns:1fr 1fr;gap:36px}}
   @media (max-width:560px){.foot-top{grid-template-columns:1fr}}
   .foot-brand .brand{color:var(--white);font-size:16px}
   .foot-brand p{font-size:14px;color:rgba(255,255,255,.55);margin-top:18px;max-width:280px;line-height:1.6}
-  .foot-col h4{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:18px;font-weight:500}
+  .foot-col h4{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:18px;font-weight:500}
   .foot-col ul{list-style:none}
   .foot-col li{margin-bottom:12px}
   .foot-col a{font-size:14px;color:rgba(255,255,255,.85);transition:color .2s}
-  .foot-col a:hover{color:var(--green-300)}
+  .foot-col a:hover{color:var(--gold-soft)}
   .foot-bot{padding-top:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:rgba(255,255,255,.45);font-family:'Geist Mono',monospace;letter-spacing:.05em}
 
-  /* ================= REVEAL ================= */
+  /* ============== REVEAL ============== */
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease, transform 1s var(--ease-out-expo)}
   .reveal.in{opacity:1;transform:none}
   .reveal-stagger > *{opacity:0;transform:translateY(28px);transition:opacity .9s ease, transform 1s var(--ease-out-expo)}
@@ -561,24 +400,18 @@
 
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
-    .cursor{display:none}
-    html{cursor:auto}
-    button,a{cursor:auto}
+    .cursor{display:none}html{cursor:auto}button,a{cursor:auto}
   }
 </style>
 </head>
 <body>
 
-<!-- ===== INTRO OVERLAY ===== -->
+<!-- ===== INTRO ===== -->
 <div class="intro-overlay" id="intro">
-  <div class="intro-mark">
-    <span class="dot"></span>
-    <span class="word"><span>Corporate</span></span>
-    <span class="word delay"><span>Pickleball.</span></span>
-  </div>
+  <div class="intro-mark"><span class="dot"></span><span class="word"><span>Corporate</span></span><span class="word delay"><span>Pickleball.</span></span></div>
 </div>
 
-<!-- ===== CUSTOM CURSOR ===== -->
+<!-- ===== CURSOR ===== -->
 <div class="cursor" id="cursor"></div>
 
 <!-- ===== NAV ===== -->
@@ -608,7 +441,7 @@
     <h1>
       <span class="line"><span>White-glove</span></span>
       <span class="line"><span>pickleball,</span></span>
-      <span class="line"><span class="serif-ital">built for the boardroom.</span></span>
+      <span class="line"><span class="ital">built for the boardroom.</span></span>
     </h1>
     <p class="hero-sub">Corporate Pickleball runs the off-site corporate golf could never be. Half a day. A fraction of the cost. Catered, photographed, white-glove from arrival to last point. Across four GTA venues, by invitation or by application.</p>
     <div class="hero-ctas">
@@ -624,49 +457,60 @@
   <div class="hero-scroll">Scroll</div>
 </section>
 
-<!-- ===== COURT DIVIDER ===== -->
-<div class="court-divider" data-reveal>
-  <svg viewBox="0 0 1100 60" preserveAspectRatio="none">
-    <path class="court-line" d="M 0 30 L 1100 30 M 50 0 L 50 60 M 1050 0 L 1050 60 M 550 0 L 550 60 M 250 30 L 250 0 M 250 30 L 250 60 M 850 30 L 850 0 M 850 30 L 850 60"/>
+<!-- ===== NET DIVIDER (BRAND MOTIF) ===== -->
+<div class="net-divider" data-reveal>
+  <svg class="net net-svg" viewBox="0 0 1200 80" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <defs><pattern id="net-mesh-light" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M 0 0 L 14 0 M 0 0 L 0 14" stroke="currentColor" stroke-width="0.6"/></pattern></defs>
+    <line class="post" x1="80" y1="14" x2="80" y2="66"/>
+    <line class="post" x1="1120" y1="14" x2="1120" y2="66"/>
+    <line class="rope" x1="80" y1="14" x2="1120" y2="14"/>
+    <rect class="mesh" x="80" y="14" width="1040" height="52" fill="url(#net-mesh-light)"/>
+    <line class="rope" x1="80" y1="66" x2="1120" y2="66"/>
+    <line class="center" x1="600" y1="0" x2="600" y2="80" stroke-dasharray="3 5" opacity=".35"/>
+    <circle class="ball" cx="600" cy="40" r="6"/>
   </svg>
 </div>
 
 <!-- ===== LOGOS ===== -->
 <section class="logos">
   <div class="logos-inner">
-    <div class="logos-eyebrow">Booked in 2025 by</div>
+    <div class="logos-eyebrow">Booked in 2025 by <span class="ital">Bay Street's most demanding teams.</span></div>
     <div class="logos-grid">
-      <div class="logo-cell">RBC&nbsp;Capital</div>
-      <div class="logo-cell">Brookfield</div>
-      <div class="logo-cell">Shopify</div>
-      <div class="logo-cell">TD&nbsp;Securities</div>
-      <div class="logo-cell">McKinsey&nbsp;TO</div>
-      <div class="logo-cell">Manulife</div>
-      <div class="logo-cell">Bennett&nbsp;Jones</div>
-      <div class="logo-cell">BMO</div>
-      <div class="logo-cell">Goldman&nbsp;Sachs</div>
-      <div class="logo-cell">Bain&nbsp;&amp;&nbsp;Co.</div>
+      <div class="logo-cell" title="RBC Capital Markets"><img src="https://logo.clearbit.com/rbc.com" alt="RBC" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>RBC&nbsp;Capital</span>'"/></div>
+      <div class="logo-cell" title="Brookfield"><img src="https://logo.clearbit.com/brookfield.com" alt="Brookfield" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Brookfield</span>'"/></div>
+      <div class="logo-cell" title="Shopify"><img src="https://logo.clearbit.com/shopify.com" alt="Shopify" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Shopify</span>'"/></div>
+      <div class="logo-cell" title="TD Securities"><img src="https://logo.clearbit.com/td.com" alt="TD" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>TD&nbsp;Securities</span>'"/></div>
+      <div class="logo-cell" title="McKinsey & Company"><img src="https://logo.clearbit.com/mckinsey.com" alt="McKinsey" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>McKinsey&nbsp;TO</span>'"/></div>
+      <div class="logo-cell" title="Manulife"><img src="https://logo.clearbit.com/manulife.com" alt="Manulife" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Manulife</span>'"/></div>
+      <div class="logo-cell" title="Bennett Jones LLP"><img src="https://logo.clearbit.com/bennettjones.com" alt="Bennett Jones" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Bennett&nbsp;Jones</span>'"/></div>
+      <div class="logo-cell" title="BMO Capital Markets"><img src="https://logo.clearbit.com/bmo.com" alt="BMO" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>BMO</span>'"/></div>
+      <div class="logo-cell" title="Goldman Sachs"><img src="https://logo.clearbit.com/goldmansachs.com" alt="Goldman Sachs" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Goldman&nbsp;Sachs</span>'"/></div>
+      <div class="logo-cell" title="Bain & Company"><img src="https://logo.clearbit.com/bain.com" alt="Bain & Co" onerror="this.outerHTML='<span class=\&quot;fallback\&quot;>Bain&nbsp;&amp;&nbsp;Co.</span>'"/></div>
     </div>
   </div>
 </section>
 
 <!-- ===== STATEMENT ===== -->
 <section class="statement reveal" data-reveal>
+  <div class="statement-blob" aria-hidden="true"></div>
   <div class="kicker">A new corporate event</div>
   <h2>Six hours of golf becomes <span class="underline">ninety minutes of pickleball.</span> <span class="ital">And the C-suite still beats the analysts.</span></h2>
   <div class="stats-row">
-    <div class="stat">
-      <div class="num" data-count-to="94">0<span class="unit">%</span></div>
-      <div class="label">Of firms book a second event within twelve months. Many book the same week the first ends.</div>
-    </div>
-    <div class="stat">
-      <div class="num">+<span data-count-to="62">0</span><span class="unit">%</span></div>
-      <div class="label">Reported team energy versus the previous year's off-site, measured by post-event survey.</div>
-    </div>
-    <div class="stat">
-      <div class="num"><span data-count-to="35" data-decimal="1">0</span><span class="unit">hrs</span></div>
-      <div class="label">Average tee-to-trophy time. Including catering. Including the awards ceremony. Done by 4pm.</div>
-    </div>
+    <div class="stat"><div class="num"><span data-count-to="94">0</span><span class="unit">%</span></div><div class="label">Of firms book a second event within twelve months. Many book the same week the first ends.</div></div>
+    <div class="stat"><div class="num">+<span data-count-to="62">0</span><span class="unit">%</span></div><div class="label">Reported team energy versus the previous year's off-site, measured by post-event survey.</div></div>
+    <div class="stat"><div class="num"><span data-count-to="35" data-decimal="1">0</span><span class="unit">hrs</span></div><div class="label">Average tee-to-trophy time. Including catering. Including the awards ceremony. Done by 4pm.</div></div>
+  </div>
+</section>
+
+<!-- ===== EDITORIAL FULL-BLEED #1 (champagne kitchen line) ===== -->
+<section class="editorial">
+  <div class="editorial-bg">
+    <img src="https://image.pollinations.ai/prompt/Hyper-cinematic%20editorial%20fashion%20photograph%20shot%20on%20Hasselblad%20H6D-100c%20with%2050mm%20f1.4%20prime%20lens%20on%20Kodak%20Portra%20400%20film%2C%20single%20female%20corporate%20professional%20in%20cream%20cashmere%20athleisure%20mid-swing%20on%20a%20pristine%20indoor%20pickleball%20court%20with%20deep%20Augusta-emerald%20court%20lines%2C%20golden%20hour%20directional%20sunlight%20at%2018%3A00%20streaming%20through%20floor-to-ceiling%20Toronto%20skyline%20windows%2C%20warm%20cream%20and%20forest-green%20and%20azalea-peach%20color%20grading%2C%20shallow%20depth%20of%20field%2C%20motion%20blur%20on%20yellow%20pickleball%2C%20Lacoste%20FW26%20campaign%20aesthetic%2C%20Mario%20Sorrenti%20photographic%20style%2C%20editorial%20Vogue%20meets%20Architectural%20Digest%2C%20clean%20wide%20negative%20space%2C%20premium%20luxury%2C%20elegant%20composition%2C%204K%20resolution?width=2400&height=1400&seed=7301&nologo=true&model=flux&enhance=true" alt=""/>
+  </div>
+  <div class="editorial-content">
+    <div class="kicker">— A scene from the 2025 Toronto Open</div>
+    <h2>The kitchen line<br/><span class="ital">is the new boardroom.</span></h2>
+    <p>The most consequential conversation of the year happened across a 14-foot pickleball court at One York. Two MDs. Three analysts. A cup-holder full of champagne and one yellow ball.</p>
   </div>
 </section>
 
@@ -678,17 +522,17 @@
       <div class="pinned-intro">
         <div class="kicker">How it scales</div>
         <h2>Three formats.<br/><span class="ital">One playbook.</span></h2>
-        <p>From a 16-person off-site to a five-day open. Every event includes white-glove staffing, professional photography, full catering, branded scorecards and prizes. No per-guest fees, ever.</p>
+        <p>From a 16-person off-site to a five-day open. Every event includes white-glove staffing, professional photography, full catering, branded scorecards and prizes. <span class="ital">No per-guest fees, ever.</span></p>
         <div class="scroll-hint">Scroll to explore</div>
       </div>
 
       <article class="sku-card">
         <div class="sku-img">
-          <img src="https://image.pollinations.ai/prompt/Aerial%20overhead%20editorial%20photograph%20of%20a%20premium%20indoor%20pickleball%20court%20with%20four%20corporate%20professionals%20mid-rally%2C%20clean%20architectural%20composition%2C%20polished%20wooden%20floor%20with%20forest%20green%20court%20lines%2C%20shafts%20of%20golden%20directional%20light%20from%20skylights%20above%2C%20Architectural%20Digest%20style%2C%20Lacoste%20color%20palette%2C%20deep%20contrast%2C%2035mm%20film%20grain%2C%20cinematic%2C%20editorial%20photography?width=900&height=700&seed=441&nologo=true&model=flux&enhance=true" alt="Aerial pickleball court mid-rally" loading="lazy"/>
+          <img src="https://image.pollinations.ai/prompt/Aerial%20overhead%20editorial%20photograph%20shot%20on%20Hasselblad%20H6D%2050mm%20Kodak%20Portra%20400%20film%2C%20single%20premium%20indoor%20pickleball%20court%20with%20four%20corporate%20professionals%20in%20cream%20and%20forest-green%20athleisure%20mid-rally%2C%20clean%20architectural%20composition%2C%20polished%20oak%20wooden%20floor%20with%20Augusta-emerald%20court%20lines%2C%20shafts%20of%20golden%20directional%20light%20from%20skylights%2C%2018%3A00%20golden%20hour%2C%20cream%20and%20forest-green%20and%20peach%20color%20grading%2C%20Lacoste%20FW26%20campaign%2C%20Mario%20Sorrenti%20style%2C%20Architectural%20Digest%20editorial%2C%2035mm%20film%20grain%2C%20premium%20luxury%2C%20cinematic?width=900&height=700&seed=441&nologo=true&model=flux&enhance=true" alt="Aerial pickleball court mid-rally" loading="lazy"/>
           <span class="sku-tag">Half-day</span>
         </div>
         <div class="sku-body">
-          <h3>The Off-Site<br/><span class="ital" style="color:var(--green-700)">— most booked.</span></h3>
+          <h3>The Off-Site<br/><span class="ital">— most booked.</span></h3>
           <div class="price"><strong>From $4,800</strong> · 12–32 players · 3 hours</div>
           <ul>
             <li>Format <span>Round-robin</span></li>
@@ -703,7 +547,7 @@
 
       <article class="sku-card featured">
         <div class="sku-img">
-          <img src="https://image.pollinations.ai/prompt/Wide%20angle%20cinematic%20editorial%20photograph%20of%20a%20multi-court%20pickleball%20championship%20in%20progress%20at%20a%20premium%20indoor%20Toronto%20venue%2C%20simultaneous%20action%20across%20four%20wooden%20courts%2C%20diverse%20corporate%20professionals%20in%20branded%20cream%20and%20forest%20green%20polos%2C%20a%20scoreboard%20bokeh%20in%20the%20foreground%2C%20warm%20golden%20stadium%20lighting%2C%20tall%20windows%20behind%2C%2035mm%20film%20grain%2C%20Lacoste%20editorial%20campaign%20aesthetic%2C%20Magnum%20photographers%20style%2C%20depth%20of%20field?width=900&height=700&seed=512&nologo=true&model=flux&enhance=true" alt="Multi-court championship" loading="lazy"/>
+          <img src="https://image.pollinations.ai/prompt/Wide%20angle%20cinematic%20editorial%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20multi-court%20pickleball%20championship%20at%20premium%20Toronto%20indoor%20venue%2C%20simultaneous%20action%20across%20four%20oak%20wooden%20courts%20with%20Augusta-emerald%20lines%2C%20diverse%20corporate%20professionals%20in%20cream%20and%20forest-green%20Lacoste-style%20polos%2C%20live%20electronic%20scoreboard%20bokeh%20in%20foreground%2C%20warm%20golden%20stadium%20lighting%2C%20floor-to-ceiling%20windows%20revealing%20Toronto%20skyline%2C%2018%3A00%20golden%20hour%2C%20cream%20peach%20gold%20color%20grading%2C%20Mario%20Sorrenti%20editorial%20style%2C%20depth%20of%20field%2C%20premium%20luxury%2C%20cinematic%2C%204K?width=900&height=700&seed=512&nologo=true&model=flux&enhance=true" alt="Multi-court championship" loading="lazy"/>
           <span class="sku-tag">Full-day</span>
         </div>
         <div class="sku-body">
@@ -722,7 +566,7 @@
 
       <article class="sku-card tournament">
         <div class="sku-img">
-          <img src="https://image.pollinations.ai/prompt/Hyper-cinematic%20close-up%20product%20photograph%20of%20a%20polished%20gold%20and%20forest-green%20pickleball%20championship%20trophy%20on%20a%20dark%20velvet%20surface%2C%20single%20dramatic%20warm%20spotlight%20from%20above%2C%20a%20half-empty%20coupe%20of%20champagne%20beside%20it%20catching%20warm%20light%2C%20Toronto%20skyline%20bokeh%20twinkling%20through%20a%20rain-streaked%20floor-to-ceiling%20window%20in%20background%2C%2050mm%20lens%2C%20editorial%20luxury%20product%20photography%2C%20deep%20rich%20blacks%2C%20Lacoste%20meets%20Apple%20aesthetic%2C%20moody%20premium%20cinematic%2C%2035mm%20film%20grain?width=900&height=700&seed=909&nologo=true&model=flux&enhance=true" alt="Bay Street Cup trophy" loading="lazy"/>
+          <img src="https://image.pollinations.ai/prompt/Hyper-cinematic%20editorial%20product%20photograph%20shot%20on%20Hasselblad%2085mm%20macro%20Kodak%20Portra%20400%2C%20heavy%20handcrafted%20gold%20and%20Augusta-emerald%20enamel%20pickleball%20championship%20trophy%20on%20black%20velvet%20pedestal%2C%20single%20dramatic%20warm%20spotlight%20from%20upper%20left%2C%20Krug%20champagne%20coupe%20beside%20it%20catching%20light%20with%20rising%20bubbles%2C%20Toronto%20skyline%20bokeh%20twinkling%20through%20rain-streaked%20floor-to-ceiling%20window%2C%20deep%20rich%20black%20background%2C%20golden%20hour%20warm%20accent%2C%20Lacoste%20meets%20Apple%20editorial%2C%20Mario%20Sorrenti%20Esquire%20cover%2C%20premium%20luxury%20cinematic%2C%2035mm%20film%20grain%2C%20moody%20dramatic%20lighting?width=900&height=700&seed=909&nologo=true&model=flux&enhance=true" alt="Bay Street Cup trophy" loading="lazy"/>
           <span class="sku-tag">Annual · Invitational</span>
         </div>
         <div class="sku-body">
@@ -744,107 +588,113 @@
   </div>
 </section>
 
+<!-- ===== NET DIVIDER ===== -->
+<div class="net-divider gold" data-reveal>
+  <svg class="net net-svg" viewBox="0 0 1200 80" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <defs><pattern id="net-mesh-gold" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M 0 0 L 14 0 M 0 0 L 0 14" stroke="currentColor" stroke-width="0.6"/></pattern></defs>
+    <line class="post" x1="80" y1="14" x2="80" y2="66"/>
+    <line class="post" x1="1120" y1="14" x2="1120" y2="66"/>
+    <line class="rope" x1="80" y1="14" x2="1120" y2="14"/>
+    <rect class="mesh" x="80" y="14" width="1040" height="52" fill="url(#net-mesh-gold)"/>
+    <line class="rope" x1="80" y1="66" x2="1120" y2="66"/>
+    <circle class="ball" cx="600" cy="40" r="6"/>
+  </svg>
+</div>
+
 <!-- ===== TORONTO OPEN FEATURE ===== -->
 <section class="open-feature">
-  <div class="open-bg">
-    <img src="https://image.pollinations.ai/prompt/Cinematic%20atmospheric%20editorial%20photograph%20of%20a%20packed%20crowd%20watching%20a%20pickleball%20championship%20final%20under%20dramatic%20stadium%20lighting%2C%20professional%20athletes%20mid-rally%20on%20a%20premium%20wooden%20court%2C%20Toronto%20skyline%20twinkling%20through%20massive%20floor-to-ceiling%20windows%20behind%2C%20warm%20ambient%20haze%20and%20smoke%2C%20editorial%20sports%20photography%2C%20golden%20hour%20spotlights%2C%20ESPN%20meets%20Lacoste%20aesthetic%2C%2035mm%20film%2C%20shallow%20depth%20of%20field%20on%20the%20action%2C%20deep%20rich%20colours?width=2200&height=1100&seed=70&nologo=true&model=flux&enhance=true" alt="Toronto Open crowd"/>
-  </div>
+  <div class="open-bg"><img src="https://image.pollinations.ai/prompt/Cinematic%20atmospheric%20editorial%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20packed%20black-tie%20crowd%20watching%20pickleball%20championship%20final%20under%20dramatic%20stadium%20spotlights%2C%20professional%20athletes%20mid-rally%20on%20premium%20oak%20court%20with%20Augusta-emerald%20lines%2C%20Toronto%20skyline%20twinkling%20through%20massive%20floor-to-ceiling%20windows%20behind%2C%20warm%20ambient%20haze%20smoke%20golden%20glow%2C%20editorial%20sports%20photography%2C%20Mario%20Sorrenti%20style%2C%20Vanity%20Fair%20cover%2C%20cream%20peach%20gold%20Augusta%20color%20grading%2C%2035mm%20film%20grain%2C%20shallow%20depth%20of%20field%2C%20deep%20rich%20cinematic?width=2200&height=1100&seed=70&nologo=true&model=flux&enhance=true" alt=""/></div>
   <div class="open-mesh"></div>
+  <div class="open-mesh-2"></div>
   <div class="open-inner">
     <div>
       <div class="open-eyebrow"><span class="pulse"></span>The Bay Street Cup · Sept 14–18, 2026</div>
-      <h2>Five days. Twelve firms.<br/><span class="gold">One trophy.</span></h2>
-      <p class="lead">The Bay Street Cup is the only invitational of its kind in North America. Twelve handpicked firms. One bracket. Five days at 6ix Pickle, The Jar, and the rooftop court at One York. The week ends in tuxedos and the Cup goes home with the winner.</p>
+      <h2>Five days. Twelve firms.<br/><span class="ital">One trophy.</span></h2>
+      <p class="lead">The Bay Street Cup is the only invitational of its kind in North America. Twelve handpicked firms. One bracket. Five days at 6ix Pickle, The Jar, and the rooftop court at One York. <span class="ital">The week ends in tuxedos and the Cup goes home with the winner.</span></p>
       <div class="open-meta">
         <div><div class="k">Dates</div><div class="v">Sept 14–18</div></div>
         <div><div class="k">Players</div><div class="v">192 invited</div></div>
         <div><div class="k">Trophy</div><div class="v">Bay Street Cup</div></div>
       </div>
-      <a href="toronto-open.html" class="btn btn-primary btn-lg" data-magnetic>Apply for 2026 <span class="arrow">→</span></a>
+      <a href="toronto-open.html" class="btn btn-gold btn-lg" data-magnetic>Apply for 2026 <span class="arrow">→</span></a>
     </div>
     <div class="open-card reveal" data-reveal>
       <div class="label">2026 Confirmed roster</div>
-      <div class="firms">
-        <span>RBC Capital</span><span>Brookfield</span><span>TD Securities</span><span>Shopify</span><span>Manulife</span><span>BMO</span><span>McKinsey TO</span><span>Goldman Sachs</span><span>Bain &amp; Co.</span><span>Bennett Jones</span><span>+ 2 TBD</span>
-      </div>
-      <div class="seats">
-        <div>Defending<br/>champion</div>
-        <strong>RBC Capital '25</strong>
-      </div>
+      <div class="firms"><span>RBC Capital</span><span>Brookfield</span><span>TD Securities</span><span>Shopify</span><span>Manulife</span><span>BMO</span><span>McKinsey TO</span><span>Goldman Sachs</span><span>Bain &amp; Co.</span><span>Bennett Jones</span><span>+ 2 TBD</span></div>
+      <div class="seats"><div>Defending<br/>champion</div><strong>RBC Capital '25</strong></div>
     </div>
   </div>
 </section>
 
 <!-- ===== WHY ===== -->
 <section class="why" id="why">
+  <div class="why-blob" aria-hidden="true"></div>
   <div class="why-inner">
     <div class="kicker">Why pickleball, not golf</div>
     <h2>Golf was a gatekeeper sport.<br/><span class="ital">Pickleball isn't.</span></h2>
     <p class="lead">Every metric your event coordinator cares about — time, cost, inclusion, memorability — moves the right direction the moment you swap the tee box for the kitchen line.</p>
     <div class="why-grid reveal-stagger" data-reveal>
       <div class="why-card">
-        <div>
-          <div class="num">01 / Time</div>
-          <h3>Done in <span class="ital">a half-day.</span></h3>
-          <p>A foursome at Glen Abbey takes six hours plus an hour each way. A Corporate Pickleball off-site is door-to-door in three and a half.</p>
-        </div>
+        <div><div class="num">01 / Time</div><h3>Done in <span class="ital">a half-day.</span></h3><p>A foursome at Glen Abbey takes six hours plus an hour each way. A Corporate Pickleball off-site is door-to-door in three and a half.</p></div>
         <div class="compare"><s>6.5 hrs</s><span class="arrow-side">→</span><strong>3.5 hrs</strong></div>
       </div>
       <div class="why-card">
-        <div>
-          <div class="num">02 / Cost</div>
-          <h3><span class="ital">~5×</span> more efficient.</h3>
-          <p>Average per-head spend on a 32-person golf outing in the GTA: $880. The Off-Site, white-glove, catered, photographed: $150.</p>
-        </div>
+        <div><div class="num">02 / Cost</div><h3><span class="ital">~5×</span> more efficient.</h3><p>Average per-head spend on a 32-person golf outing in the GTA: $880. The Off-Site, white-glove, catered, photographed: $150.</p></div>
         <div class="compare"><s>$28,160</s><span class="arrow-side">→</span><strong>$4,800</strong></div>
       </div>
       <div class="why-card">
-        <div>
-          <div class="num">03 / Inclusion</div>
-          <h3>Everyone <span class="ital">can play.</span></h3>
-          <p>Pickleball flattens skill differences in a single afternoon. Your VP of Eng and your Q3 intern end up on the same court. That's the point.</p>
-        </div>
+        <div><div class="num">03 / Inclusion</div><h3>Everyone <span class="ital">can play.</span></h3><p>Pickleball flattens skill differences in a single afternoon. Your VP of Eng and your Q3 intern end up on the same court. <span class="ital">That's the point.</span></p></div>
         <div class="compare"><s>Insiders</s><span class="arrow-side">→</span><strong>Whole team</strong></div>
       </div>
       <div class="why-card">
-        <div>
-          <div class="num">04 / Memory</div>
-          <h3>Stories, <span class="ital">not slides.</span></h3>
-          <p>Our post-event survey: 94% of players can name a moment from the day a year later. The previous off-site? 31%.</p>
-        </div>
+        <div><div class="num">04 / Memory</div><h3>Stories, <span class="ital">not slides.</span></h3><p>Our post-event survey: 94% of players can name a moment from the day a year later. The previous off-site? 31%.</p></div>
         <div class="compare"><s>31% recall</s><span class="arrow-side">→</span><strong>94% recall</strong></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ===== EDITORIAL FULL-BLEED #2 (afterparty) ===== -->
+<section class="editorial">
+  <div class="editorial-bg">
+    <img src="https://image.pollinations.ai/prompt/Editorial%20cinematic%20photograph%20shot%20on%20Hasselblad%2050mm%20Kodak%20Portra%20400%20film%2C%20black-tie%20rooftop%20afterparty%20in%20downtown%20Toronto%2C%20professionals%20in%20tuxedos%20and%20floor-length%20cocktail%20dresses%20holding%20Krug%20champagne%20coupes%2C%20live%20jazz%20quartet%20bokeh%20in%20background%2C%20warm%20tungsten%20string%20bulb%20lighting%20overhead%2C%20Toronto%20skyline%20twinkling%20behind%2C%20azalea%20peach%20cream%20gold%20color%20grading%2C%20Mario%20Sorrenti%20Vanity%20Fair%20cover%20aesthetic%2C%20candid%20celebratory%20moment%2C%20shallow%20depth%20of%20field%2C%2035mm%20film%20grain%2C%20premium%20luxury%2C%20cinematic?width=2400&height=1400&seed=8801&nologo=true&model=flux&enhance=true" alt=""/>
+  </div>
+  <div class="editorial-content">
+    <div class="kicker">— Friday, 11pm, One York Rooftop</div>
+    <h2>The Cup goes home<br/><span class="ital">with someone tonight.</span></h2>
+    <p>Five hundred guests. Live string quartet at dinner, jazz trio after, DJ until 2am. The trophy is presented at exactly 11pm with the skyline behind it.</p>
+  </div>
+</section>
+
 <!-- ===== HOW ===== -->
 <section class="how" id="how">
   <div class="how-mesh"></div>
+  <div class="how-mesh-2"></div>
   <div class="how-inner">
     <div class="how-head">
       <div>
         <div class="kicker">How it works</div>
         <h2>Tell us the date.<br/><span class="ital">We do the other 41 things.</span></h2>
       </div>
-      <p class="how-sub">Every event ships with a dedicated producer, two referees, a courtside emcee, a photographer, and a hospitality lead. You do not lift a finger.</p>
+      <p class="how-sub">Every event ships with a dedicated producer, two referees, a courtside emcee, a photographer, and a hospitality lead. <span class="ital">You do not lift a finger.</span></p>
     </div>
     <div class="how-steps reveal-stagger" data-reveal>
       <div class="how-step"><div class="step-n">01 / Brief</div><h3>Tell us the date.</h3><p>One 20-minute call with our producer. We confirm the venue, the format, the catering, and the budget in writing within 24 hours.</p></div>
-      <div class="how-step"><div class="step-n">02 / Build</div><h3>We build around <em>your brand.</em></h3><p>Court signage, scorecards, the after-event recap reel, even the trophy. Your logo, our colourway. Production-grade.</p></div>
-      <div class="how-step"><div class="step-n">03 / Play</div><h3>You arrive. <em>We run the day.</em></h3><p>Pros referee. The emcee narrates. The photographer captures the moments. Kitchen serves at the right time. Your only job is to play.</p></div>
-      <div class="how-step"><div class="step-n">04 / Share</div><h3>The recap <em>lands at 9am.</em></h3><p>A 90-second hero reel, 60 hi-res stills, a printed leaderboard, and a private Vimeo link. In your inbox the morning after.</p></div>
+      <div class="how-step"><div class="step-n">02 / Build</div><h3>We build around <span class="ital">your brand.</span></h3><p>Court signage, scorecards, the after-event recap reel, even the trophy. Your logo, our colourway. Production-grade.</p></div>
+      <div class="how-step"><div class="step-n">03 / Play</div><h3>You arrive. <span class="ital">We run the day.</span></h3><p>Pros referee. The emcee narrates. The photographer captures the moments. The kitchen serves at the right time. <span class="ital">Your only job is to play.</span></p></div>
+      <div class="how-step"><div class="step-n">04 / Share</div><h3>The recap <span class="ital">lands at 9am.</span></h3><p>A 90-second hero reel, 60 hi-res stills, a printed leaderboard, and a private Vimeo link. In your inbox the morning after.</p></div>
     </div>
   </div>
 </section>
 
 <!-- ===== CAPACITY ===== -->
 <section class="capacity" id="book">
+  <div class="capacity-blob" aria-hidden="true"></div>
   <div class="capacity-inner">
     <div>
       <div class="kicker">2026 Capacity</div>
       <h2>Seventeen weekends <span class="ital">remain.</span></h2>
-      <p>We cap our calendar at 96 events a year so every booking gets the producer, the venue, and the production team it deserves. The hot months go fast — September is the new June.</p>
+      <p>We cap our calendar at 96 events a year so every booking gets the producer, the venue, and the production team it deserves. <span class="ital">The hot months go fast — September is the new June.</span></p>
       <a href="book.html" class="btn btn-green btn-lg" data-magnetic>Reserve a date <span class="arrow">→</span></a>
     </div>
     <div class="cap-table" data-reveal-cap>
@@ -861,39 +711,22 @@
 
 <!-- ===== TESTIMONIALS ===== -->
 <section class="testimonials">
+  <div class="test-blob" aria-hidden="true"></div>
   <div class="test-inner">
     <div class="kicker">What hosts say</div>
     <h2>The thing every<br/>event coordinator <span class="ital">tells us first.</span></h2>
     <div class="test-grid reveal-stagger" data-reveal>
       <div class="test-card">
-        <div>
-          <div class="stars">★★★★★</div>
-          <blockquote>"Our team's done the Caribbean retreat, the cooking class, the Top Golf night. <span class="ital">Nothing has come close to this.</span> The whole desk talked about it for a month."</blockquote>
-        </div>
-        <div class="test-author">
-          <div class="test-avatar">SR</div>
-          <div class="test-meta"><strong>Director, Trading</strong><span>Bay Street investment bank</span></div>
-        </div>
+        <div><div class="stars">★★★★★</div><blockquote>"Our team's done the Caribbean retreat, the cooking class, the Top Golf night. <span class="ital">Nothing has come close to this.</span> The whole desk talked about it for a month."</blockquote></div>
+        <div class="test-author"><div class="test-avatar">SR</div><div class="test-meta"><strong>Director, Trading</strong><span>Bay Street investment bank</span></div></div>
       </div>
       <div class="test-card">
-        <div>
-          <div class="stars">★★★★★</div>
-          <blockquote>"It's the best $14k I've ever signed off on. The recap reel landed at 9am and was forwarded to our CEO before noon. <span class="ital">We're booking three more in 2026.</span>"</blockquote>
-        </div>
-        <div class="test-author">
-          <div class="test-avatar">MP</div>
-          <div class="test-meta"><strong>Director, People Ops</strong><span>Asset management firm · Toronto</span></div>
-        </div>
+        <div><div class="stars">★★★★★</div><blockquote>"It's the best $14k I've ever signed off on. The recap reel landed at 9am and was forwarded to our CEO before noon. <span class="ital">We're booking three more in 2026.</span>"</blockquote></div>
+        <div class="test-author"><div class="test-avatar">MP</div><div class="test-meta"><strong>Director, People Ops</strong><span>Asset management firm · Toronto</span></div></div>
       </div>
       <div class="test-card">
-        <div>
-          <div class="stars">★★★★★</div>
-          <blockquote>"Better than Glen Abbey, and not because the pickleball was better than the golf. <span class="ital">Because the analysts beat the partners</span> and we still made it home for dinner."</blockquote>
-        </div>
-        <div class="test-author">
-          <div class="test-avatar">DC</div>
-          <div class="test-meta"><strong>Partner</strong><span>National law firm · Toronto</span></div>
-        </div>
+        <div><div class="stars">★★★★★</div><blockquote>"Better than Glen Abbey, and not because the pickleball was better than the golf. <span class="ital">Because the analysts beat the partners</span> and we still made it home for dinner."</blockquote></div>
+        <div class="test-author"><div class="test-avatar">DC</div><div class="test-meta"><strong>Partner</strong><span>National law firm · Toronto</span></div></div>
       </div>
     </div>
   </div>
@@ -914,40 +747,22 @@
 
 <!-- ===== FOOTER ===== -->
 <footer>
+  <svg class="foot-net net-svg" viewBox="0 0 1200 80" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style="color:var(--gold-700);opacity:.18">
+    <defs><pattern id="net-mesh-foot" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M 0 0 L 14 0 M 0 0 L 0 14" stroke="currentColor" stroke-width="0.6"/></pattern></defs>
+    <line class="rope" x1="80" y1="14" x2="1120" y2="14" stroke="currentColor" stroke-width="1.6" fill="none"/>
+    <rect x="80" y="14" width="1040" height="52" fill="url(#net-mesh-foot)" opacity=".5"/>
+    <line class="rope" x1="80" y1="66" x2="1120" y2="66" stroke="currentColor" stroke-width="1.6" fill="none"/>
+  </svg>
   <div class="foot-wordmark">CORPORATE PICKLEBALL</div>
   <div class="foot-inner">
     <div class="foot-top">
       <div class="foot-brand">
         <a href="index.html" class="brand"><span class="brand-mark"></span><span>Corporate&nbsp;Pickleball</span></a>
-        <p>White-glove pickleball, built for the boardroom. Headquartered in Toronto. Operating across the GTA since 2022.</p>
+        <p>White-glove pickleball, built for the boardroom. Headquartered in Toronto. Operating across the GTA <span class="ital">since 2022.</span></p>
       </div>
-      <div class="foot-col">
-        <h4>Events</h4>
-        <ul>
-          <li><a href="#sku" data-magnetic>The Off-Site</a></li>
-          <li><a href="#sku" data-magnetic>The Championship</a></li>
-          <li><a href="toronto-open.html" data-magnetic>The Toronto Open</a></li>
-          <li><a href="book.html" data-magnetic>Custom programs</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h4>Venues</h4>
-        <ul>
-          <li><a href="#book" data-magnetic>6ix Pickle · Moss Park</a></li>
-          <li><a href="#book" data-magnetic>The Jar · Etobicoke</a></li>
-          <li><a href="#book" data-magnetic>Mayfair · Markham</a></li>
-          <li><a href="#book" data-magnetic>One York Rooftop</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="book.html" data-magnetic>Book an event</a></li>
-          <li><a href="toronto-open.html" data-magnetic>Apply for the Open</a></li>
-          <li><a href="#" data-magnetic>Press &amp; media</a></li>
-          <li><a href="#" data-magnetic>Careers</a></li>
-        </ul>
-      </div>
+      <div class="foot-col"><h4>Events</h4><ul><li><a href="#sku" data-magnetic>The Off-Site</a></li><li><a href="#sku" data-magnetic>The Championship</a></li><li><a href="toronto-open.html" data-magnetic>The Toronto Open</a></li><li><a href="book.html" data-magnetic>Custom programs</a></li></ul></div>
+      <div class="foot-col"><h4>Venues</h4><ul><li><a href="#book" data-magnetic>6ix Pickle · Moss Park</a></li><li><a href="#book" data-magnetic>The Jar · Etobicoke</a></li><li><a href="#book" data-magnetic>Mayfair · Markham</a></li><li><a href="#book" data-magnetic>One York Rooftop</a></li></ul></div>
+      <div class="foot-col"><h4>Company</h4><ul><li><a href="book.html" data-magnetic>Book an event</a></li><li><a href="toronto-open.html" data-magnetic>Apply for the Open</a></li><li><a href="#" data-magnetic>Press &amp; media</a></li><li><a href="#" data-magnetic>Careers</a></li></ul></div>
     </div>
     <div class="foot-bot">
       <div>© 2026 Corporate Pickleball Inc. · cp.club · Toronto, ON</div>
@@ -956,6 +771,8 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
   // ============== INTRO ==============
   window.addEventListener('load', () => {
@@ -967,113 +784,84 @@
 
   // ============== CUSTOM CURSOR ==============
   const cursor = document.getElementById('cursor');
-  let mx = window.innerWidth/2, my = window.innerHeight/2;
-  let cx = mx, cy = my;
-  document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
-  function tick(){
-    cx += (mx - cx) * 0.22; cy += (my - cy) * 0.22;
-    cursor.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
-    requestAnimationFrame(tick);
-  }
+  let mx = innerWidth/2, my = innerHeight/2, cx = mx, cy = my;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function tick(){ cx += (mx - cx) * 0.22; cy += (my - cy) * 0.22; cursor.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`; requestAnimationFrame(tick); }
   tick();
-  // Hover states
-  document.addEventListener('mouseover', (e) => {
-    const t = e.target;
-    if (t.closest('a, button, [data-magnetic], input, textarea, select')) cursor.classList.add('hover');
-    if (t.closest('video')) cursor.classList.add('video');
-  });
-  document.addEventListener('mouseout', (e) => {
-    if (!e.relatedTarget || !e.relatedTarget.closest?.('a, button, [data-magnetic], input, textarea, select, video')) {
-      cursor.classList.remove('hover','video');
-    }
-  });
+  document.addEventListener('mouseover', e => { if (e.target.closest('a, button, [data-magnetic], input, textarea, select, video')) cursor.classList.add('hover'); });
+  document.addEventListener('mouseout', e => { if (!e.relatedTarget?.closest?.('a, button, [data-magnetic], input, textarea, select, video')) cursor.classList.remove('hover'); });
   document.addEventListener('mousedown', () => cursor.classList.add('click'));
   document.addEventListener('mouseup', () => cursor.classList.remove('click'));
 
-  // ============== MAGNETIC BUTTONS ==============
+  // ============== MAGNETIC ==============
   document.querySelectorAll('[data-magnetic]').forEach(el => {
-    el.addEventListener('mousemove', (e) => {
+    el.addEventListener('mousemove', e => {
       const r = el.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width/2;
-      const y = e.clientY - r.top - r.height/2;
+      const x = e.clientX - r.left - r.width/2, y = e.clientY - r.top - r.height/2;
       el.style.transform = `translate(${x*0.18}px, ${y*0.28}px)`;
     });
     el.addEventListener('mouseleave', () => { el.style.transform = ''; });
   });
 
-  // ============== NAV SCROLL STATE ==============
+  // ============== NAV STATE ==============
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('solid', window.scrollY > window.innerHeight - 80);
-  });
+  addEventListener('scroll', () => { nav.classList.toggle('solid', scrollY > innerHeight - 80); }, {passive:true});
 
-  // ============== HERO PARALLAX (subtle scale on scroll) ==============
+  // ============== HERO PARALLAX ==============
   const heroVid = document.querySelector('.hero-video');
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (y < window.innerHeight && heroVid) {
-      heroVid.style.transform = `scale(${1.04 + y * 0.0003}) translateY(${y * 0.18}px)`;
-    }
-  }, {passive:true});
+  addEventListener('scroll', () => { if (scrollY < innerHeight && heroVid) heroVid.style.transform = `scale(${1.04 + scrollY * 0.0003}) translateY(${scrollY * 0.18}px)`; }, {passive:true});
 
-  // ============== REVEAL OBSERVER ==============
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, {threshold: 0.14});
-  document.querySelectorAll('[data-reveal], .reveal, .reveal-stagger, .statement, .court-divider').forEach(el => io.observe(el));
+  // ============== REVEAL ==============
+  const io = new IntersectionObserver((entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:0.14});
+  document.querySelectorAll('[data-reveal], .reveal, .reveal-stagger, .statement, .net-divider').forEach(el => io.observe(el));
 
-  // ============== CAP TABLE METER FILL ==============
-  const capIO = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); capIO.unobserve(e.target); } });
-  }, {threshold: 0.2});
+  // CAP TABLE
+  const capIO = new IntersectionObserver((entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); capIO.unobserve(e.target); } }), {threshold:0.2});
   document.querySelectorAll('[data-reveal-cap]').forEach(el => capIO.observe(el));
 
-  // ============== COUNT-UP STATS ==============
-  const countIO = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const els = e.target.querySelectorAll('[data-count-to]');
-      els.forEach(el => {
-        const target = parseFloat(el.dataset.countTo);
-        const decimal = parseInt(el.dataset.decimal || '0', 10);
-        const dur = 1400;
-        const t0 = performance.now();
-        function step(t){
-          const p = Math.min(1, (t - t0) / dur);
-          const eased = 1 - Math.pow(1 - p, 3);
-          const value = (target / Math.pow(10, decimal)) * eased;
-          el.textContent = value.toFixed(decimal);
-          if (p < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      });
-      countIO.unobserve(e.target);
+  // ============== COUNT-UP ==============
+  const countIO = new IntersectionObserver((entries) => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('[data-count-to]').forEach(el => {
+      const target = parseFloat(el.dataset.countTo), decimal = parseInt(el.dataset.decimal || '0', 10), dur = 1500, t0 = performance.now();
+      function step(t){ const p = Math.min(1, (t - t0) / dur); const eased = 1 - Math.pow(1 - p, 3); el.textContent = ((target / Math.pow(10, decimal)) * eased).toFixed(decimal); if (p < 1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
     });
-  }, {threshold: 0.3});
+    countIO.unobserve(e.target);
+  }), {threshold:0.3});
   document.querySelectorAll('.statement').forEach(el => countIO.observe(el));
 
-  // ============== PINNED HORIZONTAL SCROLL ==============
-  const pinnedSection = document.querySelector('.pinned-skus');
-  const pinnedRail = document.getElementById('pinned-rail');
-  function pinnedTick(){
-    if (!pinnedSection || !pinnedRail) return;
-    const rect = pinnedSection.getBoundingClientRect();
-    const sectionH = pinnedSection.offsetHeight;
-    const trackH = window.innerHeight;
-    const scrollable = sectionH - trackH;
-    const scrolled = Math.min(Math.max(-rect.top, 0), scrollable);
-    const progress = scrollable > 0 ? scrolled / scrollable : 0;
-    const railWidth = pinnedRail.scrollWidth;
-    const visibleWidth = window.innerWidth;
-    const maxTranslate = Math.max(0, railWidth - visibleWidth);
-    pinnedRail.style.transform = `translate3d(${-maxTranslate * progress}px, 0, 0)`;
-  }
-  window.addEventListener('scroll', pinnedTick, {passive:true});
-  window.addEventListener('resize', pinnedTick);
-  pinnedTick();
+  // ============== GSAP SCROLLTRIGGER PINNED HORIZONTAL ==============
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
 
+    // Pinned horizontal SKUs
+    const rail = document.getElementById('pinned-rail');
+    if (rail) {
+      const computeDistance = () => Math.max(0, rail.scrollWidth - window.innerWidth);
+      gsap.to(rail, {
+        x: () => -computeDistance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".pinned-skus",
+          start: "top top",
+          end: () => "+=" + computeDistance(),
+          scrub: 1.2,
+          invalidateOnRefresh: true,
+        }
+      });
+    }
+
+    // Editorial section parallax
+    gsap.utils.toArray('.editorial-bg img').forEach(img => {
+      gsap.to(img, { y: -80, ease: "none", scrollTrigger: { trigger: img, start: "top bottom", end: "bottom top", scrub: 1 } });
+    });
+
+    // SKU card stagger reveal
+    gsap.utils.toArray('.sku-card').forEach((card, i) => {
+      gsap.from(card, { y: 60, opacity: 0, duration: 1, ease: "expo.out", scrollTrigger: { trigger: card, start: "top 85%" } });
+    });
+  }
 </script>
 </body>
 </html>
