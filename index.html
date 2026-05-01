@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Corporate Pickleball — White-glove pickleball, built for the boardroom.</title>
+<meta name="description" content="The off-site Bay Street keeps booking back. White-glove corporate pickleball events across the GTA. Half-day tournaments, full-day championships, and The Toronto Open." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#0a3a1f;
+    --green-rich:#0f5132;
+    --green:#15803d;
+    --green-energy:#22c55e;
+    --green-mint:#86efac;
+    --green-whisper:#f0fdf4;
+    --cream:#f5efe6;
+    --champagne:#d4b896;
+    --black:#0a0a0a;
+    --black-soft:#171717;
+    --gray-1:#f7f7f5;
+    --gray-2:#eeeeec;
+    --gray-3:#a3a39d;
+    --gray-4:#525250;
+    --white:#ffffff;
+    --max:1440px;
+    --pad:clamp(20px, 4vw, 64px);
+    --tie-dye: linear-gradient(135deg, #0a3a1f 0%, #15803d 30%, #22c55e 55%, #86efac 78%, #d4b896 100%);
+    --shadow-card: 0 24px 60px -28px rgba(10,58,31,.25), 0 4px 12px -4px rgba(10,10,10,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  body{font-family:'Geist','Inter',system-ui,-apple-system,sans-serif;background:var(--white);color:var(--black);font-feature-settings:'ss01','cv11';line-height:1.4;overflow-x:hidden}
+  ::selection{background:var(--green-energy);color:var(--white)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%;height:auto}
+  .nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:saturate(180%) blur(18px);background:rgba(255,255,255,.78);border-bottom:1px solid rgba(10,10,10,.06)}
+  .nav-inner{max-width:var(--max);margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-0.02em;font-size:14px;text-transform:uppercase}
+  .brand-mark{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--green-energy), var(--green-deep));box-shadow:inset 0 0 0 1px rgba(255,255,255,.15), 0 4px 14px -2px rgba(15,81,50,.4)}
+  .nav-links{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500;color:var(--gray-4)}
+  .nav-links a:hover{color:var(--black)}
+  .nav-cta{display:flex;align-items:center;gap:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:-0.005em;transition:all .25s cubic-bezier(.2,.6,.2,1);cursor:pointer;border:0;white-space:nowrap}
+  .btn-primary{background:var(--black);color:var(--white)}
+  .btn-primary:hover{background:var(--green-deep);transform:translateY(-1px);box-shadow:0 12px 30px -12px rgba(10,58,31,.6)}
+  .btn-ghost{background:transparent;color:var(--black);border:1px solid rgba(10,10,10,.14)}
+  .btn-ghost:hover{border-color:var(--black);background:rgba(10,10,10,.03)}
+  .btn-green{background:var(--green-deep);color:var(--white)}
+  .btn-green:hover{background:var(--green-rich);box-shadow:0 12px 30px -12px rgba(15,81,50,.6)}
+  .btn-white{background:var(--white);color:var(--black)}
+  .btn-white:hover{transform:translateY(-1px);box-shadow:0 12px 30px -12px rgba(0,0,0,.4)}
+  @media (max-width:760px){.nav-links{display:none}}
+  .hero{position:relative;padding-top:120px;background:linear-gradient(180deg,var(--white) 0%, var(--gray-1) 100%);overflow:hidden}
+  .hero-grid{max-width:var(--max);margin:0 auto;padding:0 var(--pad) 80px;display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+  @media (max-width:980px){.hero-grid{grid-template-columns:1fr;gap:40px;padding-bottom:60px}}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.18em;color:var(--green-deep);margin-bottom:24px}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--green-energy);box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+  .hero h1{font-size:clamp(48px, 8vw, 124px);line-height:.94;letter-spacing:-0.045em;font-weight:800;color:var(--black);margin-bottom:28px}
+  .hero h1 .tie{background:var(--tie-dye);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{font-size:clamp(17px, 1.5vw, 21px);line-height:1.45;color:var(--gray-4);max-width:540px;margin-bottom:36px;font-weight:400}
+  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+  .hero-meta{display:flex;gap:32px;font-size:13px;color:var(--gray-4);border-top:1px solid var(--gray-2);padding-top:24px;max-width:540px;flex-wrap:wrap}
+  .hero-meta div strong{display:block;color:var(--black);font-size:22px;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px}
+  .hero-visual{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:var(--green-deep)}
+  .hero-visual img{width:100%;height:100%;object-fit:cover}
+  .hero-card{position:absolute;left:20px;bottom:20px;right:20px;backdrop-filter:saturate(180%) blur(20px);background:rgba(255,255,255,.92);border-radius:18px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 18px 50px -20px rgba(0,0,0,.4)}
+  .hero-card .stars{color:var(--green-deep);font-size:14px;letter-spacing:2px}
+  .hero-card .meta{font-size:12px;color:var(--gray-4)}
+  .hero-card .meta strong{display:block;color:var(--black);font-size:15px;font-weight:700;letter-spacing:-0.01em}
+  .hero-badge{position:absolute;top:20px;right:20px;background:rgba(10,10,10,.78);color:var(--white);backdrop-filter:blur(12px);border-radius:999px;padding:8px 14px;font-size:11px;font-family:'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase}
+  .logos{background:var(--white);padding:80px var(--pad) 60px;border-top:1px solid var(--gray-2)}
+  .logos-inner{max-width:var(--max);margin:0 auto}
+  .logos-eyebrow{text-align:center;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-4);margin-bottom:36px}
+  .logos-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px 32px;align-items:center;color:var(--gray-3);font-weight:700;letter-spacing:-0.01em}
+  @media (max-width:840px){.logos-grid{grid-template-columns:repeat(2,1fr);gap:18px}}
+  .logo-cell{text-align:center;font-size:18px;color:var(--gray-3);padding:14px 8px;font-family:'Geist',sans-serif;transition:color .3s}
+  .logo-cell:hover{color:var(--black)}
+  .statement{padding:160px var(--pad);max-width:1280px;margin:0 auto;text-align:left}
+  .statement .quote-mark{font-family:'Geist',serif;color:var(--green-energy);font-size:64px;line-height:0;display:inline-block;transform:translate(-2px,18px);font-weight:800}
+  .statement h2{font-size:clamp(36px, 5.5vw, 88px);font-weight:700;letter-spacing:-0.04em;line-height:1.02;color:var(--black);margin-bottom:60px;max-width:1100px}
+  .statement h2 .accent{color:var(--green-deep)}
+  .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;border-top:1px solid var(--gray-2);padding-top:40px}
+  @media (max-width:760px){.stats-row{grid-template-columns:1fr;gap:32px}}
+  .stat .num{font-size:clamp(40px, 4vw, 64px);font-weight:700;letter-spacing:-0.04em;line-height:1;color:var(--black);margin-bottom:8px}
+  .stat .num .unit{color:var(--green-deep)}
+  .stat .label{font-size:14px;color:var(--gray-4);max-width:260px;line-height:1.4}
+  .skus{padding:120px var(--pad);background:var(--gray-1)}
+  .skus-inner{max-width:var(--max);margin:0 auto}
+  .skus-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:60px}
+  .section-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--green-deep);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .section-eyebrow::before{content:"";width:24px;height:1px;background:var(--green-deep)}
+  .skus h2{font-size:clamp(34px,4.5vw,64px);font-weight:700;letter-spacing:-0.035em;line-height:1.04;max-width:700px}
+  .skus-sub{font-size:16px;color:var(--gray-4);max-width:380px}
+  .sku-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media (max-width:980px){.sku-grid{grid-template-columns:1fr;gap:16px}}
+  .sku{background:var(--white);border-radius:24px;overflow:hidden;box-shadow:var(--shadow-card);display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.2,.6,.2,1);border:1px solid rgba(10,10,10,.04)}
+  .sku:hover{transform:translateY(-6px)}
+  .sku-img{aspect-ratio:4/3;overflow:hidden;background:var(--green-rich);position:relative}
+  .sku-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .sku:hover .sku-img img{transform:scale(1.04)}
+  .sku-tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);padding:6px 12px;border-radius:999px;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--green-deep);font-weight:600}
+  .sku-body{padding:28px 28px 32px}
+  .sku h3{font-size:28px;font-weight:700;letter-spacing:-0.025em;margin-bottom:10px}
+  .sku .price{font-family:'Geist Mono',monospace;font-size:13px;color:var(--gray-4);margin-bottom:18px}
+  .sku .price strong{color:var(--black);font-weight:600}
+  .sku ul{list-style:none;font-size:14px;color:var(--gray-4);margin-bottom:24px}
+  .sku ul li{padding:8px 0;border-top:1px solid var(--gray-2);display:flex;justify-content:space-between;gap:8px}
+  .sku ul li:first-child{border-top:0;padding-top:0}
+  .sku ul li span{color:var(--black);font-weight:500;text-align:right}
+  .sku-cta{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--green-deep);letter-spacing:-0.005em}
+  .sku-cta::after{content:"→";transition:transform .3s}
+  .sku:hover .sku-cta::after{transform:translateX(4px)}
+  .open-feature{position:relative;background:var(--black);color:var(--white);padding:140px var(--pad);overflow:hidden}
+  .open-bg{position:absolute;inset:0;z-index:0}
+  .open-bg img{width:100%;height:100%;object-fit:cover;opacity:.55}
+  .open-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 20% 50%, rgba(0,0,0,.85) 0%, rgba(0,0,0,.55) 50%, rgba(0,0,0,.85) 100%)}
+  .open-tie{position:absolute;inset:auto -10% -50% auto;width:80vw;max-width:1100px;height:80vw;max-height:1100px;background:var(--tie-dye);filter:blur(80px);opacity:.35;border-radius:50%;z-index:0}
+  .open-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
+  @media (max-width:980px){.open-inner{grid-template-columns:1fr;gap:40px}}
+  .open-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-mint);margin-bottom:24px;display:flex;align-items:center;gap:10px}
+  .open-eyebrow .pulse{width:8px;height:8px;background:var(--green-energy);border-radius:50%;box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}70%{box-shadow:0 0 0 14px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+  .open-feature h2{font-size:clamp(44px,7vw,108px);line-height:.96;letter-spacing:-0.045em;font-weight:800;margin-bottom:24px}
+  .open-feature h2 .gold{background:linear-gradient(135deg, var(--champagne), #f5e6c8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .open-feature .lead{font-size:18px;line-height:1.55;color:rgba(255,255,255,.78);max-width:520px;margin-bottom:32px}
+  .open-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:36px;max-width:560px}
+  .open-meta div{border-top:1px solid rgba(255,255,255,.16);padding-top:14px}
+  .open-meta .k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px}
+  .open-meta .v{font-size:18px;font-weight:600;letter-spacing:-0.01em;color:var(--white)}
+  .open-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(16px);border-radius:20px;padding:28px}
+  .open-card .label{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--green-mint);margin-bottom:14px}
+  .open-card .firms{font-size:14px;line-height:1.8;color:rgba(255,255,255,.9)}
+  .open-card .firms span{display:inline-block;background:rgba(255,255,255,.07);padding:4px 10px;border-radius:999px;margin:3px 4px 3px 0;font-size:12px}
+  .open-card .seats{margin-top:24px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center}
+  .open-card .seats div{font-size:12px;color:rgba(255,255,255,.55);font-family:'Geist Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+  .open-card .seats strong{color:var(--green-mint);font-size:24px;font-weight:700;letter-spacing:-0.02em;font-family:'Geist',sans-serif;display:block;text-transform:none}
+  .why{padding:160px var(--pad);background:var(--white)}
+  .why-inner{max-width:var(--max);margin:0 auto}
+  .why h2{font-size:clamp(34px,5vw,72px);font-weight:700;letter-spacing:-0.04em;line-height:1.02;margin-bottom:14px;max-width:900px}
+  .why .lead{font-size:18px;color:var(--gray-4);max-width:600px;margin-bottom:60px}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;border-top:1px solid var(--gray-2);padding-top:48px}
+  @media (max-width:980px){.why-grid{grid-template-columns:repeat(2,1fr);gap:32px}}
+  @media (max-width:560px){.why-grid{grid-template-columns:1fr}}
+  .why-card .num{font-family:'Geist Mono',monospace;font-size:11px;color:var(--green-deep);letter-spacing:.2em;margin-bottom:16px}
+  .why-card h3{font-size:22px;font-weight:600;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.15}
+  .why-card p{font-size:14px;color:var(--gray-4);line-height:1.5}
+  .why-card .compare{margin-top:18px;font-size:13px;color:var(--gray-3);font-family:'Geist Mono',monospace;letter-spacing:.05em}
+  .why-card .compare s{color:var(--gray-3);text-decoration-thickness:1px}
+  .why-card .compare strong{color:var(--green-deep);font-weight:600}
+  .how{padding:120px var(--pad);background:var(--green-deep);color:var(--white);position:relative;overflow:hidden}
+  .how-tie{position:absolute;left:-20%;top:-30%;width:60vw;height:60vw;background:var(--tie-dye);filter:blur(120px);opacity:.4;border-radius:50%}
+  .how-inner{position:relative;max-width:var(--max);margin:0 auto;z-index:2}
+  .how-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:60px}
+  .how h2{font-size:clamp(34px,5vw,72px);font-weight:700;letter-spacing:-0.04em;line-height:1.02;max-width:600px}
+  .how-sub{font-size:15px;color:rgba(255,255,255,.65);max-width:340px}
+  .how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.14);border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.14)}
+  @media (max-width:980px){.how-steps{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.how-steps{grid-template-columns:1fr}}
+  .how-step{background:var(--green-deep);padding:36px 28px 40px;position:relative;min-height:240px}
+  .how-step .step-n{font-family:'Geist Mono',monospace;font-size:11px;color:var(--green-mint);letter-spacing:.22em;margin-bottom:14px}
+  .how-step h3{font-size:24px;font-weight:600;letter-spacing:-0.02em;margin-bottom:12px}
+  .how-step p{font-size:14px;color:rgba(255,255,255,.7);line-height:1.5}
+  .capacity{padding:120px var(--pad);background:var(--white)}
+  .capacity-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center}
+  @media (max-width:980px){.capacity-inner{grid-template-columns:1fr}}
+  .capacity h2{font-size:clamp(34px,5vw,72px);font-weight:700;letter-spacing:-0.04em;line-height:1.02;margin-bottom:18px}
+  .capacity p{font-size:17px;color:var(--gray-4);max-width:480px;margin-bottom:28px;line-height:1.5}
+  .cap-table{background:var(--gray-1);border-radius:20px;padding:8px}
+  .cap-row{display:grid;grid-template-columns:140px 1fr auto;gap:20px;align-items:center;padding:18px 22px;border-radius:14px;background:var(--white);margin-bottom:6px;box-shadow:0 1px 0 rgba(10,10,10,.03)}
+  .cap-row:last-child{margin-bottom:0}
+  .cap-row.full{background:var(--gray-2);box-shadow:none;color:var(--gray-3)}
+  .cap-row.full .cap-month{color:var(--gray-3)}
+  .cap-row.full .cap-status{background:transparent;color:var(--gray-3);border:1px solid var(--gray-3)}
+  .cap-month{font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.08em;color:var(--green-deep);font-weight:600;text-transform:uppercase}
+  .cap-meter{height:6px;border-radius:999px;background:var(--gray-2);overflow:hidden}
+  .cap-meter-fill{height:100%;background:linear-gradient(90deg,var(--green-deep),var(--green-energy));border-radius:999px}
+  .cap-status{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;background:var(--green-whisper);color:var(--green-deep);padding:5px 10px;border-radius:999px;text-transform:uppercase;font-weight:600;white-space:nowrap}
+  .cap-row.full .cap-meter-fill{background:var(--gray-3)}
+  .testimonials{padding:140px var(--pad);background:var(--gray-1)}
+  .test-inner{max-width:var(--max);margin:0 auto}
+  .testimonials h2{font-size:clamp(30px,4vw,56px);font-weight:700;letter-spacing:-0.035em;margin-bottom:60px;max-width:760px;line-height:1.04}
+  .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media (max-width:980px){.test-grid{grid-template-columns:1fr}}
+  .test-card{background:var(--white);border-radius:22px;padding:32px;border:1px solid rgba(10,10,10,.05);display:flex;flex-direction:column;justify-content:space-between;min-height:340px;transition:transform .35s cubic-bezier(.2,.6,.2,1)}
+  .test-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card)}
+  .test-card .stars{color:var(--green-deep);font-size:14px;letter-spacing:3px;margin-bottom:18px}
+  .test-card blockquote{font-size:19px;line-height:1.5;letter-spacing:-0.015em;color:var(--black);font-weight:500}
+  .test-author{display:flex;align-items:center;gap:14px;margin-top:28px;border-top:1px solid var(--gray-2);padding-top:20px}
+  .test-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--green-deep);color:var(--white);font-weight:700;font-size:14px;letter-spacing:-.02em}
+  .test-meta strong{display:block;font-size:14px;font-weight:600;letter-spacing:-0.01em}
+  .test-meta span{font-size:12px;color:var(--gray-4)}
+  .closing{padding:160px var(--pad);background:var(--white);text-align:center}
+  .closing-inner{max-width:1000px;margin:0 auto}
+  .closing h2{font-size:clamp(40px,7vw,112px);font-weight:800;letter-spacing:-0.045em;line-height:.96;margin-bottom:30px}
+  .closing h2 .underline{position:relative;display:inline-block}
+  .closing h2 .underline::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:14px;background:var(--green-mint);z-index:-1;border-radius:4px;opacity:.7}
+  .closing p{font-size:18px;color:var(--gray-4);max-width:560px;margin:0 auto 36px}
+  .closing-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  footer{background:var(--black);color:var(--white);padding:100px var(--pad) 40px}
+  .foot-inner{max-width:var(--max);margin:0 auto}
+  .foot-top{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:48px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.1)}
+  @media (max-width:980px){.foot-top{grid-template-columns:1fr 1fr;gap:36px}}
+  @media (max-width:560px){.foot-top{grid-template-columns:1fr}}
+  .foot-brand .brand{color:var(--white);font-size:16px}
+  .foot-brand p{font-size:14px;color:rgba(255,255,255,.55);margin-top:18px;max-width:280px;line-height:1.55}
+  .foot-col h4{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:18px;font-weight:500}
+  .foot-col ul{list-style:none}
+  .foot-col li{margin-bottom:12px}
+  .foot-col a{font-size:14px;color:rgba(255,255,255,.85);transition:color .2s}
+  .foot-col a:hover{color:var(--green-mint)}
+  .foot-bot{padding-top:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:rgba(255,255,255,.45);font-family:'Geist Mono',monospace;letter-spacing:.05em}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a href="index.html" class="brand"><span class="brand-mark"></span><span>Corporate&nbsp;Pickleball</span></a><div class="nav-links"><a href="toronto-open.html">The Toronto Open</a><a href="#how">How it works</a><a href="#sku">Events</a><a href="#book">Venues</a></div><div class="nav-cta"><a href="book.html" class="btn btn-ghost">Apply</a><a href="book.html" class="btn btn-primary">Book your event</a></div></div></nav>
+<section class="hero"><div class="hero-grid"><div class="hero-text"><div class="eyebrow"><span class="dot"></span>The off-site Bay Street keeps booking back</div><h1>White-glove pickleball,<br/><span class="tie">built for the boardroom.</span></h1><p class="sub">Corporate Pickleball runs the off-site corporate golf could never be. Half a day. A fraction of the cost. Catered, photographed, white-glove from arrival to last point. Across four GTA venues, by invitation or by application.</p><div class="hero-ctas"><a href="book.html" class="btn btn-primary">Book your event →</a><a href="toronto-open.html" class="btn btn-ghost">See the Toronto Open</a></div><div class="hero-meta"><div><strong>147</strong>events run since 2022</div><div><strong>4.9★</strong>average host rating</div><div><strong>30+</strong>Bay Street firms booked</div></div></div><div class="hero-visual"><img src="https://image.pollinations.ai/prompt/Wide%20cinematic%20editorial%20photograph%20of%20a%20corporate%20professional%20woman%20in%20premium%20cream%20athleisure%20mid-swing%20on%20a%20pristine%20indoor%20pickleball%20court%20with%20forest-green%20court%20lines%2C%20Toronto%20skyline%20visible%20through%20floor%20to%20ceiling%20glass%20windows%20at%20golden%20hour%2C%20warm%20directional%20sunlight%20streaming%20across%20the%20wooden%20floor%2C%2035mm%20film%20grain%2C%20Lacoste%20campaign%20aesthetic%2C%20shallow%20depth%20of%20field%2C%20motion%20blur%20on%20the%20yellow%20pickleball%2C%20editorial%20Magnum%20photography%2C%20cinematic?width=900&height=1100&seed=312&nologo=true&model=flux&enhance=true" alt="Corporate professional playing pickleball" loading="eager"/><span class="hero-badge">Toronto · est. 2022</span><div class="hero-card"><div class="meta"><div class="stars">★★★★★</div><strong>"Better than Glen Abbey."</strong>M. Patel · Brookfield Asset Management</div></div></div></div></section>
+<section class="logos"><div class="logos-inner"><div class="logos-eyebrow">Booked in 2025 by</div><div class="logos-grid"><div class="logo-cell">RBC&nbsp;Capital</div><div class="logo-cell">Brookfield</div><div class="logo-cell">Shopify</div><div class="logo-cell">TD&nbsp;Securities</div><div class="logo-cell">McKinsey&nbsp;TO</div><div class="logo-cell">Manulife</div><div class="logo-cell">Bennett&nbsp;Jones</div><div class="logo-cell">BMO</div><div class="logo-cell">Goldman&nbsp;Sachs</div><div class="logo-cell">Bain&nbsp;&amp;&nbsp;Co.</div></div></div></section>
+<section class="statement reveal"><div class="section-eyebrow">A new corporate event</div><h2><span class="quote-mark">"</span>Six hours of golf becomes ninety minutes of pickleball. <span class="accent">And the C-suite still beats the analysts.</span><span class="quote-mark">"</span></h2><div class="stats-row"><div class="stat"><div class="num">94<span class="unit">%</span></div><div class="label">Of firms book a second event within twelve months. Many book the same week the first ends.</div></div><div class="stat"><div class="num">+62<span class="unit">%</span></div><div class="label">Reported team energy versus the previous year's off-site, measured by post-event survey.</div></div><div class="stat"><div class="num">3.5<span class="unit">hrs</span></div><div class="label">Average tee-to-trophy time. Including catering. Including the awards ceremony. Done by 4pm.</div></div></div></section>
+<section class="skus" id="sku"><div class="skus-inner"><div class="skus-head"><div><div class="section-eyebrow">How it scales</div><h2>Three formats. One playbook.<br/>From a 16-person off-site to a five-day open.</h2></div><p class="skus-sub">Every event includes white-glove staffing, professional photography, full catering, branded scorecards and prizes. No per-guest fees, ever.</p></div><div class="sku-grid"><article class="sku reveal"><div class="sku-img"><img src="https://image.pollinations.ai/prompt/Aerial%20overhead%20editorial%20photograph%20of%20a%20single%20premium%20indoor%20pickleball%20court%20with%20four%20corporate%20professionals%20mid-rally%2C%20clean%20architectural%20composition%2C%20polished%20wooden%20floor%20with%20forest%20green%20court%20lines%2C%20soft%20directional%20natural%20light%20from%20skylights%20above%2C%20minimal%2C%20Architectural%20Digest%20style%2C%20Lacoste%20color%20palette%2C%20deep%20contrast%2C%20cinematic?width=900&height=700&seed=441&nologo=true&model=flux&enhance=true" alt="Aerial view of a premium pickleball court" loading="lazy"/><span class="sku-tag">Half-day</span></div><div class="sku-body"><h3>The Off-Site</h3><div class="price"><strong>From $4,800</strong> · 12–32 players · 3 hours</div><ul><li>Format <span>Round-robin</span></li><li>Courts <span>2 dedicated</span></li><li>Catering <span>Premium grazing</span></li><li>Prizes <span>Winner trophy + photo</span></li></ul><span class="sku-cta">See the format</span></div></article><article class="sku reveal"><div class="sku-img"><img src="https://image.pollinations.ai/prompt/Wide%20angle%20cinematic%20photograph%20of%20a%20multi-court%20pickleball%20championship%20in%20progress%20at%20a%20premium%20indoor%20Toronto%20venue%2C%20simultaneous%20action%20across%20four%20courts%2C%20diverse%20corporate%20professionals%20in%20branded%20forest%20green%20polos%2C%20a%20scoreboard%20bokeh%20in%20the%20foreground%2C%20golden%20warm%20lighting%2C%20tall%20windows%20behind%2C%2035mm%20film%2C%20Lacoste%20editorial%20campaign%2C%20depth%20of%20field%2C%20Magnum%20photographers%20aesthetic?width=900&height=700&seed=512&nologo=true&model=flux&enhance=true" alt="Multi-court championship" loading="lazy"/><span class="sku-tag">Full-day</span></div><div class="sku-body"><h3>The Championship</h3><div class="price"><strong>From $12,400</strong> · 24–64 players · Full day</div><ul><li>Format <span>Bracket play</span></li><li>Courts <span>4–6 dedicated</span></li><li>Catering <span>Two-course + bar</span></li><li>Production <span>Live emcee + photographer</span></li></ul><span class="sku-cta">See the format</span></div></article><article class="sku reveal"><div class="sku-img"><img src="https://image.pollinations.ai/prompt/Hyper-cinematic%20close-up%20product%20photograph%20of%20a%20polished%20gold%20and%20forest-green%20pickleball%20trophy%20on%20a%20dark%20velvet%20surface%2C%20single%20dramatic%20spotlight%20from%20above%2C%20a%20half-empty%20coupe%20of%20champagne%20beside%20it%20catching%20warm%20light%2C%20Toronto%20skyline%20bokeh%20through%20a%20rain-streaked%20window%20in%20the%20background%2C%2050mm%20lens%2C%20editorial%20luxury%20product%20photography%2C%20deep%20rich%20blacks%2C%20Lacoste%20meets%20Apple%20aesthetic%2C%20moody%20premium?width=900&height=700&seed=909&nologo=true&model=flux&enhance=true" alt="Toronto Open trophy" loading="lazy"/><span class="sku-tag">Annual · Invitational</span></div><div class="sku-body"><h3>The Toronto Open</h3><div class="price"><strong>By invitation</strong> · 12 firms · 5 days</div><ul><li>Format <span>Firm vs. firm</span></li><li>Roster <span>C-suite only</span></li><li>Hospitality <span>Black-tie afterparty</span></li><li>Trophy <span>The Bay Street Cup</span></li></ul><a href="toronto-open.html" class="sku-cta">Apply for 2026</a></div></article></div></div></section>
+<section class="open-feature"><div class="open-bg"><img src="https://image.pollinations.ai/prompt/Cinematic%20atmospheric%20editorial%20photograph%20of%20a%20packed%20crowd%20watching%20a%20pickleball%20championship%20final%20under%20dramatic%20stadium%20lighting%2C%20professional%20athletes%20mid-rally%20on%20a%20premium%20wooden%20court%2C%20Toronto%20skyline%20twinkling%20through%20massive%20floor-to-ceiling%20windows%20behind%2C%20warm%20ambient%20haze%20and%20smoke%2C%20editorial%20sports%20photography%2C%20golden%20hour%20spotlights%2C%20ESPN%20meets%20Lacoste%20aesthetic%2C%2035mm%20film%2C%20shallow%20depth%20of%20field%20on%20the%20action%2C%20deep%20rich%20colours?width=2200&height=1100&seed=70&nologo=true&model=flux&enhance=true" alt="Toronto Open crowd"/></div><div class="open-tie"></div><div class="open-inner"><div><div class="open-eyebrow"><span class="pulse"></span>The Toronto Open · Sept 14–18, 2026</div><h2>Five days.<br/>Twelve firms.<br/><span class="gold">One trophy.</span></h2><p class="lead">The Bay Street Cup is the only invitational of its kind in North America. Twelve handpicked firms. One bracket. Five days at 6ix Pickle, The Jar, and the rooftop court at One York. The week ends in tuxedos and the Cup goes home with the winner.</p><div class="open-meta"><div><div class="k">Dates</div><div class="v">Sept 14–18</div></div><div><div class="k">Players</div><div class="v">192 invited</div></div><div><div class="k">Trophy</div><div class="v">Bay Street Cup</div></div></div><a href="toronto-open.html" class="btn btn-white">Apply for 2026 →</a></div><div class="open-card"><div class="label">2026 Confirmed roster</div><div class="firms"><span>RBC Capital</span><span>Brookfield</span><span>TD Securities</span><span>Shopify</span><span>Manulife</span><span>BMO</span><span>McKinsey TO</span><span>Goldman Sachs</span><span>Bain &amp; Co.</span><span>Bennett Jones</span><span>+ 2 TBD</span></div><div class="seats"><div>Defending<br/>champion</div><strong>RBC Capital '25</strong></div></div></div></section>
+<section class="why" id="why"><div class="why-inner"><div class="section-eyebrow">Why pickleball, not golf</div><h2>Golf was a gatekeeper sport.<br/>Pickleball isn't.</h2><p class="lead">Every metric your event coordinator cares about — time, cost, inclusion, memorability — moves the right direction the moment you swap the tee box for the kitchen line.</p><div class="why-grid"><div class="why-card reveal"><div class="num">01 — Time</div><h3>Done in a half-day.</h3><p>A foursome at Glen Abbey takes six hours plus an hour each way. A Corporate Pickleball off-site is door-to-door in three and a half.</p><div class="compare"><s>6.5 hrs</s>&nbsp;&nbsp;<strong>3.5 hrs</strong></div></div><div class="why-card reveal"><div class="num">02 — Cost</div><h3>~5× more efficient.</h3><p>Average per-head spend on a 32-person golf outing in the GTA: $880. The Off-Site, white-glove, catered, photographed: $150.</p><div class="compare"><s>$28,160</s>&nbsp;&nbsp;<strong>$4,800</strong></div></div><div class="why-card reveal"><div class="num">03 — Inclusion</div><h3>Everyone can play.</h3><p>Pickleball flattens skill differences in a single afternoon. Your VP of Eng and your Q3 intern end up on the same court. That's the point.</p><div class="compare"><s>Insiders only</s>&nbsp;&nbsp;<strong>Whole team</strong></div></div><div class="why-card reveal"><div class="num">04 — Memory</div><h3>Stories, not slideshows.</h3><p>Our post-event survey: 94% of players can name a moment from the day a year later. The previous off-site? 31%.</p><div class="compare"><s>31% recall</s>&nbsp;&nbsp;<strong>94% recall</strong></div></div></div></div></section>
+<section class="how" id="how"><div class="how-tie"></div><div class="how-inner"><div class="how-head"><div><div class="section-eyebrow" style="color:var(--green-mint)">How it works</div><h2>Tell us the date.<br/>We do the other 41 things.</h2></div><p class="how-sub">Every event ships with a dedicated producer, two referees, a courtside emcee, a photographer, and a hospitality lead. You do not lift a finger.</p></div><div class="how-steps"><div class="how-step"><div class="step-n">01 / Brief</div><h3>Tell us the date and the headcount.</h3><p>One 20-minute call with our producer. We confirm the venue, the format, the catering, and the budget in writing within 24 hours.</p></div><div class="how-step"><div class="step-n">02 / Build</div><h3>We build everything around your brand.</h3><p>Court signage, scorecards, the after-event recap reel, even the trophy. Your logo, our colourway. Production-grade.</p></div><div class="how-step"><div class="step-n">03 / Play</div><h3>You arrive. We run the day.</h3><p>Pros referee. The emcee narrates. The photographer captures the moments. The kitchen serves at the right time. Your only job is to play.</p></div><div class="how-step"><div class="step-n">04 / Share</div><h3>The recap lands the next morning.</h3><p>A 90-second hero reel, 60 hi-res stills, a printed leaderboard, and a private Vimeo link. In your inbox by 9am the day after.</p></div></div></div></section>
+<section class="capacity" id="book"><div class="capacity-inner"><div><div class="section-eyebrow">2026 Capacity</div><h2>Seventeen weekends remain.</h2><p>We cap our calendar at 96 events a year so every booking gets the producer, the venue, and the production team it deserves. The hot months go fast — September is the new June.</p><a href="book.html" class="btn btn-green">Reserve a date →</a></div><div class="cap-table"><div class="cap-row full"><div class="cap-month">May 2026</div><div class="cap-meter"><div class="cap-meter-fill" style="width:100%"></div></div><div class="cap-status">Sold out</div></div><div class="cap-row full"><div class="cap-month">Jun 2026</div><div class="cap-meter"><div class="cap-meter-fill" style="width:100%"></div></div><div class="cap-status">Sold out</div></div><div class="cap-row"><div class="cap-month">Jul 2026</div><div class="cap-meter"><div class="cap-meter-fill" style="width:78%"></div></div><div class="cap-status">2 dates left</div></div><div class="cap-row"><div class="cap-month">Aug 2026</div><div class="cap-meter"><div class="cap-meter-fill" style="width:62%"></div></div><div class="cap-status">4 dates left</div></div><div class="cap-row"><div class="cap-month">Sep 2026</div><div class="cap-meter"><div class="cap-meter-fill" style="width:91%"></div></div><div class="cap-status">1 date left</div></div><div class="cap-row"><div class="cap-month">Oct 2026</div><div class="cap-meter"><div class="cap-meter-fill" style="width:34%"></div></div><div class="cap-status">Open</div></div><div class="cap-row"><div class="cap-month">Nov 2026</div><div class="cap-meter"><div class="cap-meter-fill" style="width:20%"></div></div><div class="cap-status">Open</div></div></div></div></section>
+<section class="testimonials"><div class="test-inner"><h2>What the people who book us actually say.</h2><div class="test-grid"><div class="test-card reveal"><div><div class="stars">★★★★★</div><blockquote>"Our team's done the Caribbean retreat, the cooking class, the Top Golf night. Nothing has come close to this. The whole desk talked about it for a month."</blockquote></div><div class="test-author"><div class="test-avatar">SR</div><div class="test-meta"><strong>Sarah Reyes-Wong</strong><span>VP, Equity Trading · TD Securities</span></div></div></div><div class="test-card reveal"><div><div class="stars">★★★★★</div><blockquote>"It's the best $14k I've ever signed off on. The recap reel landed by 9am and was forwarded to our CEO before noon. We're booking three more in 2026."</blockquote></div><div class="test-author"><div class="test-avatar">MP</div><div class="test-meta"><strong>Mira Patel</strong><span>Director, People Ops · Brookfield</span></div></div></div><div class="test-card reveal"><div><div class="stars">★★★★★</div><blockquote>"Better than Glen Abbey, and not because the pickleball was better than the golf. Because the analysts beat the partners and we still made it home for dinner."</blockquote></div><div class="test-author"><div class="test-avatar">DC</div><div class="test-meta"><strong>David Chen</strong><span>Partner · Bennett Jones LLP</span></div></div></div></div></div></section>
+<section class="closing"><div class="closing-inner"><h2>Book the off-site<br/>that <span class="underline">actually gets remembered.</span></h2><p>Reply within 24 hours. White-glove from your first email to the recap reel. Across four GTA venues, year-round.</p><div class="closing-ctas"><a href="book.html" class="btn btn-primary">Book your event →</a><a href="toronto-open.html" class="btn btn-ghost">Apply to The Toronto Open</a></div></div></section>
+<footer><div class="foot-inner"><div class="foot-top"><div class="foot-brand"><a href="index.html" class="brand"><span class="brand-mark"></span><span>Corporate&nbsp;Pickleball</span></a><p>White-glove pickleball, built for the boardroom. Headquartered in Toronto. Operating across the GTA since 2022.</p></div><div class="foot-col"><h4>Events</h4><ul><li><a href="#sku">The Off-Site</a></li><li><a href="#sku">The Championship</a></li><li><a href="toronto-open.html">The Toronto Open</a></li><li><a href="book.html">Custom programs</a></li></ul></div><div class="foot-col"><h4>Venues</h4><ul><li><a href="#book">6ix Pickle · Moss Park</a></li><li><a href="#book">The Jar · Etobicoke</a></li><li><a href="#book">Mayfair · Markham</a></li><li><a href="#book">One York Rooftop</a></li></ul></div><div class="foot-col"><h4>Company</h4><ul><li><a href="book.html">Book an event</a></li><li><a href="toronto-open.html">Apply for the Open</a></li><li><a href="#">Press &amp; media</a></li><li><a href="#">Careers</a></li></ul></div></div><div class="foot-bot"><div>© 2026 Corporate Pickleball Inc. · cp.club · Toronto, ON</div><div><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Recap library</a></div></div></div></footer>
+<script>const io = new IntersectionObserver((entries)=>{entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });}, {threshold: 0.12});document.querySelectorAll('.reveal').forEach(el => io.observe(el));</script>
+</body>
+</html>
