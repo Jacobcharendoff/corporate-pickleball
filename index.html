@@ -121,7 +121,35 @@
   .btn-lg{padding:16px 28px;font-size:16px}
   .btn .arrow{display:inline-block;transition:transform .35s var(--ease-out-expo)}
   .btn:hover .arrow{transform:translateX(5px)}
-  @media (max-width:760px){.nav-links{display:none}}
+  @media (max-width:880px){.nav-links{display:none} .nav-cta .btn-ghost{display:none}}
+
+  /* ============== HAMBURGER + MOBILE DRAWER ============== */
+  .hamburger{display:none;width:44px;height:44px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;transition:background .25s, border-color .25s;padding:0}
+  .nav.solid .hamburger{background:rgba(10,10,10,.06);border-color:rgba(10,10,10,.14)}
+  .hamburger span{display:block;width:18px;height:1.5px;background:var(--white);transition:transform .35s var(--ease-out-expo), opacity .25s}
+  .nav.solid .hamburger span{background:var(--black)}
+  .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  @media (max-width:880px){.hamburger{display:flex}}
+  .mobile-drawer{position:fixed;top:0;right:0;bottom:0;width:min(380px, 88vw);background:var(--augusta-900);color:var(--white);z-index:99;padding:96px 32px 40px;display:flex;flex-direction:column;gap:14px;transform:translateX(100%);transition:transform .5s var(--ease-out-expo);overflow-y:auto}
+  .mobile-drawer.open{transform:translateX(0)}
+  .mobile-drawer::before{content:"";position:absolute;top:-30%;right:-30%;width:80%;height:80%;background:var(--tie-dye);filter:blur(80px);opacity:.4;pointer-events:none}
+  .mobile-drawer > *{position:relative}
+  .mobile-drawer .m-eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-300);margin-bottom:6px}
+  .mobile-drawer a:not(.btn){font-size:22px;font-weight:600;letter-spacing:-0.025em;color:var(--white);padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1);text-decoration:none}
+  .mobile-drawer a:not(.btn):hover{color:var(--gold-soft)}
+  .mobile-drawer .btn{margin-top:18px;justify-content:center;font-size:15px;padding:14px 22px}
+  .mobile-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .4s;z-index:98}
+  .mobile-overlay.open{opacity:1;pointer-events:auto}
+  body.no-scroll{overflow:hidden}
+
+  /* ============== IMAGE FADE-IN ============== */
+  .sku-img img, .why-img img, .venue img, .editorial-bg img, .open-bg img, .hero-bg img{opacity:0;transition:opacity .8s ease, transform 1.4s var(--ease-out-expo)}
+  .sku-img img.loaded, .why-img img.loaded, .venue img.loaded, .editorial-bg img.loaded, .open-bg img.loaded, .hero-bg img.loaded{opacity:1}
+  .sku-img, .why-img, .venue, .editorial-bg, .open-bg{background:linear-gradient(135deg, var(--augusta-800) 0%, var(--augusta-900) 100%) !important}
+  .sku-img::before, .why-img::before, .venue::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg, rgba(212,184,150,.2), transparent 50%, rgba(232,160,152,.15));opacity:1;transition:opacity .8s ease;pointer-events:none;z-index:1}
+  .sku-img:has(img.loaded)::before, .why-img:has(img.loaded)::before, .venue:has(img.loaded)::before{opacity:0}
 
   /* ============== HERO ============== */
   .hero{position:relative;min-height:100vh;overflow:hidden;background:var(--black);color:var(--white);display:flex;flex-direction:column}
@@ -214,6 +242,15 @@
   .pinned-skus{height:340vh;position:relative;background:var(--cream-soft)}
   .pinned-track{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center}
   .pinned-rail{display:flex;gap:28px;will-change:transform;padding:0 var(--pad);align-items:center}
+  @media (max-width:880px){
+    .pinned-skus{height:auto}
+    .pinned-track{position:static;height:auto;display:block;overflow:visible}
+    .pinned-rail{flex-direction:column;padding:80px var(--pad);gap:24px;transform:none !important}
+    .pinned-intro{flex:none;width:100%;max-width:none;padding:0 0 20px}
+    .pinned-intro .scroll-hint{display:none}
+    .sku-card{flex:none;width:100%;max-width:560px;height:auto;min-height:auto;margin:0 auto}
+    .sku-card .sku-img{height:auto;aspect-ratio:4/3}
+  }
   .pinned-intro{flex:0 0 min(620px, 80vw);padding-right:24px}
   .pinned-intro .kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--green-700);margin-bottom:16px;display:flex;align-items:center;gap:14px}
   .pinned-intro .kicker::before{content:"";width:36px;height:1px;background:var(--green-700)}
@@ -492,9 +529,22 @@
     <div class="nav-cta">
       <a href="book.html" class="btn btn-ghost" data-magnetic>Apply</a>
       <a href="book.html" class="btn btn-primary" data-magnetic>Book your event <span class="arrow">→</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
+
+<!-- ===== MOBILE DRAWER ===== -->
+<div class="mobile-overlay" id="mobile-overlay"></div>
+<aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+  <div class="m-eyebrow">Menu</div>
+  <a href="toronto-open.html">The Toronto Open</a>
+  <a href="#sku">Events</a>
+  <a href="#how">How it works</a>
+  <a href="#book">Venues</a>
+  <a href="book.html" class="btn btn-primary btn-lg">Book your event <span class="arrow">→</span></a>
+  <a href="book.html" class="btn btn-gold btn-lg">Apply for the Open</a>
+</aside>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
@@ -570,7 +620,7 @@
 <!-- ===== EDITORIAL FULL-BLEED #1 (champagne kitchen line) ===== -->
 <section class="editorial">
   <div class="editorial-bg">
-    <img src="https://picsum.photos/seed/cp7301/2400/1400" alt=""/>
+    <img src="https://image.pollinations.ai/prompt/Professional%20woman%20cream%20athleisure%20mid%20swing%20pickleball%20court%20golden%20hour%20editorial%20fashion%20photography?width=2400&height=1400&seed=7301&nologo=true&model=flux&enhance=true" alt=""/>
   </div>
   <div class="editorial-content">
     <div class="kicker">— A scene from the 2025 Toronto Open</div>
@@ -593,7 +643,7 @@
 
       <article class="sku-card">
         <div class="sku-img">
-          <img src="https://picsum.photos/seed/cp441/900/700" alt="Aerial pickleball court mid-rally" loading="lazy"/>
+          <img src="https://image.pollinations.ai/prompt/Aerial%20overhead%20pickleball%20court%20four%20players%20mid%20rally%20oak%20floor%20golden%20hour%20editorial%20photography?width=900&height=700&seed=441&nologo=true&model=flux&enhance=true" alt="Aerial pickleball court mid-rally" loading="lazy"/>
           <span class="sku-tag">Half-day</span>
         </div>
         <div class="sku-body">
@@ -612,7 +662,7 @@
 
       <article class="sku-card featured">
         <div class="sku-img">
-          <img src="https://picsum.photos/seed/cp512/900/700" alt="Multi-court championship" loading="lazy"/>
+          <img src="https://image.pollinations.ai/prompt/Multi%20court%20pickleball%20championship%20oak%20courts%20professional%20players%20green%20cream%20polos%20golden%20lighting%20tall%20windows?width=900&height=700&seed=512&nologo=true&model=flux&enhance=true" alt="Multi-court championship" loading="lazy"/>
           <span class="sku-tag">Full-day</span>
         </div>
         <div class="sku-body">
@@ -631,7 +681,7 @@
 
       <article class="sku-card tournament">
         <div class="sku-img">
-          <img src="https://picsum.photos/seed/cp909/900/700" alt="Bay Street Cup trophy" loading="lazy"/>
+          <img src="https://image.pollinations.ai/prompt/Gold%20pickleball%20trophy%20on%20dark%20velvet%20champagne%20coupe%20dramatic%20spotlight%20Toronto%20skyline%20bokeh%20editorial%20luxury?width=900&height=700&seed=909&nologo=true&model=flux&enhance=true" alt="Bay Street Cup trophy" loading="lazy"/>
           <span class="sku-tag">Annual · Invitational</span>
         </div>
         <div class="sku-body">
@@ -668,7 +718,7 @@
 
 <!-- ===== TORONTO OPEN FEATURE ===== -->
 <section class="open-feature">
-  <div class="open-bg"><img src="https://picsum.photos/seed/cp70/2200/1100" alt=""/></div>
+  <div class="open-bg"><img src="https://image.pollinations.ai/prompt/Crowd%20watching%20pickleball%20championship%20final%20stadium%20spotlights%20Toronto%20skyline%20atmospheric%20warm%20haze?width=2200&height=1100&seed=70&nologo=true&model=flux&enhance=true" alt=""/></div>
   <div class="open-mesh"></div>
   <div class="open-mesh-2"></div>
   <div class="open-inner">
@@ -705,22 +755,22 @@
     <div class="venues-grid">
       <div class="venue">
         <span class="venue-tag">Flagship · Downtown</span>
-        <img src="https://picsum.photos/seed/cp2201/1200/900" alt="6ix Pickle interior at night" loading="lazy"/>
+        <img src="https://image.pollinations.ai/prompt/Premium%20indoor%20pickleball%20club%20Toronto%20downtown%20night%20oak%20floors%20glass%20walls%20warm%20lighting%20Architectural%20Digest?width=1200&height=900&seed=2201&nologo=true&model=flux&enhance=true" alt="6ix Pickle interior at night" loading="lazy"/>
         <div class="venue-meta"><div class="name">6ix Pickle</div><div class="info">Moss Park · 4 courts · 24/7</div></div>
       </div>
       <div class="venue">
         <span class="venue-tag">12 courts</span>
-        <img src="https://picsum.photos/seed/cp2202/900/900" alt="The Jar club" loading="lazy"/>
+        <img src="https://image.pollinations.ai/prompt/Cathedral%20indoor%20pickleball%20arena%20twelve%20oak%20courts%20perspective%20skylights%20premium%20architectural?width=900&height=900&seed=2202&nologo=true&model=flux&enhance=true" alt="The Jar club" loading="lazy"/>
         <div class="venue-meta"><div class="name">The Jar</div><div class="info">Etobicoke</div></div>
       </div>
       <div class="venue">
         <span class="venue-tag">Country club</span>
-        <img src="https://picsum.photos/seed/cp2203/900/900" alt="Mayfair country club court" loading="lazy"/>
+        <img src="https://image.pollinations.ai/prompt/Country%20club%20pickleball%20court%20azalea%20pink%20magnolia%20blossoms%20golden%20hour%20warm%20light%20Augusta%20National%20style?width=900&height=900&seed=2203&nologo=true&model=flux&enhance=true" alt="Mayfair country club court" loading="lazy"/>
         <div class="venue-meta"><div class="name">Mayfair</div><div class="info">Markham</div></div>
       </div>
       <div class="venue">
         <span class="venue-tag">Rooftop</span>
-        <img src="https://picsum.photos/seed/cp2204/900/900" alt="One York rooftop court" loading="lazy"/>
+        <img src="https://image.pollinations.ai/prompt/Rooftop%20pickleball%20court%20Toronto%20financial%20district%20CN%20Tower%20golden%20hour%20premium%20skyline?width=900&height=900&seed=2204&nologo=true&model=flux&enhance=true" alt="One York rooftop court" loading="lazy"/>
         <div class="venue-meta"><div class="name">One York Rooftop</div><div class="info">Financial District</div></div>
       </div>
     </div>
@@ -736,28 +786,28 @@
     <p class="lead">Every metric your event coordinator cares about — time, cost, inclusion, memorability — moves the right direction the moment you swap the tee box for the kitchen line.</p>
     <div class="why-grid reveal-stagger" data-reveal>
       <div class="why-card">
-        <div class="why-img"><img src="https://picsum.photos/seed/cp1101/800/600" alt="Watch on cashmere sleeve courtside" loading="lazy"/></div>
+        <div class="why-img"><img src="https://image.pollinations.ai/prompt/Patek%20Philippe%20watch%20cream%20cashmere%20sleeve%20courtside%20green%20court%20line%20golden%20hour%20editorial%20luxury%20close%20up?width=800&height=600&seed=1101&nologo=true&model=flux&enhance=true" alt="Watch on cashmere sleeve courtside" loading="lazy"/></div>
         <div class="why-body">
           <div><div class="num">01 / Time</div><h3>Done in <span class="ital">a half-day.</span></h3><p>A foursome at Glen Abbey takes six hours plus an hour each way. A Corporate Pickleball off-site is door-to-door in three and a half.</p></div>
           <div class="compare"><s>6.5 hrs</s><span class="arrow-side">→</span><strong>3.5 hrs</strong></div>
         </div>
       </div>
       <div class="why-card">
-        <div class="why-img"><img src="https://picsum.photos/seed/cp1102/800/600" alt="Event portfolio with budget" loading="lazy"/></div>
+        <div class="why-img"><img src="https://image.pollinations.ai/prompt/Black%20leather%20event%20portfolio%20gold%20foil%20embossed%20cover%20oak%20pickleball%20court%20surface%20paddle%20yellow%20ball?width=800&height=600&seed=1102&nologo=true&model=flux&enhance=true" alt="Event portfolio with budget" loading="lazy"/></div>
         <div class="why-body">
           <div><div class="num">02 / Cost</div><h3><span class="ital">~5×</span> more efficient.</h3><p>Average per-head spend on a 32-person golf outing in the GTA: $880. The Off-Site, white-glove, catered, photographed: $150.</p></div>
           <div class="compare"><s>$28,160</s><span class="arrow-side">→</span><strong>$4,800</strong></div>
         </div>
       </div>
       <div class="why-card">
-        <div class="why-img"><img src="https://picsum.photos/seed/cp1103/800/600" alt="Diverse team laughing courtside" loading="lazy"/></div>
+        <div class="why-img"><img src="https://image.pollinations.ai/prompt/Diverse%20corporate%20team%20cream%20green%20polos%20laughing%20courtside%20candid%20documentary%20editorial%20Toronto?width=800&height=600&seed=1103&nologo=true&model=flux&enhance=true" alt="Diverse team laughing courtside" loading="lazy"/></div>
         <div class="why-body">
           <div><div class="num">03 / Inclusion</div><h3>Everyone <span class="ital">can play.</span></h3><p>Pickleball flattens skill differences in a single afternoon. Your VP of Eng and your Q3 intern end up on the same court. <span class="ital">That's the point.</span></p></div>
           <div class="compare"><s>Insiders</s><span class="arrow-side">→</span><strong>Whole team</strong></div>
         </div>
       </div>
       <div class="why-card">
-        <div class="why-img"><img src="https://picsum.photos/seed/cp1104/800/600" alt="Yellow pickleball mid-air over net" loading="lazy"/></div>
+        <div class="why-img"><img src="https://image.pollinations.ai/prompt/Yellow%20pickleball%20mid%20air%20over%20emerald%20green%20net%20motion%20blur%20paddle%20strike%20golden%20hour%20editorial?width=800&height=600&seed=1104&nologo=true&model=flux&enhance=true" alt="Yellow pickleball mid-air over net" loading="lazy"/></div>
         <div class="why-body">
           <div><div class="num">04 / Memory</div><h3>Stories, <span class="ital">not slides.</span></h3><p>Our post-event survey: 94% of players can name a moment from the day a year later. The previous off-site? 31%.</p></div>
           <div class="compare"><s>31% recall</s><span class="arrow-side">→</span><strong>94% recall</strong></div>
@@ -770,7 +820,7 @@
 <!-- ===== EDITORIAL FULL-BLEED #2 (afterparty) ===== -->
 <section class="editorial">
   <div class="editorial-bg">
-    <img src="https://picsum.photos/seed/cp8801/2400/1400" alt=""/>
+    <img src="https://image.pollinations.ai/prompt/Black%20tie%20rooftop%20afterparty%20Toronto%20champagne%20tuxedos%20string%20lights%20skyline%20candid%20editorial?width=2400&height=1400&seed=8801&nologo=true&model=flux&enhance=true" alt=""/>
   </div>
   <div class="editorial-content">
     <div class="kicker">— Friday, 11pm, One York Rooftop</div>
@@ -992,8 +1042,36 @@
   }), {threshold:0.3});
   document.querySelectorAll('.statement').forEach(el => countIO.observe(el));
 
-  // ============== GSAP SCROLLTRIGGER PINNED HORIZONTAL ==============
-  if (window.gsap && window.ScrollTrigger) {
+  // ============== HAMBURGER MOBILE NAV ==============
+  (() => {
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('mobile-drawer');
+    const overlay = document.getElementById('mobile-overlay');
+    if (!hamburger || !drawer) return;
+    function toggle(open){
+      const willOpen = open !== undefined ? open : !drawer.classList.contains('open');
+      drawer.classList.toggle('open', willOpen);
+      overlay.classList.toggle('open', willOpen);
+      hamburger.classList.toggle('open', willOpen);
+      document.body.classList.toggle('no-scroll', willOpen);
+      hamburger.setAttribute('aria-expanded', willOpen);
+      drawer.setAttribute('aria-hidden', !willOpen);
+    }
+    hamburger.addEventListener('click', () => toggle());
+    overlay.addEventListener('click', () => toggle(false));
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+    addEventListener('keydown', e => { if (e.key === 'Escape' && drawer.classList.contains('open')) toggle(false); });
+  })();
+
+  // ============== IMAGE FADE-IN ==============
+  document.querySelectorAll('img').forEach(img => {
+    if (img.complete && img.naturalWidth > 0) img.classList.add('loaded');
+    else { img.addEventListener('load', () => img.classList.add('loaded')); img.addEventListener('error', () => img.classList.add('loaded')); }
+  });
+
+  // ============== GSAP SCROLLTRIGGER PINNED HORIZONTAL (desktop only) ==============
+  const isDesktop = window.matchMedia('(min-width: 881px)').matches;
+  if (window.gsap && window.ScrollTrigger && isDesktop) {
     gsap.registerPlugin(ScrollTrigger);
 
     // Pinned horizontal SKUs
