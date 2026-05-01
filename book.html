@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Book your event — Corporate Pickleball</title>
+<meta name="description" content="Pick a tier. Pick a date. We reply within 24 hours, white-glove from your first email to the recap reel." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--green-deep:#0a3a1f;--green-rich:#0f5132;--green:#15803d;--green-energy:#22c55e;--green-mint:#86efac;--green-whisper:#f0fdf4;--cream:#f5efe6;--champagne:#d4b896;--black:#0a0a0a;--black-soft:#171717;--gray-1:#f7f7f5;--gray-2:#eeeeec;--gray-3:#a3a39d;--gray-4:#525250;--white:#ffffff;--max:1440px;--pad:clamp(20px, 4vw, 64px);--tie-dye: linear-gradient(135deg, #0a3a1f 0%, #15803d 30%, #22c55e 55%, #86efac 78%, #d4b896 100%);--shadow-card: 0 24px 60px -28px rgba(10,58,31,.25), 0 4px 12px -4px rgba(10,10,10,.08);}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  body{font-family:'Geist','Inter',system-ui,-apple-system,sans-serif;background:var(--white);color:var(--black);line-height:1.4;overflow-x:hidden}
+  ::selection{background:var(--green-energy);color:var(--white)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%;height:auto}
+  .nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:saturate(180%) blur(18px);background:rgba(255,255,255,.78);border-bottom:1px solid rgba(10,10,10,.06)}
+  .nav-inner{max-width:var(--max);margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-0.02em;font-size:14px;text-transform:uppercase}
+  .brand-mark{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--green-energy), var(--green-deep));box-shadow:inset 0 0 0 1px rgba(255,255,255,.15), 0 4px 14px -2px rgba(15,81,50,.4)}
+  .nav-links{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500;color:var(--gray-4)}
+  .nav-links a:hover{color:var(--black)}
+  .nav-cta{display:flex;align-items:center;gap:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:-0.005em;transition:all .25s cubic-bezier(.2,.6,.2,1);cursor:pointer;border:0;white-space:nowrap}
+  .btn-primary{background:var(--black);color:var(--white)}
+  .btn-green{background:var(--green-deep);color:var(--white)}
+  .btn-green:hover{background:var(--green-rich);transform:translateY(-1px);box-shadow:0 12px 30px -12px rgba(15,81,50,.6)}
+  .btn-ghost{background:transparent;color:var(--black);border:1px solid rgba(10,10,10,.14)}
+  .btn-ghost:hover{border-color:var(--black);background:rgba(10,10,10,.03)}
+  .btn-lg{padding:16px 28px;font-size:16px;border-radius:999px}
+  @media (max-width:760px){.nav-links{display:none}}
+  .hero{position:relative;padding:140px var(--pad) 60px;background:linear-gradient(180deg,var(--white) 0%, var(--gray-1) 100%);overflow:hidden}
+  .hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+  @media (max-width:980px){.hero-inner{grid-template-columns:1fr;gap:32px}}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.18em;color:var(--green-deep);margin-bottom:24px}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--green-energy);box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+  .hero h1{font-size:clamp(44px, 7.5vw, 108px);line-height:.94;letter-spacing:-0.045em;font-weight:800;margin-bottom:20px}
+  .hero h1 .tie{background:var(--tie-dye);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{font-size:18px;color:var(--gray-4);max-width:520px;line-height:1.5;margin-bottom:30px}
+  .hero-trust{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--gray-4)}
+  .hero-trust span{display:inline-flex;align-items:center;gap:8px}
+  .hero-trust span::before{content:"✓";color:var(--green-deep);font-weight:700}
+  .hero-vis{aspect-ratio:4/5;border-radius:24px;overflow:hidden;background:var(--green-deep)}
+  .hero-vis img{width:100%;height:100%;object-fit:cover}
+  .config{padding:80px var(--pad) 40px;background:var(--gray-1)}
+  .config-inner{max-width:var(--max);margin:0 auto}
+  .config-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:36px}
+  .section-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--green-deep);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .section-eyebrow::before{content:"";width:24px;height:1px;background:var(--green-deep)}
+  .config h2{font-size:clamp(30px,4vw,56px);font-weight:700;letter-spacing:-0.035em;line-height:1.04;max-width:600px}
+  .config-sub{font-size:15px;color:var(--gray-4);max-width:340px}
+  .tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media (max-width:980px){.tier-grid{grid-template-columns:1fr}}
+  .tier{background:var(--white);border-radius:22px;padding:28px;border:2px solid transparent;cursor:pointer;display:flex;flex-direction:column;transition:all .3s cubic-bezier(.2,.6,.2,1);position:relative}
+  .tier:hover{transform:translateY(-3px);box-shadow:var(--shadow-card)}
+  .tier.selected{border-color:var(--green-deep);box-shadow:0 0 0 4px rgba(15,81,50,.08), var(--shadow-card)}
+  .tier-tag{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--green-deep);margin-bottom:14px}
+  .tier h3{font-size:26px;font-weight:700;letter-spacing:-0.025em;margin-bottom:8px}
+  .tier .price{font-family:'Geist Mono',monospace;font-size:13px;color:var(--gray-4);margin-bottom:22px;line-height:1.4}
+  .tier .price strong{display:block;color:var(--black);font-size:32px;font-weight:700;letter-spacing:-0.03em;font-family:'Geist',sans-serif;margin-bottom:4px}
+  .tier ul{list-style:none;font-size:13px;color:var(--gray-4);margin-bottom:24px}
+  .tier ul li{padding:9px 0;border-top:1px solid var(--gray-2);display:flex;justify-content:space-between;gap:8px}
+  .tier ul li:first-child{border-top:0;padding-top:0}
+  .tier ul li span{color:var(--black);font-weight:500;text-align:right}
+  .tier .pick{margin-top:auto;display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:600;color:var(--green-deep);padding-top:16px;border-top:1px solid var(--gray-2)}
+  .tier .check{width:24px;height:24px;border:2px solid var(--gray-2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:transparent}
+  .tier.selected .check{background:var(--green-deep);border-color:var(--green-deep);color:var(--white)}
+  .tier.selected .check::after{content:"✓"}
+  .form-section{padding:60px var(--pad) 100px;background:var(--gray-1)}
+  .form-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr;gap:24px;align-items:start}
+  @media (max-width:980px){.form-inner{grid-template-columns:1fr}}
+  .form-card{background:var(--white);border-radius:24px;padding:40px;border:1px solid rgba(10,10,10,.04);box-shadow:var(--shadow-card)}
+  .form-card h3{font-size:24px;font-weight:700;letter-spacing:-0.025em;margin-bottom:6px}
+  .form-card .form-sub{font-size:14px;color:var(--gray-4);margin-bottom:32px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+  @media (max-width:680px){.form-row{grid-template-columns:1fr}}
+  .field{display:flex;flex-direction:column}
+  .field label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-4);margin-bottom:8px;font-weight:500}
+  .field input, .field select, .field textarea{font-family:'Geist',sans-serif;font-size:15px;padding:14px 16px;border:1px solid var(--gray-2);border-radius:12px;background:var(--white);color:var(--black);transition:all .2s;outline:none}
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--green-deep);box-shadow:0 0 0 4px rgba(15,81,50,.08)}
+  .field textarea{min-height:120px;resize:vertical;line-height:1.4}
+  .field-full{grid-column:1/-1}
+  .group-control{display:flex;align-items:center;gap:10px;background:var(--gray-1);padding:8px;border-radius:12px}
+  .group-btn{width:36px;height:36px;border-radius:8px;background:var(--white);border:1px solid var(--gray-2);cursor:pointer;font-size:16px;font-weight:600;color:var(--black);transition:all .2s;display:flex;align-items:center;justify-content:center}
+  .group-btn:hover{border-color:var(--green-deep);color:var(--green-deep)}
+  .group-num{flex:1;text-align:center;font-size:18px;font-weight:600;letter-spacing:-0.02em}
+  .group-num span{font-size:12px;color:var(--gray-4);font-weight:400;display:block;font-family:'Geist Mono',monospace;letter-spacing:.05em}
+  .pill-row{display:flex;gap:8px;flex-wrap:wrap}
+  .pill{padding:10px 16px;border-radius:999px;border:1px solid var(--gray-2);background:var(--white);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;color:var(--gray-4)}
+  .pill:hover{border-color:var(--gray-3);color:var(--black)}
+  .pill.active{background:var(--green-deep);color:var(--white);border-color:var(--green-deep)}
+  .form-card .submit-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:32px;padding-top:24px;border-top:1px solid var(--gray-2)}
+  .form-card .submit-row .privacy{font-size:12px;color:var(--gray-4);max-width:380px;line-height:1.4}
+  .form-card .submit-row .privacy a{color:var(--green-deep);text-decoration:underline;text-underline-offset:2px}
+  .summary{position:sticky;top:120px;background:var(--black);color:var(--white);border-radius:24px;padding:32px}
+  .summary h4{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-mint);margin-bottom:18px;font-weight:500}
+  .summary-row{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:14px}
+  .summary-row:last-of-type{border-bottom:0;padding-bottom:0}
+  .summary-row .k{color:rgba(255,255,255,.55);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding-top:4px}
+  .summary-row .v{font-weight:600;text-align:right;letter-spacing:-0.01em}
+  .summary-total{margin-top:24px;padding-top:24px;border-top:2px solid rgba(255,255,255,.18);display:flex;justify-content:space-between;align-items:flex-end}
+  .summary-total .k{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+  .summary-total .v{font-size:36px;font-weight:700;letter-spacing:-0.025em;color:var(--green-mint)}
+  .summary-note{font-size:11px;color:rgba(255,255,255,.45);margin-top:14px;line-height:1.5;font-family:'Geist Mono',monospace;letter-spacing:.03em}
+  .trust{padding:80px var(--pad);background:var(--white);border-top:1px solid var(--gray-2)}
+  .trust-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+  @media (max-width:760px){.trust-inner{grid-template-columns:repeat(2,1fr)}}
+  .trust-card .num{font-size:38px;font-weight:800;letter-spacing:-0.04em;color:var(--green-deep);margin-bottom:6px;line-height:1}
+  .trust-card h4{font-size:15px;font-weight:600;margin-bottom:6px;letter-spacing:-0.01em}
+  .trust-card p{font-size:13px;color:var(--gray-4);line-height:1.5}
+  .faq{padding:120px var(--pad);background:var(--gray-1)}
+  .faq-inner{max-width:1000px;margin:0 auto}
+  .faq h2{font-size:clamp(34px,5vw,72px);font-weight:700;letter-spacing:-0.04em;line-height:1.02;margin-bottom:44px}
+  .faq-list{border-top:1px solid var(--gray-2)}
+  .faq-item{border-bottom:1px solid var(--gray-2);padding:24px 0;cursor:pointer}
+  .faq-item summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:18px;font-weight:600;letter-spacing:-0.015em;cursor:pointer}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{content:"+";font-size:24px;font-weight:300;color:var(--green-deep);transition:transform .3s}
+  .faq-item[open] summary::after{content:"–"}
+  .faq-item p{margin-top:16px;font-size:15px;color:var(--gray-4);line-height:1.55;max-width:760px}
+  footer{background:var(--black);color:var(--white);padding:100px var(--pad) 40px}
+  .foot-inner{max-width:var(--max);margin:0 auto}
+  .foot-top{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:48px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.1)}
+  @media (max-width:980px){.foot-top{grid-template-columns:1fr 1fr;gap:36px}}
+  @media (max-width:560px){.foot-top{grid-template-columns:1fr}}
+  .foot-brand .brand{color:var(--white)}
+  .foot-brand p{font-size:14px;color:rgba(255,255,255,.55);margin-top:18px;max-width:280px;line-height:1.55}
+  .foot-col h4{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:18px;font-weight:500}
+  .foot-col ul{list-style:none}
+  .foot-col li{margin-bottom:12px}
+  .foot-col a{font-size:14px;color:rgba(255,255,255,.85);transition:color .2s}
+  .foot-col a:hover{color:var(--green-mint)}
+  .foot-bot{padding-top:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:rgba(255,255,255,.45);font-family:'Geist Mono',monospace;letter-spacing:.05em}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a href="index.html" class="brand"><span class="brand-mark"></span><span>Corporate&nbsp;Pickleball</span></a><div class="nav-links"><a href="toronto-open.html">The Toronto Open</a><a href="index.html#how">How it works</a><a href="index.html#sku">Events</a><a href="index.html#book">Venues</a></div><div class="nav-cta"><a href="index.html" class="btn btn-ghost">Back to home</a></div></div></nav>
+<section class="hero"><div class="hero-inner"><div><div class="eyebrow"><span class="dot"></span>Average reply time: 4 hours · 24h max</div><h1>Book the off-site<br/>that <span class="tie">runs itself.</span></h1><p>Pick a tier. Pick a date. Tell us how many people. We reply within 24 hours with a venue, a producer, a written quote, and a hold on the calendar.</p><div class="hero-trust"><span>White-glove from first email</span><span>No per-guest fees</span><span>147 events run</span></div></div><div class="hero-vis"><img src="https://image.pollinations.ai/prompt/Cinematic%20editorial%20product%20photograph%20of%20a%20premium%20black%20leather%20event%20portfolio%20with%20a%20gold%20foil-stamped%20Corporate%20Pickleball%20wordmark%20on%20the%20cover%2C%20resting%20on%20a%20wooden%20pickleball%20court%20with%20forest%20green%20court%20lines%2C%20a%20premium%20pickleball%20paddle%20and%20yellow%20ball%20beside%20it%2C%20warm%20directional%20natural%20light%2C%2050mm%20lens%2C%20shallow%20depth%20of%20field%2C%20Architectural%20Digest%20meets%20Apple%20product%20photography%2C%20rich%20moody%20cinematic%2C%20premium%20luxury%20aesthetic?width=900&height=1100&seed=42&nologo=true&model=flux&enhance=true" alt="Event portfolio"/></div></div></section>
+<section class="config"><div class="config-inner"><div class="config-head"><div><div class="section-eyebrow">Step 01 — Pick your format</div><h2>Three tiers.<br/>You can change your mind on the call.</h2></div><p class="config-sub">Group size adjusts pricing within each tier. White-glove production is included in every format.</p></div><div class="tier-grid"><article class="tier" data-tier="off-site" data-base="4800" data-min="12" data-max="32"><div class="tier-tag">Most-booked · Half-day</div><h3>The Off-Site</h3><div class="price"><strong>From $4,800</strong>12–32 players · 3 hours · 2 courts</div><ul><li>Format <span>Round-robin</span></li><li>Catering <span>Premium grazing</span></li><li>Photography <span>60 hi-res stills</span></li><li>Producer <span>Dedicated</span></li><li>Recap reel <span>90 seconds</span></li></ul><div class="pick">Select this tier <span class="check"></span></div></article><article class="tier selected" data-tier="championship" data-base="12400" data-min="24" data-max="64"><div class="tier-tag">Recommended · Full-day</div><h3>The Championship</h3><div class="price"><strong>From $12,400</strong>24–64 players · Full day · 4–6 courts</div><ul><li>Format <span>Bracket play</span></li><li>Catering <span>Two-course + bar</span></li><li>Photography <span>120 stills + reel</span></li><li>Production <span>Live emcee</span></li><li>Trophy <span>Custom-engraved</span></li></ul><div class="pick">Select this tier <span class="check"></span></div></article><article class="tier" data-tier="open" data-base="48000" data-min="64" data-max="192"><div class="tier-tag">Application required</div><h3>The Toronto Open</h3><div class="price"><strong>By application</strong>64–192 players · 5 days · all venues</div><ul><li>Format <span>Firm vs. firm</span></li><li>Roster <span>C-suite minimum</span></li><li>Hospitality <span>Black-tie gala</span></li><li>Production <span>Broadcast-grade</span></li><li>Trophy <span>The Bay Street Cup</span></li></ul><div class="pick">Select this tier <span class="check"></span></div></article></div></div></section>
+<section class="form-section"><div class="form-inner"><form class="form-card" onsubmit="event.preventDefault(); alert('Thanks. We will reply within 24 hours.');"><h3>The other 41 things.</h3><p class="form-sub">Fill what you know. Skip what you don't. We follow up by email and on a 20-minute call.</p><div class="form-row"><div class="field"><label for="firm">Company / firm</label><input id="firm" type="text" placeholder="e.g. Brookfield Asset Management" /></div><div class="field"><label for="name">Your name</label><input id="name" type="text" placeholder="First Last" /></div></div><div class="form-row"><div class="field"><label for="email">Work email</label><input id="email" type="email" placeholder="you@firm.com" /></div><div class="field"><label for="phone">Phone (optional)</label><input id="phone" type="tel" placeholder="+1 (416) 000-0000" /></div></div><div class="form-row"><div class="field"><label>Group size</label><div class="group-control"><button type="button" class="group-btn" id="grp-down">−</button><div class="group-num"><span id="grp-cap">players</span><div id="grp-val">32</div></div><button type="button" class="group-btn" id="grp-up">+</button></div></div><div class="field"><label for="date">Preferred date</label><input id="date" type="date" /></div></div><div class="field" style="margin-bottom:18px"><label>Preferred venue</label><div class="pill-row" id="venues"><button type="button" class="pill active" data-v="6ix">6ix Pickle · Moss Park</button><button type="button" class="pill" data-v="jar">The Jar · Etobicoke</button><button type="button" class="pill" data-v="mayfair">Mayfair · Markham</button><button type="button" class="pill" data-v="oneyork">One York Rooftop</button><button type="button" class="pill" data-v="no-pref">No preference</button></div></div><div class="field" style="margin-bottom:18px"><label>Add-ons</label><div class="pill-row" id="addons"><button type="button" class="pill active" data-a="catering">Premium catering</button><button type="button" class="pill active" data-a="photo">Photography</button><button type="button" class="pill" data-a="reel">Hero reel (90s)</button><button type="button" class="pill" data-a="bar">Open bar</button><button type="button" class="pill" data-a="trophy">Custom trophy</button><button type="button" class="pill" data-a="emcee">Live emcee</button></div></div><div class="field field-full"><label for="notes">Anything else we should know?</label><textarea id="notes" placeholder="C-suite involvement, dietary restrictions, branding requests, the colour your CEO refuses to wear, etc."></textarea></div><div class="submit-row"><p class="privacy">By submitting, you agree to a 20-minute discovery call and our <a href="#">privacy policy</a>. We never share your information with third parties.</p><button type="submit" class="btn btn-green btn-lg">Send brief →</button></div></form><aside class="summary"><h4>Your event · Live estimate</h4><div class="summary-row"><span class="k">Format</span><span class="v" id="s-tier">The Championship</span></div><div class="summary-row"><span class="k">Players</span><span class="v" id="s-grp">32</span></div><div class="summary-row"><span class="k">Venue</span><span class="v" id="s-venue">6ix Pickle</span></div><div class="summary-row"><span class="k">Date</span><span class="v" id="s-date">TBD</span></div><div class="summary-row"><span class="k">Add-ons</span><span class="v" id="s-addons">Catering, Photo</span></div><div class="summary-total"><span class="k">Estimate</span><span class="v" id="s-total">$12,400</span></div><p class="summary-note">All-in. No per-guest fees. White-glove production included. Final quote confirmed in writing within 24h.</p></aside></div></section>
+<section class="trust"><div class="trust-inner"><div class="trust-card"><div class="num">147</div><h4>Events run</h4><p>Across the GTA since 2022. Including three Toronto Opens and counting.</p></div><div class="trust-card"><div class="num">4.9★</div><h4>Average host rating</h4><p>Across 312 verified post-event surveys. Two-thirds of bookings come from referrals.</p></div><div class="trust-card"><div class="num">94%</div><h4>Repeat-book rate</h4><p>Of firms that host once book a second event within twelve months.</p></div><div class="trust-card"><div class="num">24h</div><h4>Response SLA</h4><p>Average reply: 4 hours. Maximum reply: 24 hours. Including weekends.</p></div></div></section>
+<section class="faq"><div class="faq-inner"><div class="section-eyebrow">Frequently asked</div><h2>The questions every<br/>event coordinator emails first.</h2><div class="faq-list"><details class="faq-item"><summary>What's actually included in the price?</summary><p>Court rental, professional referees, dedicated producer, full catering (per the format), photography (stills + recap reel), branded scorecards, prizes, on-site emcee, hospitality lead, setup, breakdown, and the post-event recap delivered the next morning. There are zero per-guest fees, ever.</p></details><details class="faq-item"><summary>How far in advance should we book?</summary><p>Off-Sites: 4–6 weeks ideal, 2 weeks possible. Championships: 8–12 weeks ideal. The Toronto Open: applications close June 30 of the prior year. May–September fills first; October has the best availability and arguably the best Toronto weather.</p></details><details class="faq-item"><summary>Can people who've never played pickleball play?</summary><p>Yes — and this is the actual point. Every event includes a 20-minute warm-up clinic with our pros. By minute thirty, your VP of Eng and your Q3 intern are competing on equal footing. Most teams find the new players are some of the strongest by the final bracket.</p></details><details class="faq-item"><summary>Do you handle billing and procurement paperwork?</summary><p>Yes. We're set up as a vendor with most major Bay Street firms already (RBC, TD, BMO, Manulife, McCarthy Tétrault, Bennett Jones). Net-30 terms standard. We handle COI, W-9s, supplier-onboarding paperwork — all the things your finance team will ask for.</p></details><details class="faq-item"><summary>What if it rains? What if someone gets injured?</summary><p>All four venues are indoor — rain doesn't apply. We carry $5M commercial liability insurance per event. Two of our producers are certified first-aid responders. We've never had a non-trivial injury across 147 events.</p></details><details class="faq-item"><summary>Can we white-label / co-brand the event?</summary><p>Always. Court-side signage, branded paddles and scorecards, custom polos, branded recap reel, even a one-off trophy if you want. We send a co-branding spec sheet on the discovery call.</p></details></div></div></section>
+<footer><div class="foot-inner"><div class="foot-top"><div class="foot-brand"><a href="index.html" class="brand"><span class="brand-mark"></span><span>Corporate&nbsp;Pickleball</span></a><p>White-glove pickleball, built for the boardroom. Headquartered in Toronto. Operating across the GTA since 2022.</p></div><div class="foot-col"><h4>Events</h4><ul><li><a href="index.html#sku">The Off-Site</a></li><li><a href="index.html#sku">The Championship</a></li><li><a href="toronto-open.html">The Toronto Open</a></li><li><a href="book.html">Custom programs</a></li></ul></div><div class="foot-col"><h4>Venues</h4><ul><li><a href="#">6ix Pickle · Moss Park</a></li><li><a href="#">The Jar · Etobicoke</a></li><li><a href="#">Mayfair · Markham</a></li><li><a href="#">One York Rooftop</a></li></ul></div><div class="foot-col"><h4>Company</h4><ul><li><a href="book.html">Book an event</a></li><li><a href="toronto-open.html">Apply for the Open</a></li><li><a href="#">Press &amp; media</a></li><li><a href="#">Careers</a></li></ul></div></div><div class="foot-bot"><div>© 2026 Corporate Pickleball Inc. · cp.club · Toronto, ON</div><div><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Recap library</a></div></div></div></footer>
+<script>
+  const state = { tier: 'championship', base: 12400, min: 24, max: 64, grp: 32, venue: '6ix Pickle', date: 'TBD', addons: new Set(['catering','photo']) };
+  const tierEls = document.querySelectorAll('.tier');
+  const tierLabel = (t) => ({'off-site':'The Off-Site','championship':'The Championship','open':'The Toronto Open'}[t] || '');
+  const venueLabel = (v) => ({'6ix':'6ix Pickle','jar':'The Jar','mayfair':'Mayfair','oneyork':'One York Rooftop','no-pref':'Recommended'}[v] || '6ix Pickle');
+  const addonLabel = (a) => ({'catering':'Catering','photo':'Photo','reel':'Reel','bar':'Open bar','trophy':'Trophy','emcee':'Emcee'}[a] || '');
+  const fmt = (n) => '$' + n.toLocaleString('en-US');
+  function recompute(){
+    const tierEl = document.querySelector('.tier.selected');
+    const tier = tierEl.dataset.tier;
+    const base = parseInt(tierEl.dataset.base, 10);
+    const min = parseInt(tierEl.dataset.min, 10);
+    const max = parseInt(tierEl.dataset.max, 10);
+    state.tier = tier; state.base = base; state.min = min; state.max = max;
+    if(state.grp < min) state.grp = min;
+    if(state.grp > max) state.grp = max;
+    let total = base + (state.grp - min) * 150;
+    const addonPrices = {catering:0,photo:0,reel:1200,bar:2400,trophy:1800,emcee:1500};
+    state.addons.forEach(a => total += (addonPrices[a]||0));
+    document.getElementById('s-tier').textContent = tierLabel(tier);
+    document.getElementById('s-grp').textContent = state.grp + ' players';
+    document.getElementById('s-venue').textContent = state.venue;
+    document.getElementById('s-date').textContent = state.date;
+    document.getElementById('s-addons').textContent = [...state.addons].map(addonLabel).join(', ') || '—';
+    document.getElementById('s-total').textContent = tier === 'open' ? 'By application' : fmt(total);
+    document.getElementById('grp-val').textContent = state.grp;
+    document.getElementById('grp-cap').textContent = 'players (' + min + '–' + max + ')';
+  }
+  tierEls.forEach(t => t.addEventListener('click', () => { tierEls.forEach(x => x.classList.remove('selected')); t.classList.add('selected'); state.grp = parseInt(t.dataset.min, 10) + 8; recompute(); }));
+  document.getElementById('grp-down').addEventListener('click', () => { state.grp = Math.max(state.min, state.grp - 4); recompute(); });
+  document.getElementById('grp-up').addEventListener('click', () => { state.grp = Math.min(state.max, state.grp + 4); recompute(); });
+  document.querySelectorAll('#venues .pill').forEach(p => p.addEventListener('click', () => { document.querySelectorAll('#venues .pill').forEach(x => x.classList.remove('active')); p.classList.add('active'); state.venue = venueLabel(p.dataset.v); recompute(); }));
+  document.querySelectorAll('#addons .pill').forEach(p => p.addEventListener('click', () => { p.classList.toggle('active'); const a = p.dataset.a; if(p.classList.contains('active')) state.addons.add(a); else state.addons.delete(a); recompute(); }));
+  document.getElementById('date').addEventListener('change', (e) => { state.date = e.target.value ? new Date(e.target.value).toLocaleDateString('en-CA',{month:'short',day:'numeric',year:'numeric'}) : 'TBD'; recompute(); });
+  recompute();
+</script>
+</body>
+</html>
