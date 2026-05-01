@@ -985,13 +985,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-  // ============== INTRO ==============
-  window.addEventListener('load', () => {
-    setTimeout(() => {
+  // ============== INTRO (failsafe — always removes within 1.4s, never waits for images) ==============
+  (() => {
+    const removeIntro = () => {
       document.body.classList.add('loaded');
-      document.getElementById('intro').classList.add('gone');
-    }, 1100);
-  });
+      const intro = document.getElementById('intro');
+      if (intro) intro.classList.add('gone');
+    };
+    // Fire on DOMContentLoaded + 1.2s delay for the animation to play
+    if (document.readyState !== 'loading') {
+      setTimeout(removeIntro, 1200);
+    } else {
+      document.addEventListener('DOMContentLoaded', () => setTimeout(removeIntro, 1200));
+    }
+    // Hard failsafe: no matter what, remove after 1.4s
+    setTimeout(removeIntro, 1400);
+  })();
 
   // ============== CUSTOM CURSOR ==============
   const cursor = document.getElementById('cursor');
